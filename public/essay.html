@@ -71,24 +71,6 @@ ins {
 <!-- create a div like this for each essay -->
 <div class="essay1">
 	<h2>Participant <span></span></h2>
-<script>
-
-$(document).ready(function() {
-  alert("sending");
-  var respnse = send_correction("bob", "essay","id", "pressing", "correctme", 1)
-});
-
-function send_correction (participant,essay, id, uncorrected, corrected, correct ) {
-  var params = { "participant_id":participant, "essay":essay,"id":id, "uncorrected":uncorrected , "corrected":corrected , "correct":correct  };
-  var str = jQuery.param(params);
-  
-  $.ajax({
-    type: 'POST',
-    url: "responses",
-    data: str
-    });
-}
-</script>
 <!-- the body of the essay goes here -->
 <div class="essay_body">
   <div id="essay_1" >
@@ -395,7 +377,17 @@ $(".correction .continue").click(function(){
 });            
 
 });
-
+// sends it all to the back end.  user is create or found by participant, locations are set by the essay ID then the field ID ,  what the text was supposed to be what it was sent and if that is right. 
+function send_correction (participant,essay, id, uncorrected, corrected, correct ) {
+  var params = { "participant_id":participant, "essay":essay,"id":id, "uncorrected":uncorrected , "corrected":corrected , "correct":correct  };
+  var str = jQuery.param(params);
+  
+  $.ajax({
+    type: 'POST',
+    url: "responses",
+    data: str
+    });
+}
 </script>
 
 <script>
@@ -558,8 +550,8 @@ function diff( o, n ) {
 			}
 
 			return { o: o, n: n };
-		}
-		</script>    
+}
+</script>    
 
 
 	</body>
