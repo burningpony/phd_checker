@@ -78,6 +78,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    web-app-theme (0.6.2)
 
 PLATFORMS
   ruby
@@ -86,3 +87,4 @@ DEPENDENCIES
   rails (= 3.0.5)
   rspec-rails (>= 2.0.1)
   sqlite3
+  web-app-theme (>= 0.6.2)

@@ -30,3 +30,7 @@ gem 'sqlite3'
 #   gem 'webrat'
 # end
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+
+group :development, :test do
+  gem 'web-app-theme', '>= 0.6.2'
+end
