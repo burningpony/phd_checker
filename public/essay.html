@@ -7,6 +7,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "ajax.googleapis.com/ajax
 //]]>
 </script>
 <link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
 </head>
 
 <style>
@@ -67,18 +68,18 @@ ins {
 		<input type="button" value="continue" class="continue">
 	</div>
 
-
+<div class="essay_groups">
 <!-- create a div like this for each essay -->
 <div class="essay1">
 	<h2>Participant <span></span></h2>
 <!-- the body of the essay goes here -->
 <div class="essay_body">
-  <div id="essay_1" >
+  <div id="essay-1" >
 	<h3>
 		Essay 1
 	</h3>
 	<p>
-		With the advent of the so-called "slow-food" movement, more and more people are rediscovering the joy of preparing food.  Many slow-food enthusiasts are even bringing back the forgotten art of bread baking. With a bread machine or without, these individuals are providing <span id="Iamunique" class="correctme">there</span> friends and <span id="somethingelse" class="correctme">family's</span> with delicious, home-baked bread that is healthful and fun to make. 
+		With the advent of the so-called "slow-food" movement, more and more people are rediscovering the joy of preparing food.  Many slow-food enthusiasts are even bringing back the forgotten art of bread baking. With a bread machine or without, these individuals are providing <span id="Iamunique" class="correctme" rel="ther'er">there</span> friends and <span id="somethingelse" class="correctme">family's</span> with delicious, home-baked bread that is healthful and fun to make. 
 	</p>
 	<p>
 		Making a loaf of bread is fun and engaging, but it is also a process that involves careful preparation, lots of patience, and a few spare hours of free time. Before the dough can be kneaded, it first needs to be mixed together. Start with quality ingredients like organic whole wheat flour, yeast, and water. Whole wheat flour will take more time to knead, but the result will be a more flavorful and healthier loaf of break. 
@@ -315,6 +316,7 @@ var change_function = function() {
 
 		if(input.value == original_text) {
 			span.className = "correctme unmodified";
+
 		}                        
 
 		},10);
@@ -324,7 +326,7 @@ var change_function = function() {
 	input.onkeyup   = change_function;
 	input.onchange  = change_function;
 
-
+  
 	span.appendChild(input);
 
 }
@@ -333,6 +335,15 @@ $(".essay1 span.correctme").each(function(){
 	generate_box(this);
 });
 
+$("span.correctme input").change(function() {
+  var correct_me_id = $(this).closest("span").attr('id');
+  var corrected = $(this).val()
+  var uncorrected = $(this).closest("span").attr('rel');
+  var essay = $(this).closest("div").attr("id");
+  
+  send_correction($(".participant #number").val(),essay,correct_me_id, uncorrected, corrected );
+});
+			
 
 $(".participant .continue").click(function(){
 	$(".essay1").show();
@@ -372,6 +383,7 @@ $(".essay1 .continue").click(function(){
 
 
 $(".correction .continue").click(function(){
+  
 	$(".correction").hide();
 	$(".participant").show();                
 });            
@@ -379,7 +391,7 @@ $(".correction .continue").click(function(){
 });
 // sends it all to the back end.  user is create or found by participant, locations are set by the essay ID then the field ID ,  what the text was supposed to be what it was sent and if that is right. 
 function send_correction (participant,essay, id, uncorrected, corrected, correct ) {
-  var params = { "participant_id":participant, "essay":essay,"id":id, "uncorrected":uncorrected , "corrected":corrected , "correct":correct  };
+  var params = { "participant_id":participant, "response":{"essay":essay,"id":id, "uncorrected":uncorrected , "corrected":corrected , "correct":correct } };
   var str = jQuery.param(params);
   
   $.ajax({

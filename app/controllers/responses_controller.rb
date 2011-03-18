@@ -43,16 +43,17 @@ layout proc{ |c| c.request.xhr? ? false : "application" }
   def create
     
     @user = User.find_or_create_by_id(params[:participant_id])
-    @response =  @user.responses.new(params[:response])
+    @response =  @user.responses.find_or_create_by_error(params[:response][:id])
+   @response.update_attributes(params[:response])
 
     respond_to do |format|
       if @response.save
-        format.js {"saved"}
+        format.js
         format.html { redirect_to(@response, :notice => 'Response was successfully created.') }
         format.xml  { render :xml => @response, :status => :created, :location => @response }
         
       else
-        format.js {"#{ @response.errors}"}
+        format.js {render :js => "#{ @response.errors}"}
         format.html { render :action => "new" }
         format.xml  { render :xml => @response.errors, :status => :unprocessable_entity }
           

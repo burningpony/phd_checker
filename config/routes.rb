@@ -1,7 +1,7 @@
 PhdChecker::Application.routes.draw do
 
   resources :responses
-
+  match 'users/stats' => 'users#stats'
   resources :users
 
   # The priority is based upon order of creation:
