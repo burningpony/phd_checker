@@ -1,571 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-<head>
-<script type='text/javascript'>
+  <head>
+
+    <script type='text/javascript'>
 //<![CDATA[
-var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
-document.write(unescape("%3Cscript src='" + gaJsHost + "ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
-//]]>
-</script>
-<link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
-</head>
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+    //]]>
+    </script>
+    <link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <style type="text/css">
 
-<style>
+    .unmodified input{
+    background-color: cyan;
+    border: none;
+    }
+    .modified input{
+    background-color: red;
+    border: none;
+    }
 
-.unmodified input{
-	background-color: cyan;
-	border: none;
-}
-.modified input{
-	background-color: red;
-	border: none;
-}
+    /* styles for string diff */
+    del {
+    background: #FFE6E6;
+    }
+    ins {
+    background: #E6FFE6;
+    }
 
-/* styles for string diff */
-del {
-	background: #FFE6E6;
-}
-ins {
-	background: #E6FFE6;
-}
+    /* classes for result */
+    .result ol li{
+    padding: 5px;
+    }
+    .status {
+    padding-right: 10px;
+    width: 80px;
+    }
 
-/* classes for result */
-.result ol li{
-	padding: 5px;
-}
-.status {
-	padding-right: 10px;
-	width: 80px;
-}
+    .state_correct {
+    background-color: yellow;
+    }
 
-.state_correct {
-	background-color: yellow;
-}
+    .state_modified {
+    background-color: cyan;
+    }
 
-.state_modified {
-	background-color: cyan;
-}
+    .state_reverted {
+    background-color: gray;
+    }
 
-.state_reverted {
-	background-color: gray;
-}
+    .state_no_change {
+    background-color: tan;
+    }
 
-.state_no_change {
-	background-color: tan;
-}
-
-</style>
-
-<body>
-<div class="container">
-	<div class="participant">
-
-		<span>
-			Enter Participant Number
-		</span>
-		<input type="text" id="number">
-
-		<input type="button" value="continue" class="continue">
-	</div>
-
-<div class="essay_groups">
-<!-- create a div like this for each essay -->
-<div class="essay1">
-	<h2>Participant <span></span></h2>
-<!-- the body of the essay goes here -->
-<div class="essay_body">
-  <div id="essay-1" >
-	<h3>
-		Essay 1
-	</h3>
-	<p>
-		With the advent of the so-called "slow-food" movement, more and more people are rediscovering the joy of preparing food.  Many slow-food enthusiasts are even bringing back the forgotten art of bread baking. With a bread machine or without, these individuals are providing <span id="Iamunique" class="correctme" rel="ther'er">there</span> friends and <span id="somethingelse" class="correctme">family's</span> with delicious, home-baked bread that is healthful and fun to make. 
-	</p>
-	<p>
-		Making a loaf of bread is fun and engaging, but it is also a process that involves careful preparation, lots of patience, and a few spare hours of free time. Before the dough can be kneaded, it first needs to be mixed together. Start with quality ingredients like organic whole wheat flour, yeast, and water. Whole wheat flour will take more time to knead, but the result will be a more flavorful and healthier loaf of break. 
-	</p>
-	<p>
-		Once you've measured out the ingredients, <span class="correctme">your</span> ready to begin.  Measure out the <span class="correctme">flower</span> and place it in a large steel mixing bowl.  Place a small portion of warm water in a dish and sprinkle the yeast powder on top of it.  Allow the yeast and water to sit for a while.  All of the ingredients, <span class="correctme">accept</span> for the flour, need time to warm up before use.  Feel free to store your ingredients in the refrigerator to keep them fresh.  After the yeast has warmed up, mix it in to the flour.  Stir vigorously to form a gummy paste.  Don't let it get <span class="correctme">to</span> thick or <span class="correctme">your</span> going to have a mess on your hands.  Add the water in small portions, being careful not to spill it. Make sure all the ingredients are incorporated into the thick dough before you begin to knead it.  The dough should be kneaded until it becomes stretchy and smooth.  Form the dough into a ball and let it sit until it loses some of <span class="correctme">it's</span> tightness.  Once it has rested about ten minutes, cover it with a damp towel to rise. Be sure to set it in a warm location, away from drafts and temperature changes.  It's important to have a controlled environment to ensure even rising. 
-	</p>
-	<p>	
-		After about an hour and a half, your dough should <span class="correctme">of</span> ballooned to at least double its original size. At this point, your bread is ready to bake, but if you want a tastier loaf with big pockets of air in the crumb, let the dough rise a second time.  Deflate the dough by pressing down and releasing the air from the dough.  Then lift the dough and tuck the edges under neath to form a tight ball. Be careful not to tear the gluten skin that has formed or else the gases will escape and <span class="correctme">assure</span> that your second rise is pointless. Set the deflated, now tight ball of dough covered in the same warm location away from drafts. The second rise time will be shorter, as the yeast microbes will have multiplied several times.  After about forty-five minutes, your dough will be ready for shaping. 
-	</p>
-	</div>
-	<p>
-		Essay 2
-	</p>
-	<p>
-		This afternoon in sociology class, we took turns telling stories about times in our lives that were difficult but turned out for the better, something that changed the way we view certain situations. Since I've <span class="correctme">lead</span> a pretty happy life so far, I had a difficult time coming up with a story that wasn't about the death of a pet or something like that. Many small events have <span class="correctme">effected</span> my life and the way I think about it, but not too many traumatic events came to mind. 
-	</p>
-	<p>
-		After hearing a few people talk, I realized that most of the students were sharing moments that I could relate to. Some people told about when their families moved to a new area or when someone lost a job but then found a better one. I suddenly thought I that I did have a story worth telling. It was a simple story - nothing to <span class="correctme">tramatic</span> but something that certainly changed my life for the better. 
-	</p>
-	<p>
-		I recall my first day riding the school bus. I was starting sixth grade at a new middle school, and my mother had gone back to work, so she couldn't drive me to school anymore. We walked down to the bus stop together at seven in the morning.  The <span class="correctme">root</span> to the stop was familiar from countless hours of riding bikes, roller-blading, and the like, but that day, it seemed completely foreign to me. The sun hadn't quite risen yet, so it was barely light out.  The trees along the sidewalk seemed like giants looming over my life.  I remember thinking that my life would never be as happy as it was before. 
-	</p>
-	<p>
-		When we finally arrived at the bus stop, there was a group of children who all seemed used to taking the bus.  They were chatting with one another, too busy to notice the newcomers. We stood short distance from them, since I didn't know any of them yet. After a few minutes, I could <span class="correctme">here</span> the bus approaching a few blocks away. I pretended not to hear. I just stood there and played with the straps on my book bag, finding myself at a <span class="correctme">lost</span> for words as the bus pulled up. My mother gave me a hug, wished me a good day, and gently pushed me towards the bus door. 
-	</p>
-	<p>
-		I must <span class="correctme">of</span> stood at the front of the bus for an unnatural amount of time because the bus driver eventually said something to the affect of "You can't stand up here while I'm driving."  So, still terribly fearful of my future, I gradually made my way down the <span class="correctme">isle</span>, looking for an empty seat among all these children who knew each other. I found a seat next to a girl with blonde <span class="correctme">hare</span> pulled into a ponytail tied in a bright-blue ribbon.  That's how I met Amy, the girl would be my closest friend through middle-school, high school, and into college.  The two of us would be inseparable for years, all because I sat in the <span class="correctme">rite</span> seat on the bus. 
-	</p>
-
-	<p>
-		Essay 3
-	</p>
-	<p>
-		Spelling and punctuation make clear written communication possible. Punctuation in particular can change the meaning of the sentence, the <span class="correctme">affect</span> words have on the reader, and the manner in which something is written. Many people think of punctuation as a rigid set of rules <span class="correctme">inforced</span> by uptight professors who spend their lives policing people's writing; however, punctuation has always been in a state of flux, constantly changing even today.  
-	</p>
-	<p> 
-		Standardized spelling and punctuation have only been in existence for a few hundred years.  Modern-day punctuation, <span class="correctme">witch</span> we think of as flawless and immutable, would be completely foreign to a reader who lived just a few hundred years ago.  Back then, for instance, all nouns were capitalized, not just proper nouns, as the rule is today.  On the other hand, it was not common practice to capitalize the first letter of a sentence until the 16th century. Such changes in punctuation practices are the result of many years of use and misuse, but <span class="correctme">undoubtably</span> the most important catalyst has been the increase in written communication.  
-	</p>
-	<p>
-		Much of our understanding of punctuation has been shaped by widespread literacy. The <span class="correctme">principals</span> of punctuation might make sense to us - guide the reader, group modifiers with <span class="correctme">there</span> respective nouns, avoid ambiguity of meaning - but these are the concerns of a literate society. The need for punctuation marks arose only after writing became a common form of communication. Oral communication requires a different set of rules and guidelines but ones that are less intimidating and more commonly understood.  <span class="correctme">Speach</span> technically has no punctuation, but tone of voice, rhythm, volume, and pitch all convey meaning in ways similar to punctuation marks. 
-	</p>
-	<p>
-		While spelling is commonly treated as a question of <span class="correctme">rite</span> or wrong, it continues to change all the time. Historically, the format of written communication has led to certain standardized spellings. Printers once labored for countless hours arranging type to correspond with correct spellings. Their work took time and care, but their product was often meant to be studied slowly at the <span class="correctme">readers</span> leisure.  The restrictions on the printing process lead to certain conventions in abbreviation, such as shortening "mister" or "missus" or "Mr." and "Mrs." respectively.  In recent decades, new restrictions in forms of communication have given rise to new conventions in spelling.  The introduction of text messaging as a mainstream form of communication has once again introduced new spellings.  When first introduced, text messaging allowed the user a limited number of characters in which to communicate her or his message.  Users began abbreviating or changing the spellings of words as a way of conserving message space.  Some of the shorter words were abbreviated based on the phonetics of the word.  For example, "you" became the letter "u" and "tonight" became "2nite."  Often, silent letters were left out of words altogether in the case that their absence would not change the <span class="correctme">under standing</span> of the word - "know" became "kno," for instance. 
-	</p>
-	<p>
-		Essay 4
-	</p>
-	<p>
-		Megan held back the tears of frustration the entire car ride home.  She didn't say a single word while her father insisted that her health was the most important thing to consider right now. She knew on some level that he was right, but the <span class="correctme">steaks</span> were too high for her. To him, it was just a game, but it wasn't just a game she was missing.  It was a chance to fulfill a dream she'd had for years, and while missing one game didn't actually mean losing that dream, Megan could not help thinking the <span class="correctme">worse</span>.  She couldn't deny, however, that she felt horrible.  She went to her room to <span class="correctme">lay</span> down while her father speed-dialed her doctor.  She desperately wanted to play in the soccer match this afternoon, but the pain in her side was just too much to <span class="correctme">bare</span>.  She hoped that perhaps she would feel better in a few hours, well enough, at least, to cheer on her teammates.  She hadn't missed a game so far this season, which was impressive considering her frequent illnesses. 
-	</p>
-	<p>
-		To say that her father was <span class="correctme">concern</span> would be an understatement. Her history of sudden and mysterious illnesses had left her father nervous and overprotective.  She started getting sick a few years ago, and after the fourth trip to the emergency room, her father realized that he had to keep tabs on her as much as possible.  His concern for his <span class="correctme">daughters</span> health completely circumvented any sense of decorum or boundaries he once had.  His public inquiries about her symptoms were often <span class="correctme">vary</span> specific, which gradually led people at school to suspect that something was terribly wrong with her.  More than once he had interrupted one of her classes just to check up on her.  He was on quite familiar terms with the school nurse, her coaches, the principal,  and most of the administrative staff.  He kept a list of Megan's friends, their parents, their phone numbers, and addresses in case he couldn't reach her.  It seemed like everyone knew Megan's father.  She became the poor girl <span class="correctme">whose</span> got "health problems" and a nervous father.
-	</p>
-	<p> 
-		This was not the ideal situation for an eleventh-grade mid-fielder with prospects of attending a division one school.  Most people were very sympathetic to her situation, but it wasn't the sympathy or the delicately asked "How are you?"s that bothered her-it was her promising, yet tenuous status as an athlete. Her father once spent almost an entire match pacing behind the team bench and firing questions at her as soon as she came within earshot.  She tolerated her father's slightly manic behavior, but lately, her <span class="correctme">patients</span> had been wearing thin.  With rumors of talent scouts from top colleges attending play-off games, she had been eager to perform at her best that day. She couldn't risk <span class="correctme">loosing</span> her shot at a scholarship, but at the insistence of her father and the doctors he forced her to visit several times a month, she was trying to relax. 
-	</p>
-	<p>
-		Essay 5
-	</p>
-	<p>
-		It was the end of September again, and Anna sat on the couch opposite her mother and stepfather, flanked on either side by decorative paper <span class="correctme">rappings</span> and gift bags in what had become the yearly ritual that accompanied her birthday.  The three of them had just returned from a pleasant dinner at Anna's favorite restaurant, and now it was time for gifts and <span class="correctme">desert</span>.  By this time, the ritual was less for Anna's enjoyment and more for that of her parents.  She couldn't bring herself to suggest another restaurant or tell them she didn't want any gifts that year, so she was once again on the couch.  She had forced her face into a delighted expression as she held the gift from her stepfather in her hands.  It was the kind of gift you had to make yourself like for the sake of the giver, and as usual, Anna played the grateful daughter <span class="correctme">roll</span> well. 
-	</p>
-	<p>
-		After six years of her mother's second marriage, Anna began to <span class="correctme">except</span> that she might never have a completely comfortable relationship with her mother’s new husband.  Unlike many children who have been in her situation, she really had high expectations for this relationship. She had not dealt with her mother's remarriage the way many of her friends dealt with <span class="correctme">there</span> parents' new relationships. As uncomfortable as she was, she secretly hoped that this new man <span class="correctme">wood</span> be the father she thought she deserved-the kind of father she saw on television, the kind who held their daughters when they came home from work, attended their recitals, and brought them soup when they were sick.  She <span class="correctme">though</span> that maybe she and Brent would agree on what a father-daughter relationship should be like. 
-	</p>
-	<p>
-		It was a glass desk ornament with two glass dolphins diving towards each other forming the shape of a heart. Dangling from the dolphins' noses was a string of glass hearts that descended almost to the black plastic base of the object, which rotated and lit up in different colors.  It was hideous.  Brent must <span class="correctme">of</span> realized that.  And he must <span class="correctme">of</span> realized that at fourteen-years-old, Anna wasn't too young to see that. 
-	</p>
-	<p>
-		She had become accustomed to receiving such gifts from him, so the gift itself wasn't as much of a disappointment as Brent's impenetrable smugness, which seemed especially thick at this moment.  The tackiness of his gifts had always been dwarfed by the insouciance with which they were given. Brent seemed at once overly proud of this corner-store gift and completely uninterested in <span class="correctme">weather</span> or not she actually liked it, but this was not an unusual attitude for him.  He often came off as overly confident when there was no reason for him to be.  Sometimes Anna thought he was trying to seem humble but that he didn't quite know how.  This year, just like last year, she mustered a few grateful words, placed the piece back into the tissue-filled box, and she thought to herself, at least there's pie.  
-	</p>
-	<p>
-		Essay 6
-	</p>
-	<p>
-		Few people would argue that violence is becoming more and more <span class="correctme">apart</span> of our daily lives.  At times, it seems like we cannot get away from it. It's on the news, in our sports, in our games, and sometimes in <span class="correctme">are</span> own homes.  Many people have said that all this violence is coming from showing our children that violence is okay.  These people have especially attacked violent video games as part of the reason we think children are more violent than they used to be; however, given that children have always been violent and that video games offer children an occupation to keep them busy, it is <span class="correctme">fare</span> to say that violent video games have not caused an increase in violence in today's society. 
-	</p>
-	<p>
-		Even though we always <span class="correctme">here</span> people whining about "kids these days," it is important to remember that children have always been violent in some respects. Dr. Arnold Weissman of the Turner School of Psychology has studied child psychology for many years, and he says that most children, especially boys, will “participate in some form of violent activity during their childhoods as a way of exploring power dynamics and <span class="correctme">there</span> relationships with other beings" (Turner 432).  Lots of times, children will pretend to be people they see on tv, like boxers, wrestlers, or other action heroes, but that doesn't mean that these people on tv are making the children violent.  Years ago, children would play cowboys and Indians, <span class="correctme">witch</span> is a violent game based on shooting one another.  Children have been playing with toys that mimic weapons for hundreds of years, always mimicking what they see from others. The video games of today fit into that same childhood model of copycatting, but it does not mean that the games themselves are making children violent. 
-	</p>
-	<p>
-		Historically, there have been many societies <span class="correctme">were</span> violence was necessary for survival. Such societies would raise their children to be warriors.  Some warlike tribes of Native Americans would train their children from <span class="correctme">vary</span> young ages how to fight and defend <span class="correctme">theirselves</span> against animals and other people. In ancient Greece, the Spartans were a very warlike people whose whole way of life was based on training to be a soldier. Children who were too <span class="correctme">week</span> to fight were shunned or even left to die.  These societies were much more violent than ours. We do not train our children to be warriors or killers. We train them to be doctors, lawyers, and businessmen. By the time they are ready to work, most children have forgotten about video games. 
-	</p>
-	<p>
-		Children know that video games are only for entertainment.  They know that there are not very many jobs that need people to be violent. Some kids want to be cops or wrestlers, but eventually, they realize that there are many jobs that are much safer.  Getting older helps people realize that violence is not a good thing, so for most people, the obsession with violent games and tv shows goes away when they grow up. Video games entertain children for a while, but on the whole, they don't do any longterm damage to there behavior. 
-	</p>
-<p>
-Essay 7
-</p>
-So many people today are worried that they're fat or they don't look good.  People are always trying to get the best clothes because they think it will make them look better to people. Some of this is because other people tell them that they don't look good.  They see other attractive people with nice clothes, so they think, "If I <span class="correctme">ware</span> nice clothes, I will look good too."  It seems like people only want to be with people who look skinny and pretty with good hair and smooth skin.  What makes it <span class="correctme">worst</span> is that people have to see this on tv all the time, not just with shows that always have really attractive people on them, but with shows that are <span class="correctme">suppose</span> to take ugly people and make them beautiful. TV shows like "What Not To Wear" are a part of the problem.  These kinds of tv make-over shows tell people that they have to look a certain way in order to be a good person, and that is just <span class="correctme">plane</span> wrong. 
-	</p>
-<p>
-TV make-over shows are very popular, and that is what makes them dangerous.  People like to watch them. They'll tell you that these shows are interesting to see what kinds of crazy clothes people have, and all the nice clothes that they get later.  People think that these shows really help people look better and feel good about themselves, but all these shows are based on the idea that these people are ugly.  These shows are really insulting to the people on them because they tell the person, "<span class="correctme">Your</span> ugly, but <span class="correctme">were</span> going to fix it." Being ugly is not about how you look or what you wear. It's about the kind of personality you have.  It's about being a good person and treating other people fairly. These shows make people think that you're a good person only if you dress a certain way. 
-	</p>
-<p>
-Another problem with these shows is that they force people to fit a certain style.  Most people on these shows would never care about fashion, and these shows force people to care about something they don't.  They change people into people <span class="correctme">there</span> not. If a person doesn't wear fancy clothes, there's probably a reason. May it's not their style, or maybe they can't afford to <span class="correctme">by</span> expensive clothes.  There is nothing wrong with having clothes that feel comfortable and not wanting to have clothes that make it hard to <span class="correctme">breath</span>. People need to be <span class="correctme">aloud</span> to find their own style without the so-called "help" of reality make-over shows, which basically tell people what their style should be.  Style is whatever somebody wants it to be.  Reality shows tell people "You have no style," but that is wrong.  They have a style.  It's just not the same style you like.  These shows try to embarrass people into doing things they don't want to do.  If people don't like who they are on the outside, maybe they need to deal with it themselves, because only they can figure out why they don't like what they see. 
-</p>
-<p>
-	Essay 8
-</p>
-<p>
-	There is a great deal of debate over <span class="correctme">weather</span> or not parents should physically discipline <span class="correctme">there</span> children.  Those who favor corporal punishment say that it makes an impression on a child - no pun intended - and teaches them that what they did was wrong.  Those who are against it say that physical violence teaches children to be violent themselves.  It should be recognized that while mild physical punishment may have desirous<span class="correctme">affects</span> on children temporarily, even the slightest possibility of turning a child violent should make parents rethink using corporal punishment to discipline their children. 
-	</p>
-	<p>
-	Physical discipline has been used throughout history as a way of teaching children the proper way to <span class="correctme">behaive</span>.  Lately, however, researchers have connected </span class="correctme">sevear</span> childhood trauma to future acts of violence by the abused child.  This should make people stop and consider if physical punishment is the best way to communicate our expectations to our children.  Many of us today experienced some form of physical punishment growing up: a spanking, maybe even soap in the mouth.  It cannot be denied that such mild forms of physical punishment probably had no lasting traumatic effects on the child, but that should not be taking to mean that all forms of punishment in all variations and degrees are <span class="correctme">benine</span>. 
-	</p>
-	<p>
-	To explain, an open-hand spanking on the buttocks used only for severe infractions, will maintain its status as a feared <span class="correctme">reprecussion</span> of bad behavior.  It will make a lasting impression on a child without doing much real psychological damage.  Keeping the spankings infrequent will cause them to become iconic in the child's mind - the child will come to know a spanking as the <span class="correctme">worse</span> consequence of very bad actions.  The child will likely remember each spanking and the actions that provoked them. 
-	</p>
-	<p>
-	Frequent spankings, as opposed to infrequent or rare spankings, have several negative effects. First, the child will become numbed to the punishment. It will not carry as much <span class="correctme">wait</span> or fear as an infrequent spanking because it is a common occurrence.  The increased frequency of the punishment will also make it more difficult for the child to associate a specific behavior with the consequence.  If a child is spanked for many undesired behaviors, such as not finishing homework, yelling at a sibling, not finishing dinner, as well as fighting with other children and other more severe behaviors, the child will not easily connect the spanking to a specific behavior.  The child will instead learn that spanking is the consequence of nearly all less-<span class="correctme">then</span>-perfect behavior.  Thus, violence becomes the child's understood method of communication as learned from the parent.  Since children learn primarily from their parents, repeated violence becomes part of a learned behavior.  The child sees that when mom and dad are angry, they hit someone or something.  This becomes acceptable behavior to the child, which makes it highly likely that the child will mimic that violence sometime in the future. 
-	
-</p>
-
-<p>
-Essay 9 
-</p>
-<p>
-The sport of triathlon has captured the hearts and <span class="correctme">mines</span> of many an athlete, weekend warrior, and once-and-future couch potato. It's allure partly due to the diversity of the sport but primarily due to how surprisingly accessible it is to non-athletes. Many an average person has decided to do a triathlon for health, personal enrichment, social, or other purposes.  But for most people just getting into the sport, it can seem daunting both emotionally and financially.  It doesn't have to be as financially taxing as people might think. Depending on the expectations and goals of the individual, triathlon can be enjoyed at levels that are fun and/or competitive even while on a <span class="correctme">collage</span> student budget. 
-</p>
-<p>
-The first consideration for the money-strapped aspiring triathlete is a decent pair of running shoes.  This item alone can cost upwards of $150-200, but traditionally it is one of the least expensive items on the triathlon budget report. <span class="correctme">Its</span> probably a good idea to start with the shoes because amateur athletes will spend the majority of their time running.  Contrary to what running fanatics will say, an amateur does not need a $100 <span class="correctme">pare</span> of running shoes to be happy in the sport.  There many tales of extreme frugality like people training and competing in a $12 pair of Nikes purchased from a thrift-store.  As long as the shoe provides the support and comfort needed for a few six mile runs per <span class="correctme">weak</span>, it's a suitable shoe.  A regular shoe store will have an adequate selection of modestly priced shoes.  Check with runner friends who may have recently upgraded to the latest release from Asics. Their old $150 pair with only 70 miles on it will suit any beginner triathlete. 
-</p>
-<p>
-The next consideration will be the swimming aspect.  For many triathletes, swimming is <span class="correctme">there</span>
-worst event, probably because most triathletes come from a cycling, running background.  Swimming is also the most location-restrictive element of training.  The most economical swimming location would be an open-water pond, lake, or river, but those beginners bound to land-locked areas or <span class="correctme">city's</span> should first check with local universities.  Many state universities with recreational swimming pools will offer public memberships for a nominal fee.  This will probably be the best value available unless one is employed at a company that allows for easy pool access.  Check with local YMCAs, and lastly, check with aquatic / athletic clubs.  Those will be the most expensive options but also the highest of quality. 
-The bicycle is definitely the most expensive item in any triathlete's arsenal. It can be fun to peruse the triathlon magazines and <span class="correctme">druel</span> over the $4,500 Cevelo frame, but for starters, any rode bike that fits will do. Depending on your degree of commitment, it doesn't even have to fit. The best advice for beginner triathletes regarding the purchase of a racing bike is check craigslist.org, ebay.com, and know what <span class="correctme">your</span> buying.  Buy a book on bike maintenance, read up, and be sure to check your purchases, ask the seller lots of questions, and be proud of how many people with more expensive bikes you <span class="correctme">past</span> during the race. 
-</p>
-<p>
-	Essay 10
-	</p>
-	Poison ivy will be familiar to anyone <span class="correctme">whose</span> done any camping or outdoor activity before.  Most people will get a rash and bumps from touching the leaves, but those people are lucky.  Some people are so allergic to poison ivy that even touching something else that has touched poison ivy can cause a really painful case of swelling and blisters.  Even though this is a commonly known plant, most people don't know much about the plant itself. 
-</p>
-<p>	
-	Poison ivy gives off an oil that causes people to <span class="correctme">brake</span> out.  It's the same oil found in poison oak and poison sumac.  Poison ivy and sumac are found all up and down the east coast, and poison oak is found mostly in the western United States.  The oil comes from both the vine and the leaves.  Poison ivy is easy to spot by <span class="correctme">it's</span> three leaves.  The leaves themselves even look shiny because of the oils on them.  In the winter time when the leaves are gone, poison ivy can be much harder to spot.  It's still dangerous because the vines give off the oil too.  
-	</p>
-	<p>
-	The oil is actually <span class="correctme">vary</span> hard to break down and degrade. It can last for a really long time without drying up, which means that things have touched poison ivy oils can still have the oils on them after months and months.  People who have really bad reactions to poison ivy have to be careful not to touch things that have touched poison ivy.  Even people who are really careful will sometimes get infected because they will be around people who have touched poison ivy recently without washing.  With many fabrics, the oils will stay on the surface, so people can give other people infections just by touching someone else's <span class="correctme">cloths</span>.  
-	</p>
-	<p>
-	The oil takes about twenty minutes to get into the skin, so if you know you touched it, you have about twenty minutes to wash yourself.  The oil will come off your skin just with soap and water, but there are special poison ivy soaps that are <span class="correctme">suppose</span> to be better for removing the oil from your skin.  Once the oils have <span class="correctme">obsorbed</span> it can take two to four days for a reaction to show up.  Sometimes people will get a few bumps one day, then the next day it will look like the bumps are spreading because it takes a while for the skin to react.  
-	</p>
-	<p>
-	<span class="correctme">Peoples</span> reactions can be very different depending on the individual person.  Some people aren't allergic at all, but other people have very severe reactions.  The <span class="correctme">worse</span> case reactions involve large, painful blisters, and even being unable to breathe.  Some people will have to go to the hospital if they touch poison ivy, so they have to be very careful about going outside. The oil will last longer <span class="correctme">then</span> the plant itself will, so touching dead leaves is just as bad as touching the live plant.  Burning the plant doesn't help either.  Breathing in the smoke can actually cause a rash in the lungs, which can cause the person to have trouble breathing.
-</p>	
-
-</pre>            
-</div>
-
-<input type="button" value="continue" class="continue">
-</div>
-
-<div class="correction">
-	<h2>Participant <span></span></h2>
-	<span>
-		Here's how you did (Also emailed to ellie)
-	</span>
-
-	<span class="result">
-		Way to go
-	</span>
-
-	<input type="button" value="continue" class="continue">
-</div>
-</div>
-
-<script>
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="participant">
+        <span>Enter Participant Number</span> <input type="text" id="number"> <input type="button" value="continue" class="continue">
+      </div>
+      <div class="essay_groups span-24 last">
+        <!-- create a div like this for each essay -->
+        <div class="essay1">
+          <h2>
+            Participant
+          </h2>
+          <div id="stat_window"></div><!-- the body of the essay goes here -->
+          <div class="essay_body">
+            <div id="essay-1">
+              <h3>
+                Essay 1
+              </h3>
+              <p>
+                With the advent of the so-called "slow-food" movement, more and more people are rediscovering the joy of preparing food. Many slow-food enthusiasts are even bringing back the forgotten art of bread baking. With a bread machine or without, these individuals are providing <span id="Iamunique" class="correctme" rel="ther'er">there</span> friends and <span id="somethingelse" class="correctme">family's</span> with delicious, home-baked bread that is healthful and fun to make.
+              </p>
+              <p>
+                Making a loaf of bread is fun and engaging, but it is also a process that involves careful preparation, lots of patience, and a few spare hours of free time. Before the dough can be kneaded, it first needs to be mixed together. Start with quality ingredients like organic whole wheat flour, yeast, and water. Whole wheat flour will take more time to knead, but the result will be a more flavorful and healthier loaf of break.
+              </p>
+              <p>
+                Once you've measured out the ingredients, <span class="correctme">your</span> ready to begin. Measure out the <span class="correctme">flower</span> and place it in a large steel mixing bowl. Place a small portion of warm water in a dish and sprinkle the yeast powder on top of it. Allow the yeast and water to sit for a while. All of the ingredients, <span class="correctme">accept</span> for the flour, need time to warm up before use. Feel free to store your ingredients in the refrigerator to keep them fresh. After the yeast has warmed up, mix it in to the flour. Stir vigorously to form a gummy paste. Don't let it get <span class="correctme">to</span> thick or <span class="correctme">your</span> going to have a mess on your hands. Add the water in small portions, being careful not to spill it. Make sure all the ingredients are incorporated into the thick dough before you begin to knead it. The dough should be kneaded until it becomes stretchy and smooth. Form the dough into a ball and let it sit until it loses some of <span class="correctme">it's</span> tightness. Once it has rested about ten minutes, cover it with a damp towel to rise. Be sure to set it in a warm location, away from drafts and temperature changes. It's important to have a controlled environment to ensure even rising.
+              </p>
+              <p>
+                After about an hour and a half, your dough should <span class="correctme">of</span> ballooned to at least double its original size. At this point, your bread is ready to bake, but if you want a tastier loaf with big pockets of air in the crumb, let the dough rise a second time. Deflate the dough by pressing down and releasing the air from the dough. Then lift the dough and tuck the edges under neath to form a tight ball. Be careful not to tear the gluten skin that has formed or else the gases will escape and <span class="correctme">assure</span> that your second rise is pointless. Set the deflated, now tight ball of dough covered in the same warm location away from drafts. The second rise time will be shorter, as the yeast microbes will have multiplied several times. After about forty-five minutes, your dough will be ready for shaping.
+              </p>
+            </div>
+          </div><input type="button" value="continue" class="continue">
+        </div>
+        <div class="correction">
+          <h2>
+            Participant
+          </h2><span>Here's how you did (Also emailed to ellie)</span> <span class="result">Way to go</span> <input type="button" value="continue" class="continue">
+        </div><script type="text/javascript">
 // hide panels
-$(".participant").show();
-$(".essay1").hide();
-$(".correction").hide();    
+        $(".participant").show();
+        $(".essay1").hide();
+        $(".correction").hide();    
+        setInterval( "updateStats()", 10000 );
+        $(document).ready(function(){
 
-$(document).ready(function(){
+        function generate_box(span) {
+        span.className = "correctme unmodified";
 
-	function generate_box(span) {
-		span.className = "correctme unmodified";
+        console.log(span);
+        var original_text = $(span).html();
 
-		console.log(span);
-		var original_text = $(span).html();
+        //clear it
+        $(span).html("");
 
-		//clear it
-		$(span).html("");
+        var input = document.createElement("input")
+        input.type     = "text";
+        input.value    = original_text;
+        input.size     = input.value.length*1.2;
 
-		var input = document.createElement("input")
-		input.type     = "text";
-		input.value    = original_text;
-		input.size     = input.value.length*1.2;
+        var correct_answer = input.getAttribute('rel');
 
-		var correct_answer = input.getAttribute('rel');
+        input.state = function() {
+        /*
+        Given a span like:
+        <span class='correctme' rel='correct string'>original string<\/span>
 
-		input.state = function() {
-			/*
-			Given a span like:
-			<span class='correctme' rel='correct string'>original string</span>
+        Tells us whether the string modified by the user is
+        - correct
+        - modified, but reverted to the original
+        - no change (un touched at all by the user)
+        - modifies, and returns difference
+        */
+        var current_value = input.value;
 
-Tells us whether the string modified by the user is
-- correct
-- modified, but reverted to the original
-- no change (un touched at all by the user)
-- modifies, and returns difference
-*/
-var current_value = input.value;
+        if(input.modified) {
+        if(current_value == correct_answer) {
+        return { status: "correct",  msg: correct_answer, style_class: "state_correct" }
+        }
+        else if(current_value == original_text) {
+        return {status: "incorrect - reverted to original", msg: "modified but returned to normal", style_class: "state_reverted"}
+        }
+        else {
+        // find the differnce between original and difference
+        // using the diffString Algorithm
+        var difference = diffString(original_text, current_value);
 
-if(input.modified) {
-	if(current_value == correct_answer) {
-		return { status: "correct",  msg: correct_answer, style_class: "state_correct" }
-	}
-	else if(current_value == original_text) {
-		return {status: "incorrect - reverted to original", msg: "modified but returned to normal", style_class: "state_reverted"}
-	}
-	else {
-		// find the differnce between original and difference
-		// using the diffString Algorithm
-		var difference = diffString(original_text, current_value);
+        // modified, return difference
+        return {status: "incorrect - modified", msg: difference, style_class: "state_modified"} 
+        }
 
-		// modified, return difference
-		return {status: "incorrect - modified", msg: difference, style_class: "state_modified"} 
-	}
+        }else {
+        return { status: "incorrect - no change", msg: current_value, style_class: "state_no_change"};
+        }
+        }
 
-}else {
-	return { status: "incorrect - no change", msg: current_value, style_class: "state_no_change"};
-}
-}
+        var change_function = function() {
 
-var change_function = function() {
+        // remember that the field was modified
+        input.modified = true;
 
-	// remember that the field was modified
-	input.modified = true;
+        // timeout 10ms so we can read the input value for changes
+        setTimeout(function() {
+        span.className = "correctme modified";
 
-	// timeout 10ms so we can read the input value for changes
-	setTimeout(function() {
-		span.className = "correctme modified";
+        if(input.value == original_text) {
+        span.className = "correctme unmodified";
 
-		if(input.value == original_text) {
-			span.className = "correctme unmodified";
+        }                        
 
-		}                        
+        },10);
+        }
 
-		},10);
-	}
-
-	// handle change events
-	input.onkeyup   = change_function;
-	input.onchange  = change_function;
-
-  
-	span.appendChild(input);
-
-}
-
-$(".essay1 span.correctme").each(function(){
-	generate_box(this);
-});
-
-$("span.correctme input").change(function() {
-  var correct_me_id = $(this).closest("span").attr('id');
-  var corrected = $(this).val()
-  var uncorrected = $(this).closest("span").attr('rel');
-  var essay = $(this).closest("div").attr("id");
-  
-  send_correction($(".participant #number").val(),essay,correct_me_id, uncorrected, corrected );
-});
-			
-
-$(".participant .continue").click(function(){
-	$(".essay1").show();
-	$(".participant").hide();
-	$("h2 span").html( $(".participant #number").val());
-});
-
-$(".essay1 .continue").click(function(){
-	$(".essay1").hide();
-	$(".correction").show();                
+        // handle change events
+        input.onkeyup   = change_function;
+        input.onchange  = change_function;
 
 
-	// clear it
-	$(".correction .result").html("");
+        span.appendChild(input);
 
-	// show the fields entered
-	var list =  document.createElement("ol");
+        }
 
-	$(".essay1 span.correctme input").each(function(){
+        $(".essay1 span.correctme").each(function(){
+        generate_box(this);
+        });
 
-		// Creates a report of the differences and corrected items
+        $("span.correctme input").change(function() {
+        var correct_me_id = $(this).closest("span").attr('id');
+        var corrected = $(this).val()
+        var uncorrected = $(this).closest("span").attr('rel');
+        var essay = $(this).closest("div").attr("id");
 
-		var list_item =  document.createElement("li");
-		var result_string = "";
-		var result = this.state();
-
-		result_string = "<span class='status " + result.style_class + "'>" + result.status + "</span><span class='message'>" + result.msg + "</span>"; 
-
-		$(list_item).html( result_string );
-		list.appendChild(list_item);
-
-		// You could imagine saving the results here
-	});                
-
-	$(".correction .result")[0].appendChild(list);
-});  
+        send_correction($(".participant #number").val(),essay,correct_me_id, uncorrected, corrected );
+        });
 
 
-$(".correction .continue").click(function(){
-  
-	$(".correction").hide();
-	$(".participant").show();                
-});            
+        $(".participant .continue").click(function(){
+        $(".essay1").show();
+        $(".participant").hide();
+        $("h2 span").html( $(".participant #number").val());
+        });
 
-});
-// sends it all to the back end.  user is create or found by participant, locations are set by the essay ID then the field ID ,  what the text was supposed to be what it was sent and if that is right. 
-function send_correction (participant,essay, id, uncorrected, corrected, correct ) {
-  var params = { "participant_id":participant, "response":{"essay":essay,"id":id, "uncorrected":uncorrected , "corrected":corrected , "correct":correct } };
-  var str = jQuery.param(params);
-  
-  $.ajax({
-    type: 'POST',
-    url: "responses",
-    data: str
-    });
-}
-</script>
+        $(".essay1 .continue").click(function(){
+        $(".essay1").hide();
+        $(".correction").show();                
 
-<script>
+
+        // clear it
+        $(".correction .result").html("");
+
+        // show the fields entered
+        var list =  document.createElement("ol");
+
+        $(".essay1 span.correctme input").each(function(){
+
+        // Creates a report of the differences and corrected items
+
+        var list_item =  document.createElement("li");
+        var result_string = "";
+        var result = this.state();
+
+        result_string = "<span class='status " + result.style_class + "'>" + result.status + "<\/span><span class='message'>" + result.msg + "<\/span>"; 
+
+        $(list_item).html( result_string );
+        list.appendChild(list_item);
+
+        // You could imagine saving the results here
+        });                
+
+        $(".correction .result")[0].appendChild(list);
+        });  
+
+
+        $(".correction .continue").click(function(){
+
+        $(".correction").hide();
+        $(".participant").show();                
+        });            
+
+        });
+        // sends it all to the back end.  user is create or found by participant, locations are set by the essay ID then the field ID ,  what the text was supposed to be what it was sent and if that is right. 
+        function send_correction (participant,essay, id, uncorrected, corrected, correct ) {
+        var params = { "participant_id":participant, "response":{"essay":essay,"id":id, "uncorrected":uncorrected , "corrected":corrected , "correct":correct } };
+        var str = jQuery.param(params);
+
+        $.ajax({
+        type: 'POST',
+        url: "responses",
+        data: str
+        });
+        }
+
+        function updateStats () {
+        $.get("users/stats", function(data) {
+
+        $("#stat_window").html(data);
+        })
+        }
+        </script> <script type="text/javascript">
 /*
-* Javascript Diff Algorithm
-*  By John Resig (http://ejohn.org/)
-*  Modified by Chu Alan "sprite"
-*
-* Released under the MIT license.
-*
-* More Info:
-*  http://ejohn.org/projects/javascript-diff-algorithm/
-*/
+        * Javascript Diff Algorithm
+        *  By John Resig (http://ejohn.org/)
+        *  Modified by Chu Alan "sprite"
+        *
+        * Released under the MIT license.
+        *
+        * More Info:
+        *  http://ejohn.org/projects/javascript-diff-algorithm/
+        */
 
-function escape(s) {
-	var n = s;
-	n = n.replace(/&/g, "&amp;");
-	n = n.replace(/</g, "&lt;");
-	n = n.replace(/>/g, "&gt;");
-	n = n.replace(/"/g, "&quot;");
+        function escape(s) {
+        var n = s;
+        n = n.replace(/&/g, "&amp;");
+        n = n.replace(/<\/g, "&lt;");
+        n = n.replace(/>/g, "&gt;");
+        n = n.replace(/"/g, "&quot;");
 
-	return n;
-}
+        return n;
+        }
 
-function diffString( o, n ) {
-	o = o.replace(/\s+$/, '');
-	n = n.replace(/\s+$/, '');
+        function diffString( o, n ) {
+        o = o.replace(/\s+$/, '');
+        n = n.replace(/\s+$/, '');
 
-	var out = diff(o == "" ? [] : o.split(/\s+/), n == "" ? [] : n.split(/\s+/) );
-	var str = "";
+        var out = diff(o == "" ? [] : o.split(/\s+/), n == "" ? [] : n.split(/\s+/) );
+        var str = "";
 
-	var oSpace = o.match(/\s+/g);
-	if (oSpace == null) {
-		oSpace = ["\n"];
-	} else {
-		oSpace.push("\n");
-	}
-	var nSpace = n.match(/\s+/g);
-	if (nSpace == null) {
-		nSpace = ["\n"];
-	} else {
-		nSpace.push("\n");
-	}
+        var oSpace = o.match(/\s+/g);
+        if (oSpace == null) {
+        oSpace = ["\n"];
+        } else {
+        oSpace.push("\n");
+        }
+        var nSpace = n.match(/\s+/g);
+        if (nSpace == null) {
+        nSpace = ["\n"];
+        } else {
+        nSpace.push("\n");
+        }
 
-	if (out.n.length == 0) {
-		for (var i = 0; i < out.o.length; i++) {
-			str += '<del>' + escape(out.o[i]) + oSpace[i] + "</del>";
-		}
-	} else {
-		if (out.n[0].text == null) {
-			for (n = 0; n < out.o.length && out.o[n].text == null; n++) {
-				str += '<del>' + escape(out.o[n]) + oSpace[n] + "</del>";
-			}
-		}
+        if (out.n.length == 0) {
+        for (var i = 0; i < out.o.length; i++) {
+        str += '<del>' + escape(out.o[i]) + oSpace[i] + "<\/del>";
+        }
+        } else {
+        if (out.n[0].text == null) {
+        for (n = 0; n < out.o.length && out.o[n].text == null; n++) {
+        str += '<del>' + escape(out.o[n]) + oSpace[n] + "<\/del>";
+        }
+        }
 
-		for ( var i = 0; i < out.n.length; i++ ) {
-			if (out.n[i].text == null) {
-				str += '<ins>' + escape(out.n[i]) + nSpace[i] + "</ins>";
-			} else {
-				var pre = "";
+        for ( var i = 0; i < out.n.length; i++ ) {
+        if (out.n[i].text == null) {
+        str += '<ins>' + escape(out.n[i]) + nSpace[i] + "<\/ins>";
+        } else {
+        var pre = "";
 
-				for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) {
-					pre += '<del>' + escape(out.o[n]) + oSpace[n] + "</del>";
-				}
-				str += " " + out.n[i].text + nSpace[i] + pre;
-			}
-		}
-	}
+        for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) {
+          pre += '<del>' + escape(out.o[n]) + oSpace[n] + "<\/del>";
+        }
+        str += " " + out.n[i].text + nSpace[i] + pre;
+        }
+        }
+        }
 
-	return str;
-}
+        return str;
+        }
 
-function randomColor() {
-	return "rgb(" + (Math.random() * 100) + "%, " + 
-	(Math.random() * 100) + "%, " + 
-	(Math.random() * 100) + "%)";
-}
-function diffString2( o, n ) {
-	o = o.replace(/\s+$/, '');
-	n = n.replace(/\s+$/, '');
+        function randomColor() {
+        return "rgb(" + (Math.random() * 100) + "%, " + 
+        (Math.random() * 100) + "%, " + 
+        (Math.random() * 100) + "%)";
+        }
+        function diffString2( o, n ) {
+        o = o.replace(/\s+$/, '');
+        n = n.replace(/\s+$/, '');
 
-	var out = diff(o == "" ? [] : o.split(/\s+/), n == "" ? [] : n.split(/\s+/) );
+        var out = diff(o == "" ? [] : o.split(/\s+/), n == "" ? [] : n.split(/\s+/) );
 
-	var oSpace = o.match(/\s+/g);
-	if (oSpace == null) {
-		oSpace = ["\n"];
-	} else {
-		oSpace.push("\n");
-	}
-	var nSpace = n.match(/\s+/g);
-	if (nSpace == null) {
-		nSpace = ["\n"];
-	} else {
-		nSpace.push("\n");
-	}
+        var oSpace = o.match(/\s+/g);
+        if (oSpace == null) {
+        oSpace = ["\n"];
+        } else {
+        oSpace.push("\n");
+        }
+        var nSpace = n.match(/\s+/g);
+        if (nSpace == null) {
+        nSpace = ["\n"];
+        } else {
+        nSpace.push("\n");
+        }
 
-	var os = "";
-	var colors = new Array();
-	for (var i = 0; i < out.o.length; i++) {
-		colors[i] = randomColor();
+        var os = "";
+        var colors = new Array();
+        for (var i = 0; i < out.o.length; i++) {
+        colors[i] = randomColor();
 
-		if (out.o[i].text != null) {
-			os += '<span style="background-color: ' +colors[i]+ '">' + 
-			escape(out.o[i].text) + oSpace[i] + "</span>";
-		} else {
-			os += "<del>" + escape(out.o[i]) + oSpace[i] + "</del>";
-		}
-	}
+        if (out.o[i].text != null) {
+        os += '<span style="background-color: ' +colors[i]+ '">' + 
+        escape(out.o[i].text) + oSpace[i] + "<\/span>";
+        } else {
+        os += "<del>" + escape(out.o[i]) + oSpace[i] + "<\/del>";
+        }
+        }
 
-	var ns = "";
-	for (var i = 0; i < out.n.length; i++) {
-		if (out.n[i].text != null) {
-			ns += '<span style="background-color: ' +colors[out.n[i].row]+ '">' + 
-			escape(out.n[i].text) + nSpace[i] + "</span>";
-		} else {
-			ns += "<ins>" + escape(out.n[i]) + nSpace[i] + "</ins>";
-		}
-	}
+        var ns = "";
+        for (var i = 0; i < out.n.length; i++) {
+        if (out.n[i].text != null) {
+        ns += '<span style="background-color: ' +colors[out.n[i].row]+ '">' + 
+        escape(out.n[i].text) + nSpace[i] + "<\/span>";
+        } else {
+        ns += "<ins>" + escape(out.n[i]) + nSpace[i] + "<\/ins>";
+        }
+        }
 
-	return { o : os , n : ns };
-}
+        return { o : os , n : ns };
+        }
 
-function diff( o, n ) {
-	var ns = new Object();
-	var os = new Object();
+        function diff( o, n ) {
+        var ns = new Object();
+        var os = new Object();
 
-	for ( var i = 0; i < n.length; i++ ) {
-		if ( ns[ n[i] ] == null )
-		ns[ n[i] ] = { rows: new Array(), o: null };
-		ns[ n[i] ].rows.push( i );
-	}
+        for ( var i = 0; i < n.length; i++ ) {
+        if ( ns[ n[i] ] == null )
+        ns[ n[i] ] = { rows: new Array(), o: null };
+        ns[ n[i] ].rows.push( i );
+        }
 
-	for ( var i = 0; i < o.length; i++ ) {
-		if ( os[ o[i] ] == null )
-		os[ o[i] ] = { rows: new Array(), n: null };
-		os[ o[i] ].rows.push( i );
-	}
+        for ( var i = 0; i < o.length; i++ ) {
+        if ( os[ o[i] ] == null )
+        os[ o[i] ] = { rows: new Array(), n: null };
+        os[ o[i] ].rows.push( i );
+        }
 
-	for ( var i in ns ) {
-		if ( ns[i].rows.length == 1 && typeof(os[i]) != "undefined" && os[i].rows.length == 1 ) {
-			n[ ns[i].rows[0] ] = { text: n[ ns[i].rows[0] ], row: os[i].rows[0] };
-			o[ os[i].rows[0] ] = { text: o[ os[i].rows[0] ], row: ns[i].rows[0] };
-		}
-	}
+        for ( var i in ns ) {
+        if ( ns[i].rows.length == 1 && typeof(os[i]) != "undefined" && os[i].rows.length == 1 ) {
+        n[ ns[i].rows[0] ] = { text: n[ ns[i].rows[0] ], row: os[i].rows[0] };
+        o[ os[i].rows[0] ] = { text: o[ os[i].rows[0] ], row: ns[i].rows[0] };
+        }
+        }
 
-	for ( var i = 0; i < n.length - 1; i++ ) {
-		if ( n[i].text != null && n[i+1].text == null && n[i].row + 1 < o.length && o[ n[i].row + 1 ].text == null && 
-			n[i+1] == o[ n[i].row + 1 ] ) {
-				n[i+1] = { text: n[i+1], row: n[i].row + 1 };
-				o[n[i].row+1] = { text: o[n[i].row+1], row: i + 1 };
-			}
-		}
+        for ( var i = 0; i < n.length - 1; i++ ) {
+        if ( n[i].text != null && n[i+1].text == null && n[i].row + 1 < o.length && o[ n[i].row + 1 ].text == null && 
+        n[i+1] == o[ n[i].row + 1 ] ) {
+        n[i+1] = { text: n[i+1], row: n[i].row + 1 };
+        o[n[i].row+1] = { text: o[n[i].row+1], row: i + 1 };
+        }
+        }
 
-		for ( var i = n.length - 1; i > 0; i-- ) {
-			if ( n[i].text != null && n[i-1].text == null && n[i].row > 0 && o[ n[i].row - 1 ].text == null && 
-				n[i-1] == o[ n[i].row - 1 ] ) {
-					n[i-1] = { text: n[i-1], row: n[i].row - 1 };
-					o[n[i].row-1] = { text: o[n[i].row-1], row: i - 1 };
-				}
-			}
+        for ( var i = n.length - 1; i > 0; i-- ) {
+        if ( n[i].text != null && n[i-1].text == null && n[i].row > 0 && o[ n[i].row - 1 ].text == null && 
+        n[i-1] == o[ n[i].row - 1 ] ) {
+          n[i-1] = { text: n[i-1], row: n[i].row - 1 };
+          o[n[i].row-1] = { text: o[n[i].row-1], row: i - 1 };
+        }
+        }
 
-			return { o: o, n: n };
-}
-</script>    
-
-
-	</body>
-	</html>
-
+        return { o: o, n: n };
+        }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   # GET /users
+  layout proc{ |c| c.request.xhr? ? false : "application" }
   # GET /users.xml
   def index
     @users = User.all
