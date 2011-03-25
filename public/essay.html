@@ -10,6 +10,8 @@
     </script>
     <link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+  	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
     <style type="text/css">
 
     .unmodified input{
@@ -62,20 +64,30 @@
       <div class="participant">
         <span>Enter Participant Number</span> <input type="text" id="number"> <input type="button" value="continue" class="continue">
       </div>
+    
       <div class="essay_groups span-24 last">
         <!-- create a div like this for each essay -->
-        <div class="essay1">
-          <h2>
-            Participant
-          </h2>
-          <div id="stat_window"></div><!-- the body of the essay goes here -->
+        
+        
+        
+        
+        
+        
+        
+            <div id="stat_window"></div><!-- the body of the essay goes here -->      
+            <div id="user">
+            <h2>
+              Participant <span></span>
+            </h2>
+            </div>
+        <div id="essay-1" class="essay">
+
           <div class="essay_body">
-            <div id="essay-1">
               <h3>
                 Essay 1
               </h3>
               <p>
-                With the advent of the so-called "slow-food" movement, more and more people are rediscovering the joy of preparing food. Many slow-food enthusiasts are even bringing back the forgotten art of bread baking. With a bread machine or without, these individuals are providing <span id="Iamunique" class="correctme" rel="ther'er">there</span> friends and <span id="somethingelse" class="correctme">family's</span> with delicious, home-baked bread that is healthful and fun to make.
+                With the advent of the so-called "slow-food" movement, more and more people are rediscovering the joy of preparing food. Many slow-food enthusiasts are even bringing back the forgotten art of bread baking. With a bread machine or without, these individuals are providing <span id="Iamunique" class="correctme" rel="ther'er" >there</span> friends and <span id="somethingelse" class="correctme">family's</span> with delicious, home-baked bread that is healthful and fun to make.
               </p>
               <p>
                 Making a loaf of bread is fun and engaging, but it is also a process that involves careful preparation, lots of patience, and a few spare hours of free time. Before the dough can be kneaded, it first needs to be mixed together. Start with quality ingredients like organic whole wheat flour, yeast, and water. Whole wheat flour will take more time to knead, but the result will be a more flavorful and healthier loaf of break.
@@ -86,9 +98,23 @@
               <p>
                 After about an hour and a half, your dough should <span class="correctme">of</span> ballooned to at least double its original size. At this point, your bread is ready to bake, but if you want a tastier loaf with big pockets of air in the crumb, let the dough rise a second time. Deflate the dough by pressing down and releasing the air from the dough. Then lift the dough and tuck the edges under neath to form a tight ball. Be careful not to tear the gluten skin that has formed or else the gases will escape and <span class="correctme">assure</span> that your second rise is pointless. Set the deflated, now tight ball of dough covered in the same warm location away from drafts. The second rise time will be shorter, as the yeast microbes will have multiplied several times. After about forty-five minutes, your dough will be ready for shaping.
               </p>
-            </div>
-          </div><input type="button" value="continue" class="continue">
-        </div>
+            </div><input type="button" value="continue" class="continue">
+          </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <div class="correction">
           <h2>
             Participant
@@ -96,9 +122,9 @@
         </div><script type="text/javascript">
 // hide panels
         $(".participant").show();
-        $(".essay1").hide();
+        $(".essay").hide();
         $(".correction").hide();    
-        setInterval( "updateStats()", 10000 );
+        setInterval( "updateStats()", 60000 );
         $(document).ready(function(){
 
         function generate_box(span) {
@@ -177,7 +203,7 @@
 
         }
 
-        $(".essay1 span.correctme").each(function(){
+        $(".essay span.correctme").each(function(){
         generate_box(this);
         });
 
@@ -192,13 +218,13 @@
 
 
         $(".participant .continue").click(function(){
-        $(".essay1").show();
+        $(".essay").show();
         $(".participant").hide();
-        $("h2 span").html( $(".participant #number").val());
+        $("#user h2 span").html( $(".participant #number").val());
         });
 
-        $(".essay1 .continue").click(function(){
-        $(".essay1").hide();
+        $(".essay .continue").click(function(){
+        $(".essay").hide();
         $(".correction").show();                
 
 
@@ -208,7 +234,7 @@
         // show the fields entered
         var list =  document.createElement("ol");
 
-        $(".essay1 span.correctme input").each(function(){
+        $(".essay span.correctme input").each(function(){
 
         // Creates a report of the differences and corrected items
 
@@ -248,12 +274,12 @@
         }
 
         function updateStats () {
-        $.get("users/stats", function(data) {
-
-        $("#stat_window").html(data);
-        })
+          $.fancybox({
+              "users/stats" : responseText
+          });
         }
-        </script> <script type="text/javascript">
+        </script> 
+        <script type="text/javascript">
 /*
         * Javascript Diff Algorithm
         *  By John Resig (http://ejohn.org/)
