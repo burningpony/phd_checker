@@ -5,6 +5,6 @@ class CController <  EssayBaseController
     #	Fee For Service
     @payment = @responses.count * 0.25
     
-    render :file => "essays/score_card.html.haml"
+    render :file => "essays/score_card.html.haml", :layout => false
   end
 end

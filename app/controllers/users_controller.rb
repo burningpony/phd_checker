@@ -11,12 +11,10 @@ class UsersController < ApplicationController
     end
   end
   def stats
+    layout => false
     @users = User.find_all_by_group(params[:group])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
+    render :layout => false
   end
   # GET /users/1
   # GET /users/1.xml
@@ -24,8 +22,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      format.html 
+            format.xml  { render :xml => @user }
     end
   end
 
