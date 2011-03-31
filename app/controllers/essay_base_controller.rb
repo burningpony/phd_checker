@@ -15,16 +15,24 @@ class EssayBaseController < ApplicationController
     
   def show
     if params[:id] == 'practice'
-      render  :file => "essays/practice"
+      @essay_id = 'practice'
+      @essay_title = "Practice Essay"
+      render  :file => "essays/practice", :layout=>'essay'
     else
-      render  :file => "essays/" + params[:id].match(/\d+/)[0]      
+      @essay_id = params[:id].match(/\d+/)[0]
+      @essay_title = "Essay #{@essay_id}"
+      render  :file => "essays/" + @essay_id, :layout =>'essay'      
     end
   end
 
-  def sub_layout
-    return nil
+  # set these values to true in the controller to turn on quota or showing student actions based on controller
+  def show_quota_items
+    return false
   end
 
+  def show_other_student_actions
+    return false
+  end
 
 end
 

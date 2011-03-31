@@ -5,6 +5,8 @@
             Experiment
         %link{ :href => "/stylesheets/screen.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
         %link{ :href => "/stylesheets/modal.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
+        %link{ :href => "/stylesheets/essay_fields.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
+        %link{ :href => "/stylesheets/quota.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
 
         :javascript
             var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
@@ -16,9 +18,16 @@
             
             <script type='text/javascript' src="/javascripts/ben/phd.js"></script>
             <script type='text/javascript' src="/javascripts/ben/diff.js"></script>
+            <script type='text/javascript' src="/javascripts/ben/save_function.js"></script>
     
-        -if controller.sub_layout
-            = render :partial=>"essays/#{controller.sub_layout}"
+    
+        -if controller.show_quota_items
+            :javascript
+                window.__show_quota_items = true;
+
+        -if controller.show_other_student_actions
+            :javascript
+                window.__show_other_student_actions = true;
             
     %body
         .participant
@@ -40,21 +49,28 @@
                 instructions go here
                 %p
                     click anywhere to continue
-
+        
+        
+        -# shown prompting us to finish or not, unless out of time
+        .quit_prompt
+        
+        -# shown after we are completely finished
+        .finished
+            
         .container
             .menu
-                %ol
+                %ul
                     %li
                         %a{:href=> '#', :class=>'show_instructions'}
                             Instructions
-                    %li
+                    -#%li
                         %a{:href=> '#', :class=>'practice_essay_link'}
                             Practice
 
                     -@essays.each do |essay|
                         %li
                             %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
-                                =essay
+                                Essay #{essay}
                 
                     %li
                         %a{:class=>'quit', :href=> '#'}
