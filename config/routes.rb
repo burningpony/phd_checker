@@ -17,7 +17,7 @@ PhdChecker::Application.routes.draw do
 
   match 'users/stats'                               => 'users#stats'
   resources :users
-  #  root :to                                          => "essays#index"
+    root :to                                          => "a#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
