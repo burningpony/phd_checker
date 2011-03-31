@@ -1,0 +1,65 @@
+%html
+    %head
+        -# 
+        %title
+            Experiment
+        %link{ :href => "/stylesheets/screen.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
+        %link{ :href => "/stylesheets/modal.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
+
+        :javascript
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+
+        :erb
+            <!-- jquery addons -->
+            <script type='text/javascript' src="/javascripts/jquery/simple_modal.js"></script>
+            
+            <script type='text/javascript' src="/javascripts/ben/phd.js"></script>
+            <script type='text/javascript' src="/javascripts/ben/diff.js"></script>
+    
+        -if controller.sub_layout
+            = render :partial=>"essays/#{controller.sub_layout}"
+            
+    %body
+        .participant
+            .label
+                Group ID
+            %input{:type=>'text',:id=>'group_id'}
+            .label
+                Participant ID
+            %input{:type=>'text', :id=>'participant_id'}
+            
+            %input{:type=>'button', :value=>'start', :class=> 'button'}
+            .error
+                    
+        .instructions
+            .label
+                instructions
+            .instructions
+                instructions go here
+                
+            %input{:type=>'button', :value=>'continue', :class=> 'button'}
+        
+        .timer
+        
+        
+        .container
+            .menu
+                %ol
+                    %li
+                        %a{:href=> '#', :class=>'show_instruction'}
+                            Instructions
+                    %li
+                        %a{:href=> '#', :class=>'practice_essay_link'}
+                            Practice
+
+                    -@essays.each do |essay|
+                        %li
+                            %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
+                                =essay
+                
+                    %li
+                        %a{:class=>'quit', :href=> '#'}
+                            Quit
+        
+            .content
