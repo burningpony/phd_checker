@@ -1,0 +1,2 @@
+module Essays::BHelper
+end

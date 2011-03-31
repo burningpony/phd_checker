@@ -1,0 +1,2 @@
+module Essays::FHelper
+end

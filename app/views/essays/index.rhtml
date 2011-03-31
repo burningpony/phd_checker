@@ -4,7 +4,7 @@
     <div class="inner">
       <ul class="list">
         <% @essays.each do |essay|%>
-        <li><div class="item"> <%=link_to essay, essay_path(essay.to_i) %></div></li>
+        <li><div class="item"> <%=link_to essay, url_for(:controller => (params[:controller]) , :action => :show , :id => essay.to_i) %></div></li>
         <%end%>
       </ul>
     </div>

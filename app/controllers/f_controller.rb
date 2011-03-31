@@ -1,0 +1,2 @@
+class FController <EssayBaseController
+end

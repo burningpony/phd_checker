@@ -1,0 +1,2 @@
+module Essays::DHelper
+end

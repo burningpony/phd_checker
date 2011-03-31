@@ -20,7 +20,7 @@
       <div id="main-navigation">
         <ul class="wat-cf"> <li class="<%= controller.controller_path == 'users' ? 'active' : '' %>"><a href="<%= users_path %>">Users</a></li> 
           <li class="<%= controller.controller_path == 'responses' ? 'active' : '' %>"><a href="<%= responses_path %>">Responses</a></li>
-              <li class="<%= controller.controller_path == 'essays' ? 'active' : '' %>"><a href="<%= essays_path %>">Essays</a></li></ul>
+              <li class="<%= controller.controller_path == 'essays' ? 'active' : '' %>"><a href="<%= url_for(:controller => :a) %>">Essays</a></li></ul>
       </div>
     </div>    
     <div id="wrapper" class="wat-cf">
@@ -28,6 +28,7 @@
         <% flash.each do |type, message| -%>
           <div class="message <%= type %>">
             <p><%= message %></p>
+            
           </div>
         <% end -%>
       </div>

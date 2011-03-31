@@ -1,0 +1,2 @@
+class CController <  EssayBaseController
+end

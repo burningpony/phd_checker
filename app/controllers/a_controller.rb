@@ -1,0 +1,2 @@
+class AController <  EssayBaseController
+end
