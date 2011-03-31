@@ -10,6 +10,6 @@ class DController <  EssayBaseController
     @responses.count > 1 ? @payment += 1 : @payment
     
     
-    render :file => "essays/score_card"
+render :file => "essays/score_card.html.haml"
   end
 end
