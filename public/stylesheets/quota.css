@@ -1,0 +1,10 @@
+/* quota colors*/
+.modified_quota input{
+background-color: lime;
+border: none;
+}
+
+.unmodified_quota input{
+background-color: yellow;
+border: none;
+}

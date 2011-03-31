@@ -173,7 +173,7 @@ $(document).ready(function() {
     });
     
     function generate_box(span) {
-        var is_quota = (span.className.match(/quota/i));
+        var is_quota = (span.className.match(/quota/i) != null) ? true : false;
 
         if(is_quota && window.__show_quota_items){
             span.className = "correctme unmodified_quota";
@@ -193,7 +193,7 @@ $(document).ready(function() {
         input.value    = original_text;
         input.size     = input.value.length*1.2;
         
-        var correct_answer = input.getAttribute('rel');
+        var correct_answer = span.getAttribute('rel');
         
         input.state = function() {
             /*
@@ -261,7 +261,7 @@ $(document).ready(function() {
         $(input).change(function(){
             var field_id = span.id;
             var current_value = input.value;
-            var the_correct_answer  = correct_answer;
+            // correct_answer
             var original_value = original_text;
             var essay = window.essay_id;
             //is_quota
@@ -273,7 +273,7 @@ $(document).ready(function() {
                 field_id,
                 original_value,
                 current_value,
-                the_correct_answer,
+                correct_answer,
                 is_quota 
                 );            
         });
