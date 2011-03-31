@@ -14,4 +14,15 @@ a.modalCloseImg {
 /* start hidden */
 .instructions{display:none;}
 .participant{display:none;}
-/*
+
+
+/*timer*/
+.timer {
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    
+    font-size:50px;
+    width:100px;
+    height:100px;
+}

@@ -25,6 +25,13 @@ $(document).ready(function() {
 			var modal = this;
             $(".participant").show();
             
+            //accept enter
+            $('.participant input').keyup(function(event) {
+                if (event.keyCode == '13') {
+                    $('.participant .button').click();
+                }
+            });
+            
 			// if the user clicks "yes"
 			$('.participant .button').click(function () {
 			    // clear error message
@@ -73,6 +80,16 @@ $(document).ready(function() {
     		        timer_started=true;
     		    }
     		    this.close();
+    		},
+    		onShow:function(){
+                var modal = this;
+                $("#instructions-container").click(function(){
+        		    if(!timer_started){
+        		        window.start_timer();
+        		        timer_started=true;
+        		    }
+        		    modal.close();    		        
+    		    })
     		}         
         });
     }

@@ -35,19 +35,17 @@
         .instructions
             .label
                 instructions
-            .instructions
+            
+            .instruction_body
                 instructions go here
-                
-            %input{:type=>'button', :value=>'continue', :class=> 'button'}
-        
-        .timer
-        
-        
+                %p
+                    click anywhere to continue
+
         .container
             .menu
                 %ol
                     %li
-                        %a{:href=> '#', :class=>'show_instruction'}
+                        %a{:href=> '#', :class=>'show_instructions'}
                             Instructions
                     %li
                         %a{:href=> '#', :class=>'practice_essay_link'}
@@ -63,3 +61,5 @@
                             Quit
         
             .content
+            
+            .timer
