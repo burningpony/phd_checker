@@ -1,15 +1,23 @@
 PhdChecker::Application.routes.draw do
   resources :responses
+  
+  match 'a/score_card'                               => 'a#score_card'
+  match 'b/score_card'                               => 'b#score_card'
+  match 'c/score_card'                               => 'c#score_card'
+  match 'd/score_card'                               => 'd#score_card'
+  match 'e/score_card'                               => 'e#score_card'
+  match 'f/score_card'                               => 'f#score_card'
+
   resources :a
   resources :b
   resources :c
   resources :d
   resources :e
-  resources :f
+  resources :f 
 
   match 'users/stats'                               => 'users#stats'
   resources :users
-#  root :to                                          => "essays#index"
+  #  root :to                                          => "essays#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
