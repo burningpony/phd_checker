@@ -8,7 +8,7 @@ window.onbeforeunload = function() {
 }
 */
 
-// how much time do they get total?
+// how much time do they get total? I Think 15? 
 var TIME_LIMIT_IN_MINUTES = 20;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 
@@ -167,9 +167,9 @@ $(document).ready(function() {
         		containerId: 'quit-container',
         		onShow:function(){
     		    
-        		    // TODO: Russell you may need to change the url to the score_card
+        		    // TODO: k you may need to change the url to the score_card
                     // Do an ajax request to get the body we are looking for
-                    $.get( window.path_to_controller + '/score_card/' + window.participant_id, function(data) {
+                    $.get( window.path_to_controller + '/score_card?participant_id=' + window.participant_id, function(data) {
                         $('.finished .body').html(data);
                     });  
                 
@@ -202,7 +202,7 @@ $(document).ready(function() {
     		    
     		    // TODO: Russell you may need to change the url to the stats
                 // Do an ajax request to get the body we are looking for
-                $.get( window.path_to_controller + '/stats/' + window.group_id, function(data) {
+                $.get( window.path_to_controller + '/stats?group=' + window.group_id, function(data) {
                     $('.other_participants .body').html(data);
                 });                 
 
