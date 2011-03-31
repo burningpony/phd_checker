@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
   end
   def stats
-    @users = User.find_by_group(params[:group])
+    @users = User.find_all_by_group(params[:group])
 
     respond_to do |format|
       format.html # index.html.erb
