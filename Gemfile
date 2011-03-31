@@ -4,7 +4,7 @@ gem 'rails', '3.0.5'
 
 
 gem 'sqlite3'
-
+gem 'heroku'
 # Bundle gems needed for Haml
 gem "haml"
 gem "haml-rails", :group => :development
