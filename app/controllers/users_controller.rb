@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     end
   end
   def stats
-    layout => false
     @users = User.find_all_by_group(params[:group])
 
     render :layout => false
