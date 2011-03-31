@@ -61,11 +61,19 @@ $(document).ready(function() {
     
     // Add instructions
     window.show_instructions= function() {
+        var timer_started = false;
         $('.instructions').modal({
             close:true,
             overlayClose:true,
     		overlayId: 'instructions-overlay',
-    		containerId: 'instructions-container',         
+    		containerId: 'instructions-container',
+    		onClose: function(){
+    		    if(!timer_started){
+    		        window.start_timer();
+    		        timer_started=true;
+    		    }
+    		    this.close();
+    		}         
         });
     }
     
@@ -76,6 +84,8 @@ $(document).ready(function() {
         return false;
     });
     
+    
+    //TODO: have a way to do the handler
     
     
     // add click handlers for all the individual essays
@@ -109,8 +119,14 @@ $(document).ready(function() {
             var minutes_to_render =  parseInt(seconds / 60)
             var seconds_to_render = parseInt(seconds % 60)
             
+            var spacer = '0';
+            
+            if(seconds_to_render>9){
+                spacer = ''
+            }
+            
             // render the seconds
-            $(".timer").html(minute_to_render + ":" + seconds_to_render);
+            $(".timer").html(minutes_to_render + ":" + spacer + seconds_to_render);
         
             if(minutes_to_render == TIME_LIMIT_IN_MINUTES){
                 window.stop_timer();
