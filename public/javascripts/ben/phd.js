@@ -21,7 +21,7 @@ window.group_id       = undefined;
 
 $(document).ready(function() {
     
-    //Group and participant ID
+    // 1) Collect Group and Participant ID
     $(".participant").modal({
         close:false,
 		overlayId: 'simplemodal-overlay',
@@ -115,17 +115,111 @@ $(document).ready(function() {
         show_instructions();
         return false;
     });
+
+    $(".quit").click(function(event){
+        event.stopPropagation();
+
+        $('.confirm_quit').modal({
+            close:true,
+            overlayClose:true,
+    		overlayId: 'quit-overlay',
+    		containerId: 'quit-container',
+    		onShow:function(){
+                var modal = this;
+                $(".confirm_quit .quit_button").click(function(){
+        		    modal.close();
+        		    
+        		    // let it close the modal, and open a new one
+        		    setTimeout(function(){ window.quit()}, 10);    		        
+    		    })
+                $(".confirm_quit .cancel_button").click(function(){
+        		    modal.close();    		        
+    		    })
+
+    		}         
+        });
+        
+        return false;
+    });
+    
+    window.quit = function(kwargs){
+        // make sure whatever is open is now closed
+        $.modal.close();
+        
+        // stop the timer
+        window.stop_timer();
+        
+        var msg = "";
+        if(kwargs && kwargs.timeout){
+            msg = "You ran out of time, but at least it's over :-)";
+        }
+        $(".finished .msg").html(msg)
+        
+        // remove unload handler so we can reset things easily
+        window.onbeforeunload = undefined;
+        
+        // basically 'callLater' something about these dialogs
+        setTimeout(function(){
+            $(".finished").modal({
+                close:false,
+                overlayClose:false,
+        		overlayId: 'quit-overlay',
+        		containerId: 'quit-container',
+        		onShow:function(){
+    		    
+        		    // TODO: Russell you may need to change the url to the score_card
+                    // Do an ajax request to get the body we are looking for
+                    $.get( window.path_to_controller + '/score_card/' + window.participant_id, function(data) {
+                        $('.finished .body').html(data);
+                    });  
+                
+        		}         
+            });
+            
+            
+        },10);
+        
+    };
+
+    
     
     
     window.show_other_student_actions = function(){
         // stops the timer and shows what other students are up to
         // basically overlays a model dialog and we work from there
+        window.stop_timer();
+
+        // make sure whatever is open is now closed
+        $.modal.close();
         
-        window.start_timer();
-    }
-    
-    
-    
+        $(".other_participants").modal({
+            close:true,
+            overlayClose:true,
+    		overlayId: 'quit-overlay',
+    		containerId: 'quit-container',
+    		onShow:function(){
+    		    var modal = this;
+    		    
+    		    // TODO: Russell you may need to change the url to the stats
+                // Do an ajax request to get the body we are looking for
+                $.get( window.path_to_controller + '/stats/' + window.group_id, function(data) {
+                    $('.other_participants .body').html(data);
+                });                 
+
+                $(".other_participants .button").click(function(){
+                    modal.close();
+                    window.start_timer();
+                })               
+
+    		},
+    		onClose:function(){
+    		    this.close();
+    		    window.start_timer();
+    		}         
+        });
+        
+    };
+
     // TODO: don't start the timer until they have finished the practice test
     
     

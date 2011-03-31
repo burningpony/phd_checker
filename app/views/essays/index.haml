@@ -19,7 +19,11 @@
             <script type='text/javascript' src="/javascripts/ben/phd.js"></script>
             <script type='text/javascript' src="/javascripts/ben/diff.js"></script>
             <script type='text/javascript' src="/javascripts/ben/save_function.js"></script>
-    
+            
+            <!-- hard code in path to controller -->
+            <script>
+            window.path_to_controller = "/<%=params[:controller]%>";
+            </script>
     
         -if controller.show_quota_items
             :javascript
@@ -51,12 +55,35 @@
                     click anywhere to continue
         
         
-        -# shown prompting us to finish or not, unless out of time
-        .quit_prompt
-        
+        -# shown prompting us to finish or not, when we click finish
+        .confirm_quit
+            .label
+                Are you sure you want to Quit this experiment?
+            %input{:type=> 'button', :value => 'Cancel', :class => 'cancel_button'}
+            %input{:type=> 'button', :value => 'Quit', :class => 'quit_button'}
+            
         -# shown after we are completely finished
         .finished
+            -# note when this loads, turn off the unload handler
+            .label
+                Congratulations you are done :-)
+            .msg
             
+            -# body will contain the scores from russell's stuff
+            .body
+
+            .continue
+                -# have this link to some setup page for ellie
+                %a{:href => '#'}
+                    Prepare this computer for the next trial
+        
+        
+        .other_participants
+            -# this will get filled in with data from russell
+            .body
+            
+            .button
+                Done
         .container
             .menu
                 %ul

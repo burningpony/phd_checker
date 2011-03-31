@@ -14,7 +14,9 @@ a.modalCloseImg {
 /* start hidden */
 .instructions{display:none;}
 .participant{display:none;}
-
+.confirm_quit{display:none;}
+.finished{display:none;}
+.other_participants{display:none;}
 
 /*timer*/
 .timer {
