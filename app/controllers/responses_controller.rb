@@ -43,8 +43,9 @@ layout proc{ |c| c.request.xhr? ? false : "application" }
   def create
     
     @user = User.find_or_create_by_id(params[:participant_id])
+    @user.update_attributes(params[:group])
     @response =  @user.responses.find_or_create_by_error(params[:response][:id])
-   @response.update_attributes(params[:response])
+    @response.update_attributes(params[:response])
 
     respond_to do |format|
       if @response.save
