@@ -42,8 +42,8 @@ layout proc{ |c| c.request.xhr? ? false : "application" }
   # POST /responses.xml
   def create
     
-    @user = User.find_or_create_by_id(params[:participant_id])
-    @user.update_attributes(params[:group])
+    @user = User.find_or_create_by_id(params[:participant_id], :group => params[:group])
+
     @response =  @user.responses.find_or_create_by_error(params[:response][:id])
     @response.update_attributes(params[:response])
 
