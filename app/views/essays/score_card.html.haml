@@ -1,0 +1,8 @@
+.span-12.last
+  %h3 Here is your scorecard ##{@user.id}
+  .scores
+    %hr
+    %p You have gotten #{@responses.correct.count} correct with #{@responses.incorrect.count} incorrect
+    %hr
+    %p For your participation in this study you will receive. 
+    %p= number_to_currency(@payment)
