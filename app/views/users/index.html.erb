@@ -10,24 +10,31 @@
     <div class="inner">
       <table class="table">
         <tr>             
-          <th class="first">ID</th>
+          <th class="first">Group</th>
                     <th>
-            <%= t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+            <%= t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "ID")) %>
           </th>
+                    
+                    <th>Responses(Correct)</th>
+                    <th>Responses(Incorrect)</th>
                     <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
-          <th class="last">&nbsp;</th>
+          <th class="last">&nbsp</th>
         </tr>
         <% @users.each do |user| -%>
         <tr class="<%= cycle("odd", "even") %>">
           <td>
-            <%= user.id %>
+            <%= user.group %>
           </td>
                     <td>
-            <%= link_to user.name, user_path(user) %>
+            <%= link_to user.id, user_path(user) %>
           </td>
+          <td><%= user.responses.correct.count%></td>
+          <td><%= user.responses.incorrect.count%></td>
+          
                     <td>
             <%= user.created_at %>
           </td>
+          
           <td class="last">
             <%= link_to "#{t("web-app-theme.show", :default => "Show")}", user_path(user) %> |
             <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_user_path(user) %> |
