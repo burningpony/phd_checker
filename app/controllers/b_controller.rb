@@ -1,4 +1,4 @@
-class BController <  EssayBaseControllerdef score_card
+class BController <  EssayBaseController
   def score_card
     @user = User.find(params[:participant_id])
     @responses = @user.responses
