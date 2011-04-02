@@ -12,4 +12,8 @@ class DController <  EssayBaseController
     
 render :file => "essays/score_card.html.haml", :layout => false
   end
+  def show_quota_items
+    return true
+  end
+  
 end
