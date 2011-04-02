@@ -424,7 +424,7 @@ $(document).ready(function() {
             $(".timer").html(minutes_to_render + ":" + spacer + seconds_to_render);
         
             // show other student scores
-            if(seconds % INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS == 0){
+            if(seconds % INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS == 0 && window.__show_other_student_actions){
                 window.stop_timer();
                 window.show_other_student_actions();
             }

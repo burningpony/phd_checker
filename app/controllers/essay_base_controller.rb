@@ -27,11 +27,11 @@ class EssayBaseController < ApplicationController
 
   # set these values to true in the controller to turn on quota or showing student actions based on controller
   def show_quota_items
-    return false
+    return true
   end
 
   def show_other_student_actions
-    return false
+    return true
   end
 
 end
