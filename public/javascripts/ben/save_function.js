@@ -20,7 +20,8 @@ window.send_correction = function(group_id, participant_id, essay_id, field_id, 
             id: field_id,
             uncorrected: original_value,
             corrected: current_value,
-            correct: correct_answer,
+            correct: (correct_answer == current_value),
+            correct_answer: correct_answer,
             quota: quota
         }
     };
