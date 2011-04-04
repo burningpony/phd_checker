@@ -7,5 +7,7 @@ class FController <EssayBaseController
 render :file => "essays/score_card.html.haml", :layout => false
   end
   
-
+  def show_other_student_actions
+    return true
+  end  
 end
