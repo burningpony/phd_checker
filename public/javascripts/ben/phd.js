@@ -10,7 +10,7 @@ window.onbeforeunload = function() {
 // how much time do they get total? I Think 15? 
 var TIME_LIMIT_IN_MINUTES = 20;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
-
+var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
 
 
 
@@ -92,6 +92,7 @@ $(document).ready(function() {
     		},
     		onShow:function(){
                 var modal = this;
+                
                 $("#instructions-container").click(function(){
         		    if(!timer_started){
         		        window.start_timer();
@@ -102,8 +103,10 @@ $(document).ready(function() {
     		            $($(".essay_link")[0]).click();
 
         		    }
-        		    modal.close();    		        
+        		    modal.close();
+        		    closed = true;    		        
     		    })
+
     		}         
         });
     }
@@ -190,6 +193,7 @@ $(document).ready(function() {
 
         // make sure whatever is open is now closed
         $.modal.close();
+        var closed = false;          
         
         $(".other_participants").modal({
             close:true,
@@ -207,9 +211,17 @@ $(document).ready(function() {
 
                 $(".other_participants .button").click(function(){
                     modal.close();
+                    closed = true;
                     window.start_timer();
                 })               
-
+  		    
+    		    setTimeout(function(){
+        		    if(!closed) {
+        		        modal.close();
+    		        }
+    		        
+    		    }, TIMEOUT_FOR_OTHER_PARTICIPANTS);
+    		    
     		},
     		onClose:function(){
     		    this.close();
