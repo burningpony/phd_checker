@@ -32,7 +32,9 @@
         -if controller.show_other_student_actions
             :javascript
                 window.__show_other_student_actions = true;
-            
+        -else
+            :javascript
+                window.__show_other_student_actions = false;
     %body
         .participant
             .label
@@ -79,7 +81,7 @@ Once you click the screen your timer will start counting down from 10 minutes.
 
             .continue
                 -# have this link to some setup page for ellie
-                %a{:href => '#'}
+                %a{:href => '/'}
                     Prepare this computer for the next trial
         
         
@@ -106,7 +108,7 @@ Once you click the screen your timer will start counting down from 10 minutes.
                 
                     %li
                         %a{:class=>'quit', :href=> '#'}
-                            Quit
+                            Finish
         
             .content
             

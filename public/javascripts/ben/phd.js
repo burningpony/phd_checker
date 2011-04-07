@@ -2,11 +2,10 @@
 
 // Setup the back button warning:
 
-/*
+
 window.onbeforeunload = function() {
-    return 'Hitting the back button will break this experiment, and is disabled';
+    return 'Hitting the back button will break this experiment, and is disabled, hit cancel';
 }
-*/
 
 // how much time do they get total? I Think 15? 
 var TIME_LIMIT_IN_MINUTES = 20;
