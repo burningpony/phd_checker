@@ -52,14 +52,10 @@
                 instructions
             
             .instruction_body
-                instructions go here
                 %p
-<p>       
-             Please do not click the screen until you are instructed to do so.  
-</p>
-      <p> 
-Once you click the screen your timer will start counting down from 10 minutes.  
-</p>
+                    Please do not click the screen until you are instructed to do so.  
+                %p
+                    Once you click the screen your timer will start counting down from 10 minutes.  
  
         
         -# shown prompting us to finish or not, when we click finish
@@ -81,7 +77,7 @@ Once you click the screen your timer will start counting down from 10 minutes.
 
             .continue
                 -# have this link to some setup page for ellie
-                %a{:href => '/'}
+                %a{:href => '#'}
                     Prepare this computer for the next trial
         
         
@@ -94,7 +90,7 @@ Once you click the screen your timer will start counting down from 10 minutes.
         .container
             .menu
                 %ul
-                    %li
+                    -#%li
                         %a{:href=> '#', :class=>'show_instructions'}
                             Instructions
                     -#%li

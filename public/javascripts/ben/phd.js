@@ -8,7 +8,7 @@ window.onbeforeunload = function() {
 }
 
 // how much time do they get total? I Think 15? 
-var TIME_LIMIT_IN_MINUTES = 20;
+var TIME_LIMIT_IN_MINUTES = 10;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
 
