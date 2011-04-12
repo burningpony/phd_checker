@@ -1,8 +1,10 @@
--@users.each do |u|
-  %p
-    =u.id
-    has corrected
-    =u.responses.count
-    errors
-  %hr
-    
+-if @users
+  -@users.each do |u|
+    %p
+      =u.id
+      has corrected
+      =u.responses.count
+      errors
+    %hr
+-else 
+  %p The group has not made any corrections yet
