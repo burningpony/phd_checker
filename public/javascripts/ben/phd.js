@@ -397,21 +397,7 @@ $(document).ready(function() {
             generate_box(this);
         }); 
     }
-    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
     
     // timer related functions and variables
     var timer = null;
@@ -422,8 +408,8 @@ $(document).ready(function() {
         timer = setInterval(function(){
             seconds +=1;
             
-            var minutes_to_render =  parseInt(seconds / 60)
-            var seconds_to_render = parseInt(seconds % 60)
+            var minutes_to_render =  TIME_LIMIT_IN_MINUTES - parseInt(seconds / 60) - 1
+            var seconds_to_render = 60 - parseInt(seconds % 60)
             
             var spacer = '0';
             
@@ -441,7 +427,7 @@ $(document).ready(function() {
             }
         
         
-            if(minutes_to_render == TIME_LIMIT_IN_MINUTES){
+            if(seconds == TIME_LIMIT_IN_MINUTES * 60){
                 window.stop_timer();
                 window.quit({'timeout' : true});
             }
