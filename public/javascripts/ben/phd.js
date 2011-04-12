@@ -205,7 +205,7 @@ $(document).ready(function() {
     		    
     		    // TODO: Russell you may need to change the url to the stats
                 // Do an ajax request to get the body we are looking for
-                $.get( window.path_to_controller + '/stats?group=' + window.group_id, function(data) {
+                $.get( '/users/stats?group=' + window.group_id, function(data) {
                     $('.other_participants .body').html(data);
                 });                 
 
