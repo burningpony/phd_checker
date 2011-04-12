@@ -1,6 +1,6 @@
 class FController <EssayBaseController
   def score_card
-    @user = User.find(params[:participant_id])
+    @user = User.find_or_create_by_id(params[:participant_id])
     @responses = @user.responses
     
     @payment = 30
