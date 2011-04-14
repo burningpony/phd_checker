@@ -3,11 +3,11 @@ class DController <  EssayBaseController
     @user = User.find_or_create_by_id(params[:participant_id])
     @responses = @user.responses
    # 4.	Fee For Service plus Quota Bonus
-    @payment =  @responses.count * 0.25
+    @payment =  @responses.count * 0.20
     
     
     #set the quota here 
-    @responses.count > 1 ? @payment += 1 : @payment
+    @responses.count > 9 ? @payment += 1 : @payment
     
     
 render :file => "essays/score_card.html.haml", :layout => false
