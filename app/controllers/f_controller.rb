@@ -3,7 +3,7 @@ class FController <EssayBaseController
     @user = User.find_or_create_by_id(params[:participant_id])
     @responses = @user.responses
     
-    @payment = 30
+    @payment = 25
 render :file => "essays/score_card.html.haml", :layout => false
   end
   
