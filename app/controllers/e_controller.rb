@@ -4,7 +4,7 @@ class EController <  EssayBaseController
     @responses = @user.responses
     
     completed_essay = @user.responses.collect {|x| x.essay }.uniq.count
-    @payment = 3*completed_essay
+    @payment = 2.5*completed_essay
 render :file => "essays/score_card.html.haml", :layout => false
   end
   def show_other_student_actions
