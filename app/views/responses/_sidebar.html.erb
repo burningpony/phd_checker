@@ -5,9 +5,9 @@
   </div>
 </div>
 <div class="block">
-  <h3>Links</h3>
+  <h3>Actions</h3>
   <ul class="navigation">
-    <li><a href="#">Link 1</a></li>
-    <li><a href="#">Link 2</a></li>
+    <li><%= link_to "Clear All Responses", responses_empty_path, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %></li>
+    <li><%= link_to "Export To CSV", responses_export_path %></li>
   </ul>
 </div>

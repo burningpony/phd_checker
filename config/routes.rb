@@ -1,5 +1,5 @@
 PhdChecker::Application.routes.draw do
-  resources :responses
+
   
   match 'a/score_card'                               => 'a#score_card'
   match 'b/score_card'                               => 'b#score_card'
@@ -14,7 +14,10 @@ PhdChecker::Application.routes.draw do
   resources :d
   resources :e
   resources :f 
-
+  match 'responses/empty' => "responses#empty"
+    match 'responses/export' => "responses#export_to_csv"
+  resources :responses 
+  
   match 'users/stats'                               => 'users#stats'
   resources :users
     root :to                                          => "a#index"
