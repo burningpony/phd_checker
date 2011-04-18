@@ -1,7 +1,7 @@
 class ResponsesController < ApplicationController
   # GET /responses
   # GET /responses.xml
-layout proc{ |c| c.request.xhr? ? false : "application" }
+  layout proc{ |c| c.request.xhr? ? false : "application" }
   def index
     @responses = Response.all
 
@@ -37,36 +37,36 @@ layout proc{ |c| c.request.xhr? ? false : "application" }
   def edit
     @response = Response.find(params[:id])
   end
-  
+
   def empty
     Response.delete_all
     @responses = []
-    render :index
+    redirect_to responses_url
   end
-  
+
   def export_to_csv
     @responses = Response.find(:all)
 
     csv_string = FasterCSV.generate do |csv|
       # header row
-      csv << ["id", "participant_id", "group", "error", "essay", "Correct?", "Field Before Correction", "Time Corrected"]
+      csv << ["id", "participant_id", "group", "error", "essay", "Correct?", "Field Before Correction","Seconds to Complete", "Time Corrected"]
 
       # data rows
       @responses.each do |response|
-        csv << [response.id, response.user_id, response.user.group,response.error, response.essay, response.correct, response.uncorrected, response.created_at ]
+        csv << [response.id, response.user_id, response.user.group,response.error, response.essay, response.correct, response.uncorrected, response.user.time_to_complete, response.created_at ]
       end
     end
 
     # send it to the browsah
     send_data csv_string,
-              :type => 'text/csv; charset=iso-8859-1; header=present',
-              :disposition => "attachment; filename=responses.csv"
+    :type => 'text/csv; charset=iso-8859-1; header=present',
+    :disposition => "attachment; filename=responses.csv"
   end
 
   # POST /responses
   # POST /responses.xml
   def create
-    
+
     @user = User.find_or_create_by_id(params[:participant_id], :group => params[:group])
 
     @response =  @user.responses.find_or_create_by_error(params[:response][:id])
@@ -77,12 +77,12 @@ layout proc{ |c| c.request.xhr? ? false : "application" }
         format.js
         format.html { redirect_to(@response, :notice => 'Response was successfully created.') }
         format.xml  { render :xml => @response, :status => :created, :location => @response }
-        
+
       else
         format.js {render :js => "#{ @response.errors}"}
         format.html { render :action => "new" }
         format.xml  { render :xml => @response.errors, :status => :unprocessable_entity }
-          
+
       end
     end
   end

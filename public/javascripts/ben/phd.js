@@ -168,13 +168,22 @@ $(document).ready(function() {
         		overlayId: 'quit-overlay',
         		containerId: 'quit-container',
         		onShow:function(){
-    		    
+					// Hack to steal the time from the timer. 
+    		    	var time = $(".timer").html();
         		    // TODO: k you may need to change the url to the score_card
                     // Do an ajax request to get the body we are looking for
                     $.get( window.path_to_controller + '/score_card?participant_id=' + window.participant_id, function(data) {
                         $('.finished .body').html(data);
                     });  
-                
+					//Send the time to the backend
+      				          	$.ajax({
+								        type: 'POST',
+								        url: "users/complete",
+								        data: {
+									        "participant_id": window.participant_id,
+											"time_to_complete" : time
+											}
+								    });
         		}         
             });
             

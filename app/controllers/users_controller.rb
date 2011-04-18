@@ -10,6 +10,16 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @users }
     end
   end
+  def mark_completed
+     @user = User.find_or_create_by_id(params[:participant_id], :group => params[:group])
+     @time = params[:time_to_complete].split(":")
+     @seconds = @time[0].to_i*60
+    @seconds = @seconds + @time[1].to_i
+     @user.time_to_complete = 600 - @seconds
+     @user.save
+     render :js => "true"
+  end
+  
   def stats
     @users = User.find_all_by_group(params[:group])
 
