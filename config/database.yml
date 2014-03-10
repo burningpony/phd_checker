@@ -21,8 +21,8 @@ test:
 
 production:
   adapter: postgresql
-  database: phd_production
+  database: d2p8qvenpl63st
   pool: 5
   timeout: 5000
-  username: 
+  username: gkjhnihhyfzliu
   password:
