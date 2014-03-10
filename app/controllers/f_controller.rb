@@ -4,7 +4,7 @@ class FController <EssayBaseController
     @responses = @user.responses
     
     @payment = 25
-render :file => "essays/score_card.html.haml", :layout => false
+    render :file => "essays/score_card.html.haml", :layout => false
   end
   
 
