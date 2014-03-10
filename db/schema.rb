@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -19,16 +20,16 @@ ActiveRecord::Schema.define(:version => 20110418024004) do
     t.boolean  "correct"
     t.string   "corrected"
     t.string   "uncorrected"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.boolean  "quota"
     t.string   "correct_answer"
   end
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "group"
     t.string   "time_to_complete"
   end
