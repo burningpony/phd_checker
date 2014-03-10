@@ -14,6 +14,8 @@ gem "jquery-rails"
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem "fastercsv"
 
+gem 'airbrake'
+
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
 end
