@@ -18,4 +18,5 @@ gem 'airbrake'
 
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
+  gem 'better_errors'
 end
