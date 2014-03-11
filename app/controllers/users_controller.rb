@@ -14,8 +14,8 @@ class UsersController < ApplicationController
      @user = User.find_or_create_by_id(params[:participant_id], :group => params[:group])
      @time = params[:time_to_complete].split(":")
      @seconds = @time[0].to_i*60
-    @seconds = @seconds + @time[1].to_i
-     @user.time_to_complete = 600 - @seconds
+     @seconds = @seconds + @time[1].to_i
+     @user.time_to_complete = 3600 - @seconds
      @user.save
      render :js => "true"
   end
