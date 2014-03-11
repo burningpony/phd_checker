@@ -19,4 +19,5 @@ gem 'airbrake'
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
