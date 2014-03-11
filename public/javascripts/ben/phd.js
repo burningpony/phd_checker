@@ -8,15 +8,15 @@ window.onbeforeunload = function() {
 }
 
 // how much time do they get total? I Think 15? 
-var TIME_LIMIT_IN_MINUTES = 10;
+var TIME_LIMIT_IN_MINUTES = 60;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
-
+var NUMBER_OF_ROUNDS = 6;
 
 
 window.participant_id = undefined;
 window.group_id       = undefined;
-
+window.round_number = 0;
 
 $(document).ready(function() {
     
@@ -73,6 +73,7 @@ $(document).ready(function() {
     // Add instructions
     window.show_instructions= function() {
         var timer_started = false;
+        update_round_number();
         $('.instructions').modal({
             close:true,
             overlayClose:true,
@@ -131,11 +132,16 @@ $(document).ready(function() {
                 $(".confirm_quit .quit_button").click(function(){
         		    modal.close();
         		    
-        		    // let it close the modal, and open a new one
-        		    setTimeout(function(){ window.quit()}, 10);    		        
+                    if(round_number < NUMBER_OF_ROUNDS){
+                      update_round_number()
+                      modal.close();        
+                    } else{
+        		      // let it close the modal, and open a new one
+        		      setTimeout(function(){ window.quit()}, 10);
+                    }   		        
     		    })
                 $(".confirm_quit .cancel_button").click(function(){
-        		    modal.close();    		        
+                    modal.close();
     		    })
 
     		}         
@@ -379,7 +385,8 @@ $(document).ready(function() {
             var original_value = original_text;
             var essay = window.essay_id;
             //is_quota
-            
+            var round_number = -1;
+
             window.send_correction(
                 window.group_id,
                 window.participant_id,
@@ -388,7 +395,8 @@ $(document).ready(function() {
                 original_value,
                 current_value,
                 correct_answer,
-                is_quota 
+                is_quota,
+                round_number
                 );            
         });
         
@@ -451,7 +459,10 @@ $(document).ready(function() {
         }
     }
     
-    
+    function update_round_number(){
+        window.round_number++;
+        $(".round").html("Round " + window.round_number);
+    }
     
   // Handler for .ready() called.
 });

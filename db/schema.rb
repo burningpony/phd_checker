@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418024004) do
+ActiveRecord::Schema.define(:version => 20140311190853) do
 
   create_table "responses", :force => true do |t|
     t.integer  "user_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110418024004) do
     t.datetime "updated_at",     :null => false
     t.boolean  "quota"
     t.string   "correct_answer"
+    t.integer  "round_number"
   end
 
   create_table "users", :force => true do |t|

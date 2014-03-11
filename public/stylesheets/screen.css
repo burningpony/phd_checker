@@ -25,12 +25,19 @@ a.modalCloseImg {
 /*timer*/
 .timer {
 	position:absolute;
-	right: 10px;
-	top: 10px;
+	right: 15px;
+	top: 15px;
 
 	font-size:50px;
-	width:100px;
-	height:100px;
+}
+
+/*round notification*/
+.round {
+	position:absolute;
+	right: 15px;
+	bottom: 15px;
+
+	font-size:50px;
 }
 
 /*menu */

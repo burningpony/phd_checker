@@ -11,7 +11,7 @@
     
     
 // Russell's correction function
-window.send_correction = function(group_id, participant_id, essay_id, field_id, original_value, current_value, correct_answer, quota ) {
+window.send_correction = function(group_id, participant_id, essay_id, field_id, original_value, current_value, correct_answer, quota, round_number ) {
     var params = {
         "participant_id": participant_id,
 		"group" : group_id,
@@ -22,7 +22,8 @@ window.send_correction = function(group_id, participant_id, essay_id, field_id, 
             corrected: current_value,
             correct: (correct_answer == current_value),
             correct_answer: correct_answer,
-            quota: quota
+            quota: quota,
+            round_number :round_number
         }
     };
     if(window.console) {
