@@ -19,7 +19,8 @@
           <th>Essay ID</th>
           <th>Correct? </th>
           <th>Field Before Correction </th>
-              <th>Seconds To Complete </th>
+          <th>Seconds To Complete </th>
+          <th>Round Number</th>
           <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
           <th class="last">&nbsp;</th>
         </tr>
@@ -39,10 +40,8 @@
           <td><%= response.correct %></td>
           <td><%= response.uncorrected %></td>
           <td><%= response.user.time_to_complete %></td>
-          <td>
-
-            <%= response.created_at %>
-          </td>
+          <td><%= response.round_number %></td>
+          <td><%= response.created_at %></td>
           <td class="last">
             <%= link_to "#{t("web-app-theme.show", :default => "Show")}", response_path(response) %> |
             <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_response_path(response) %> |
