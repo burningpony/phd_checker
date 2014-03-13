@@ -68,8 +68,7 @@ class ResponsesController < ApplicationController
   def create
 
     @user = User.find_or_create_by_id(params[:participant_id], :group => params[:group])
-
-    @response =  @user.responses.find_or_create_by_error(params[:response][:id])
+    @response =  @user.responses.find_or_create_by_error_and_round_number(params[:response][:id], params[:response][:round_number])
     @response.update_attributes(params[:response])
 
     respond_to do |format|
