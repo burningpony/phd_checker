@@ -61,10 +61,16 @@
         -# shown prompting us to finish or not, when we click finish
         .confirm_quit
             .label
-                Are you sure you are done with the experiment?
+                Are you sure you want to continue to next phase?
             %input{:type=> 'button', :value => 'Cancel', :class => 'cancel_button'}
             %input{:type=> 'button', :value => 'Confirm', :class => 'quit_button'}
-            
+        .score_card
+            .msg
+
+            .done
+                -# have this link to some setup page for ellie
+                %a{:href => '#', :onClick => "modal.close()"}
+                    Done
         -# shown after we are completely finished
         .finished
             -# note when this loads, turn off the unload handler
