@@ -11,7 +11,7 @@ window.onbeforeunload = function() {
 var TIME_LIMIT_IN_MINUTES = 60;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
-var NUMBER_OF_ROUNDS = 6;
+var NUMBER_OF_ROUNDS = 3;
 
 
 window.participant_id = undefined;
@@ -73,7 +73,7 @@ $(document).ready(function() {
     // Add instructions
     window.show_instructions= function() {
         var timer_started = false;
-        update_round_number();
+        update_round();
         $('.instructions').modal({
             close:true,
             overlayClose:true,
@@ -133,8 +133,7 @@ $(document).ready(function() {
         		    modal.close();
         		    
                     if(round_number < NUMBER_OF_ROUNDS){
-                      update_round_number()
-                      modal.close();        
+                      update_round()      
                     } else{
         		      // let it close the modal, and open a new one
         		      setTimeout(function(){ window.quit()}, 10);
@@ -196,6 +195,20 @@ $(document).ready(function() {
             
         },10);
         
+        $(".score_card .msg").html(msg)
+
+        // basically 'callLater' something about these dialogs
+        setTimeout(function(){
+            $(".score_card").modal({
+                close:false,
+                overlayClose:false,
+                overlayId: 'quit-overlay',
+                containerId: 'quit-container',        
+            });
+            
+            
+        },10);
+
     };
 
     
@@ -385,7 +398,7 @@ $(document).ready(function() {
             var original_value = original_text;
             var essay = window.essay_id;
             //is_quota
-            var round_number = -1;
+            var round_number = window.round_number;
 
             window.send_correction(
                 window.group_id,
@@ -459,8 +472,9 @@ $(document).ready(function() {
         }
     }
     
-    function update_round_number(){
+    function update_round(){
         window.round_number++;
+
         $(".round").html("Round " + window.round_number);
     }
     
