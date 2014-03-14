@@ -67,10 +67,11 @@
         .score_card
             .msg
 
+            .body
+
             .done
-                -# have this link to some setup page for ellie
-                %a{:href => '#', :onClick => "modal.close()"}
-                    Done
+                -#finish viewing score card
+                %input{:type=> 'button', :value => 'Done', :class => 'done_button'}
         -# shown after we are completely finished
         .finished
             -# note when this loads, turn off the unload handler

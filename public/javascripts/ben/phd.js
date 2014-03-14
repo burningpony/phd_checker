@@ -111,7 +111,7 @@ $(document).ready(function() {
     		}         
         });
     }
-    
+
     $(".show_instructions").click(function(event){
         event.stopPropagation();
         
@@ -133,7 +133,8 @@ $(document).ready(function() {
         		    modal.close();
         		    
                     if(round_number < NUMBER_OF_ROUNDS){
-                      update_round()      
+                      setTimeout(function(){ window.quit()}, 10);
+                      update_round()    
                     } else{
         		      // let it close the modal, and open a new one
         		      setTimeout(function(){ window.quit()}, 10);
@@ -142,9 +143,10 @@ $(document).ready(function() {
                 $(".confirm_quit .cancel_button").click(function(){
                     modal.close();
     		    })
-
     		}         
         });
+
+
         
         return false;
     });
@@ -153,64 +155,90 @@ $(document).ready(function() {
         // make sure whatever is open is now closed
         $.modal.close();
         
-        // stop the timer
-        window.stop_timer();
-        
-        var msg = "";
-        if(kwargs && kwargs.timeout){
-            msg = "You ran out of time, but at least it's over :-)";
+        if(window.round_number <= NUMBER_OF_ROUNDS){
+            window.score_card_modal()
+        } else{
+            // stop the timer
+            window.stop_timer();
+            var msg = "";
+            if(kwargs && kwargs.timeout){
+                window.stop_timer();
+                msg = "You ran out of time, but at least it's over :-)";
+            }
+            $(".finished .msg").html(msg)
+            
+            // remove unload handler so we can reset things easily
+            window.onbeforeunload = undefined;
+            window.finished_modal();
         }
-        $(".finished .msg").html(msg)
-        
-        // remove unload handler so we can reset things easily
-        window.onbeforeunload = undefined;
-        
+    };
+
+    window.finished_modal = function finished_modal(){
         // basically 'callLater' something about these dialogs
         setTimeout(function(){
             $(".finished").modal({
                 close:false,
                 overlayClose:false,
-        		overlayId: 'quit-overlay',
-        		containerId: 'quit-container',
-        		onShow:function(){
-					// Hack to steal the time from the timer. 
-    		    	var time = $(".timer").html();
-        		    // TODO: k you may need to change the url to the score_card
+                overlayId: 'quit-overlay',
+                containerId: 'quit-container',
+                onShow:function(){
+                    // Hack to steal the time from the timer. 
+                    var time = $(".timer").html();
+                    // TODO: k you may need to change the url to the score_card
                     // Do an ajax request to get the body we are looking for
                     $.get( window.path_to_controller + '/score_card?participant_id=' + window.participant_id, function(data) {
                         $('.finished .body').html(data);
                     });  
-					//Send the time to the backend
-      				          	$.ajax({
-								        type: 'POST',
-								        url: "users/complete",
-								        data: {
-									        "participant_id": window.participant_id,
-											"time_to_complete" : time
-											}
-								    });
-        		}         
-            });
-            
-            
-        },10);
-        
-        $(".score_card .msg").html(msg)
+                    //Send the time to the backend
+                    $.ajax({
+                        type: 'POST',
+                        url: "users/complete",
+                        data: {
+                            "participant_id": window.participant_id,
+                            "round_number": window.round_number,
+                            "time_to_complete" : time
+                            }
+                    });
+                }         
+            }) 
+        },10)
+    };
 
+    window.score_card_modal = function score_card_modal(){
         // basically 'callLater' something about these dialogs
         setTimeout(function(){
             $(".score_card").modal({
                 close:false,
                 overlayClose:false,
                 overlayId: 'quit-overlay',
-                containerId: 'quit-container',        
-            });
-            
-            
+                containerId: 'quit-container',
+                onShow:function(){
+                    // Hack to steal the time from the timer. 
+                    var time = $(".timer").html();
+                    var modal = this;
+                    // TODO: k you may need to change the url to the score_card
+                    // Do an ajax request to get the body we are looking for
+                    $.get( window.path_to_controller + '/score_card?participant_id=' + window.participant_id, function(data) {
+                        $('.score_card .body').html(data);
+                    });  
+                    //Send the time to the backend
+                    $.ajax({
+                        type: 'POST',
+                        url: "users/complete",
+                        data: {
+                            "participant_id": window.participant_id,
+                            "round_number": window.round_number,
+                            "time_to_complete" : time
+                            }
+                    });
+
+                    $(".done .done_button").click(function(){
+                        modal.close();
+                    });
+                }         
+            });      
         },10);
-
     };
-
     
     
     
@@ -449,7 +477,7 @@ $(document).ready(function() {
             
             // render the seconds
             $(".timer").html(minutes_to_render + ":" + spacer + seconds_to_render);
-        
+            
             // show other student scores
             if(seconds % INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS == 0 && window.__show_other_student_actions){
                 window.stop_timer();
@@ -462,7 +490,7 @@ $(document).ready(function() {
                 window.quit({'timeout' : true});
             }
         
-        },1000)
+        },1000);
         
     };
     
@@ -470,13 +498,18 @@ $(document).ready(function() {
         if(timer){
             clearInterval(timer)
         }
-    }
+    };
     
-    function update_round(){
+    window.update_round = function update_round(){
+        //update round number
         window.round_number++;
-
         $(".round").html("Round " + window.round_number);
-    }
+        //clear cache
+        cached_essays = {};
+        $('.content').html("");
+        console.log("Reseting Essays", cached_essays);
+        $($(".essay_link")[0]).click();
+    };
     
   // Handler for .ready() called.
 });
