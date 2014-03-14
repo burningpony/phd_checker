@@ -2,7 +2,10 @@
   %h3 Here is your scorecard ##{@user.id}
   .scores
     %hr
-    %p  You got #{@responses.correct.count} correct and #{@responses.incorrect.count} incorrect
+    %p  Your Cumulative score is #{@total_responses.correct.count} correct and #{@total_responses.incorrect.count} incorrect
+    %p  This Round you got #{@responses_from_round.correct.count} correct and #{@responses_from_round.incorrect.count} incorrect
     %hr
-    %p For your participation in this study you will receive. 
-    %p= number_to_currency(@payment)
+    %p Total earnings so far 
+    %p= number_to_currency(@total_payment)
+    %p Total earnings from round
+    %p= number_to_currency(@round_payment)

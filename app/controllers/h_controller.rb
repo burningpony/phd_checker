@@ -9,10 +9,9 @@
 
 class FController <EssayBaseController
   def score_card
-    @user = User.find_or_create_by_id(params[:participant_id])
-    @responses = @user.responses
-    
-    @payment = 25
+    instance_variable_setup
+    @total_payment = -1
+    @round_payment = -1
     render :file => "essays/score_card.html.haml", :layout => false
   end
   

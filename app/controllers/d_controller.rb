@@ -1,13 +1,14 @@
 class DController <  EssayBaseController
   def score_card
-    @user = User.find_or_create_by_id(params[:participant_id])
-    @responses = @user.responses
+    instance_variable_setup
    # 4.	Fee For Service plus Quota Bonus
-    @payment =  @responses.count * 0.20
-    
+    @total_payment =  @total_responses.count * 0.20
+    @round_payment =  @responses_from_round.count * 0.20
     
     #set the quota here 
-    @responses.count > 9 ? @payment += 1 : @payment
+    @round_payment.count > 9 ? @payment += 1 : @round_payment
+
+    @total_payment += @total_responses.group(:round_number).count.select{|round, count| count > 9}.size
     
     
 render :file => "essays/score_card.html.haml", :layout => false
