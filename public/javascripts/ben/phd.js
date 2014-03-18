@@ -11,12 +11,12 @@ window.onbeforeunload = function() {
 var TIME_LIMIT_IN_MINUTES = 60;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
-var NUMBER_OF_ROUNDS = 3;
+var NUMBER_OF_ROUNDS = 6;
 
 
 window.participant_id = undefined;
 window.group_id       = undefined;
-window.round_number = 0;
+window.round_number = 1;
 
 $(document).ready(function() {
     
@@ -73,7 +73,7 @@ $(document).ready(function() {
     // Add instructions
     window.show_instructions= function() {
         var timer_started = false;
-        update_round();
+        $(".round").html("Round " + window.round_number);
         $('.instructions').modal({
             close:true,
             overlayClose:true,
@@ -132,9 +132,9 @@ $(document).ready(function() {
                 $(".confirm_quit .quit_button").click(function(){
         		    modal.close();
         		    
-                    if(round_number < NUMBER_OF_ROUNDS){
-                      setTimeout(function(){ window.quit()}, 10);
-                      update_round()    
+                    if(round_number <= NUMBER_OF_ROUNDS){
+                      update_round() 
+                      setTimeout(function(){ window.quit()}, 10);                         
                     } else{
         		      // let it close the modal, and open a new one
         		      setTimeout(function(){ window.quit()}, 10);
@@ -155,18 +155,20 @@ $(document).ready(function() {
         // make sure whatever is open is now closed
         $.modal.close();
         
-        if(window.round_number <= NUMBER_OF_ROUNDS){
-            window.score_card_modal()
-        } else{
-            // stop the timer
+         if(kwargs && kwargs.timeout){
             window.stop_timer();
             var msg = "";
-            if(kwargs && kwargs.timeout){
-                window.stop_timer();
-                msg = "You ran out of time, but at least it's over :-)";
-            }
-            $(".finished .msg").html(msg)
-            
+            msg = "You ran out of time, but at least it's over :-)";
+            $(".finished .msg").html(msg);    
+            // remove unload handler so we can reset things easily
+            window.onbeforeunload = undefined;
+            window.finished_modal();
+        } else if(window.round_number <= NUMBER_OF_ROUNDS){
+            window.score_card_modal()
+
+        } else {
+            // stop the timer
+            window.stop_timer();
             // remove unload handler so we can reset things easily
             window.onbeforeunload = undefined;
             window.finished_modal();
@@ -186,16 +188,16 @@ $(document).ready(function() {
                     var time = $(".timer").html();
                     // TODO: k you may need to change the url to the score_card
                     // Do an ajax request to get the body we are looking for
-                    $.get( window.path_to_controller + '/score_card?participant_id=' + window.participant_id, function(data) {
+                    $.get( window.path_to_controller + '/score_card', { participant_id: window.participant_id,
+                                                                        round_number: window.round_number } ,function(data) {
                         $('.finished .body').html(data);
-                    });  
+                    });   
                     //Send the time to the backend
                     $.ajax({
                         type: 'POST',
                         url: "users/complete",
                         data: {
                             "participant_id": window.participant_id,
-                            "round_number": window.round_number,
                             "time_to_complete" : time
                             }
                     });
@@ -218,19 +220,10 @@ $(document).ready(function() {
                     var modal = this;
                     // TODO: k you may need to change the url to the score_card
                     // Do an ajax request to get the body we are looking for
-                    $.get( window.path_to_controller + '/score_card?participant_id=' + window.participant_id, function(data) {
+                    $.get( window.path_to_controller + '/score_card', { participant_id: window.participant_id,
+                                                                        round_number: window.round_number } ,function(data) {
                         $('.score_card .body').html(data);
                     });  
-                    //Send the time to the backend
-                    $.ajax({
-                        type: 'POST',
-                        url: "users/complete",
-                        data: {
-                            "participant_id": window.participant_id,
-                            "round_number": window.round_number,
-                            "time_to_complete" : time
-                            }
-                    });
 
                     $(".done .done_button").click(function(){
                         modal.close();
