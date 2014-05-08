@@ -8,7 +8,7 @@ window.onbeforeunload = function() {
 }
 
 // how much time do they get total? I Think 15? 
-var TIME_LIMIT_IN_MINUTES = 60;
+var TIME_LIMIT_IN_MINUTES = 10;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
 var NUMBER_OF_ROUNDS = 6;
@@ -155,14 +155,25 @@ $(document).ready(function() {
         // make sure whatever is open is now closed
         $.modal.close();
         
-         if(kwargs && kwargs.timeout){
-            window.stop_timer();
-            var msg = "";
-            msg = "You ran out of time, but at least it's over :-)";
-            $(".finished .msg").html(msg);    
-            // remove unload handler so we can reset things easily
-            window.onbeforeunload = undefined;
-            window.finished_modal();
+        if(kwargs && kwargs.timeout){
+            //MAKE IT SO WHEN IT TIMES OUT IT CHECKS WHAT ROUND IT IS ON AND DOES THE RIghT ThinG
+            if(window.round_number < NUMBER_OF_ROUNDS){
+                window.stop_timer();
+                update_round();
+                var msg = "";
+                msg = "This round has timed out, your next round starts now!";
+                $(".score_card .msg").html(msg);    
+                window.score_card_modal();
+            } else {
+                window.stop_timer();
+                var msg = "";
+                msg = "You ran out of time, but at least it's over :-)";
+                $(".finished .msg").html(msg);    
+                // remove unload handler so we can reset things easily
+                window.onbeforeunload = undefined;
+                window.finished_modal();
+            }
+
         } else if(window.round_number <= NUMBER_OF_ROUNDS){
             window.score_card_modal()
 
@@ -502,6 +513,8 @@ $(document).ready(function() {
         $('.content').html("");
         console.log("Reseting Essays", cached_essays);
         $($(".essay_link")[0]).click();
+        seconds = 0;
+        window.start_timer();
     };
     
   // Handler for .ready() called.
