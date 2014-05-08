@@ -21,10 +21,10 @@ PhdChecker::Application.routes.draw do
   match 'responses/empty' => "responses#empty"
   match 'responses/export' => "responses#export_to_csv"
   resources :responses 
-    match 'users/complete'                               => 'users#mark_completed'
-  match 'users/stats'                               => 'users#stats'
-  resources :users
-    root :to                                          => "a#index"
+    match 'users/complete' => 'users#mark_completed'
+  match 'users/stats' => 'users#stats'
+  
+  root :to => "users#experiments"
 
   # Note: This route will make all actions in every controller accessible via GET requests.
   match ':controller(/:action(/:id(.:format)))'

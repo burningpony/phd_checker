@@ -12,7 +12,7 @@ class EssayBaseController < ApplicationController
     
     render :file => "essays/index", :layout=> false
   end
-    
+
   def show
     if params[:id] == 'practice'
       @essay_id = 'practice'

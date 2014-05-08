@@ -20,6 +20,11 @@ class UsersController < ApplicationController
      render :js => "true"
   end
   
+  #index view for experiments
+  def experiments
+    render :file => "experiments/experiments.html.haml", :layout => false 
+  end
+
   def stats
     @users = User.find_all_by_group(params[:group])
 
