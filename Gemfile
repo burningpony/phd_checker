@@ -2,14 +2,11 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.17'
 
-gem 'twitter-bootstrap-rails'
-
 gem 'pg'
 gem 'heroku'
 # Bundle gems needed for Haml
 gem "haml"
 gem "haml-rails", :group => :development
-
 
 gem "jquery-rails"
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]

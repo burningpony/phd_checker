@@ -6,5 +6,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require vendor/assets/javascripts/bootstrap.min
 //= require_tree .
