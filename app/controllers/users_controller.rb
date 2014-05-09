@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   
   #index view for experiments
   def experiments
-    render :file => "experiments/experiments", :layout => false, :handlers => [:haml] 
+    render "experiments/experiments", :layout => "default"
   end
 
   def stats

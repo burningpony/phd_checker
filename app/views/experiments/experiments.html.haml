@@ -2,28 +2,30 @@
   %head
   %body
     .container
-      .row
-        .col-md-6-col-md-offset-4
-          .well
-            .row
-              .col-md-8.col-md-offset-2
-                %h1
-                  Trials
-            .row
-              .col-md-8.col-md-offset-2
-                =link_to "Capitation", "a"
-            .row
-              .col-md-8.col-md-offset-2
-                =link_to "Capitation + Bonus", "b"
-            .row
-              .col-md-8.col-md-offset-2
-                =link_to "FFS", "c"
-            .row
-              .col-md-8.col-md-offset-2
-                =link_to "FFS + Bonus", "d"
-            .row
-              .col-md-8.col-md-offset-2
-                =link_to "Salary", "f"
-
+      .well
+        %h3.text-center
+          Trials
+        %table.table.table-condensed
+          %tr
+            %td
+              .text-center
+                =link_to "Capitation", "a", class: ""
+            %td
+              .text-center
+                =link_to "Capitation + Bonus", "b", class: ""
+          %tr
+            %td
+              .text-center
+                =link_to "FFS", "c", class: ""
+            %td
+              .text-center
+                =link_to "FFS + Bonus", "d", class: ""
+          %tr
+            %td
+              .text-center
+                =link_to "Salary", "f", class: ""
+            %td
+              .text-center
+  
               
 

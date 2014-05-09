@@ -45,6 +45,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.25.3)
+    execjs (2.0.2)
     fastercsv (1.5.5)
     haml (4.0.5)
       tilt
@@ -128,6 +129,10 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    twitter-bootstrap-rails (2.2.6)
+      actionpack (>= 3.1)
+      execjs
+      railties (>= 3.1)
     tzinfo (0.3.39)
     web-app-theme (0.7.0)
 
@@ -146,4 +151,5 @@ DEPENDENCIES
   pg
   rails (= 3.2.17)
   rspec-rails (>= 2.0.1)
+  twitter-bootstrap-rails
   web-app-theme (>= 0.6.2)
