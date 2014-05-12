@@ -1,12 +1,13 @@
-.modal{
-  /* quota colors*/
-  .modified_quota input{
-  background-color: orange;
-  border: none;
-  }
 
-  .unmodified_quota input{
-  background-color: yellow;
-  border: none;
-  }
+/* quota colors*/
+.modified_quota input{
+background-color: red;
+border: none;
 }
+
+.unmodified_quota input{
+background-color: yellow;
+border: none;
+}
+
+

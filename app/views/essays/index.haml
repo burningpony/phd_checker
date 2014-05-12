@@ -3,10 +3,6 @@
         -# 
         %title
             Experiment
-        %link{ :href => "/stylesheets/screen.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
-        %link{ :href => "/stylesheets/modal.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
-        %link{ :href => "/stylesheets/essay_fields.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
-        %link{ :href => "/stylesheets/quota.css", :rel => "stylesheet", :media => "screen, projection", :type => "text/css" }
 
         :javascript
             var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
@@ -38,10 +34,10 @@
     
     %body
         .participant
-            .label
+            .h4.text-center
                 Group ID
             %input{:type=>'text',:id=>'group_id'}
-            .label
+            .h4.text-center
                 Participant ID
             %input{:type=>'text', :id=>'participant_id'}
             
@@ -49,9 +45,9 @@
             .error
                     
         .instructions
-            .label
+            .h4.text-center
                 Instructions
-            
+            %br
             .instruction_body
                 %p
                     Please wait for further instructions.  
@@ -60,8 +56,9 @@
             
         -# shown prompting us to finish or not, when we click finish
         .confirm_quit
-            .label
-                Are you sure you want to continue to next phase?
+            .well
+                .h4
+                    Are you sure you want to continue to next phase?
             %input{:type=> 'button', :value => 'Cancel', :class => 'cancel_button'}
             %input{:type=> 'button', :value => 'Confirm', :class => 'quit_button'}
         .score_card
@@ -75,7 +72,7 @@
         -# shown after we are completely finished
         .finished
             -# note when this loads, turn off the unload handler
-            .label
+            .h4.text-center
                 Thank you for Participating 
             .msg
             
@@ -83,7 +80,6 @@
             .body
 
             .continue
-                -# have this link to some setup page for ellie
                 %a{:href => '#', :onClick => "window.location.reload()"}
                     Prepare this computer for the next trial
         
@@ -96,23 +92,27 @@
                 Done
         .container
             .menu
-                %ul
-                    -#%li
-                        %a{:href=> '#', :class=>'show_instructions'}
-                            Instructions
-                    -#%li
-                        %a{:href=> '#', :class=>'practice_essay_link'}
-                            Practice
+                %table.table-condensed.table-bordered
+                    %tr
+                        -#%td
+                            %a{:href=> '#', :class=>'show_instructions'}
+                                Instructions
+                    %tr
+                        -#%td
+                            %a{:href=> '#', :class=>'practice_essay_link'}
+                                Practice
 
                     -@essays.each do |essay|
-                        %li
-                            %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
-                                Essay #{essay}
-                
-                    %li
-                        %a{:class=>'quit', :href=> '#'}
-                            Finish
-        
+                        %tr
+                            %td
+                                %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
+                                    Essay #{essay}
+                    
+                    %tr
+                        %td
+                            %a{:class=>'quit', :href=> '#'}
+                                Finish
+            
             .content
 
             .timer
