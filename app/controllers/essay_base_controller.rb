@@ -10,7 +10,7 @@ class EssayBaseController < ApplicationController
     end
     @essays = @essays.sort
     
-    render :file => "essays/index", :layout=> false
+    render :file => "essays/index", :layout=> "default"
   end
 
   def show
