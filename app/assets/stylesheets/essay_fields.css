@@ -1,45 +1,47 @@
-.essay_fields{
+.unmodified input{
+background-color: cyan;
+border: none;
+}
 
-  .unmodified input{
-  background-color: cyan;
-  border: none;
-  }
+.modified input{
+background-color: orange;
+border: none;
+}
 
-  .modified input{
-  background-color: orange;
-  border: none;
-  }
+/* styles for string diff */
+del {
+background: #FFE6E6;
+}
+ins {
+background: #E6FFE6;
+}
 
-  /* styles for string diff */
-  del {
-  background: #FFE6E6;
-  }
-  ins {
-  background: #E6FFE6;
-  }
+.correctme input{
+  padding: 0, 0, 0, 10px;
+  line-height: normal;
+}
 
-  /* classes for result */
-  .result ol li{
-  padding: 5px;
-  }
-  .status {
-  padding-right: 10px;
-  width: 80px;
-  }
+/* classes for result */
+.result ol li{
+padding: 5px;
+}
+.status {
+padding-right: 10px;
+width: 80px;
+}
 
-  .state_correct {
-  background-color: yellow;
-  }
+.state_correct {
+background-color: yellow;
+}
 
-  .state_modified {
-  background-color: cyan;
-  }
+.state_modified {
+background-color: cyan;
+}
 
-  .state_reverted {
-  background-color: gray;
-  }
+.state_reverted {
+background-color: gray;
+}
 
-  .state_no_change {
-  background-color: tan;
-  }
+.state_no_change {
+background-color: tan;
 }
