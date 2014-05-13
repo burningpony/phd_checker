@@ -24,9 +24,13 @@ a.modalCloseImg {
 .finished{display:none;}
 .other_participants{display:none;}
 
+.fixed {
+	position:fixed;
+}
+
 /*timer*/
 .timer {
-	position:absolute;
+	position:fixed;
 	right: 15px;
 	top: 15px;
 
@@ -35,7 +39,7 @@ a.modalCloseImg {
 
 /*round notification*/
 .round {
-	position:absolute;
+	position:fixed;
 	right: 15px;
 	bottom: 15px;
 
@@ -44,7 +48,7 @@ a.modalCloseImg {
 
 /*menu */
 .menu {
-	position:absolute;
+	position:fixed;
 	left:0px;
 	top:0px;
 }
