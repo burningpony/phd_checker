@@ -4,26 +4,28 @@
     .container
       .well
         %h3.text-center
-          Trials
+          Please select your payment structure
         %table.table.table-condensed
-          %tr
-            %td
-              .text-center
-                =link_to "$2.50 per essay", "a", class: ""
+          -#%tr
             %td
               .text-center
                 =link_to "$2.50 plus bonus", "b", class: ""
           %tr
             %td
               .text-center
-                =link_to "$0.45", "c", class: ""
+                =link_to "$0.85 per essay", "a", class: ""
+          %tr
             %td
+              .text-center
+                =link_to "$0.20", "c", class: ""
+            -#%td
               .text-center
                 =link_to "$0.45 + bonus", "d", class: ""
           %tr
             %td
               .text-center
                 =link_to "$25", "f", class: ""
+          -#%tr
             %td
               .text-center
   

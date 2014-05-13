@@ -11,7 +11,7 @@ window.onbeforeunload = function() {
 var TIME_LIMIT_IN_MINUTES = 10;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
-var NUMBER_OF_ROUNDS = 6;
+var NUMBER_OF_ROUNDS = 4;
 
 
 window.participant_id = undefined;
@@ -73,7 +73,7 @@ $(document).ready(function() {
     // Add instructions
     window.show_instructions= function() {
         var timer_started = false;
-        $(".round").html("Round " + window.round_number);
+        $(".round").html("r" + window.round_number);
         $('.instructions').modal({
             close:true,
             overlayClose:true,
@@ -507,7 +507,7 @@ $(document).ready(function() {
     window.update_round = function update_round(){
         //update round number
         window.round_number++;
-        $(".round").html("Round " + window.round_number);
+        $(".round").html("r" + window.round_number);
         //clear cache
         cached_essays = {};
         $('.content').html("");
