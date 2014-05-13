@@ -1,11 +1,11 @@
-
-.unmodified input, textarea{
+/*seems to be overlapping styling here with essay_fields, i ignore for now*/
+.unmodified input{
     background-color: cyan;
     border: none;
 }
 
-.modified input, textarea{
-  background-color: orange;
+.modified input{
+  background-color: red;
   border: none;
 }
 

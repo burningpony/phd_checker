@@ -32,17 +32,16 @@ a.modalCloseImg {
 .timer {
 	position:fixed;
 	right: 15px;
-	top: 15px;
-
+	top: 15px; 
+	padding: 10px;
 	font-size:50px;
 }
-
 /*round notification*/
 .round {
 	position:fixed;
 	right: 15px;
 	bottom: 15px;
-
+	padding: 10px;
 	font-size:50px;
 }
 
@@ -74,10 +73,7 @@ a.modalCloseImg {
 .content{
 	display:none; /*start hidden */
 	position:absolute;
-	left:150px;
-	top:10px;
 	background-color:#fff;
-	width:550px;
 	padding:20px;
 	border:2px solid black;
 }
