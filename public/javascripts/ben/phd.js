@@ -73,7 +73,7 @@ $(document).ready(function() {
     // Add instructions
     window.show_instructions= function() {
         var timer_started = false;
-        $(".round").html("r" + window.round_number);
+        $(".round").html("Round " + window.round_number);
         $('.instructions').modal({
             close:true,
             overlayClose:true,
@@ -130,15 +130,10 @@ $(document).ready(function() {
     		onShow:function(){
                 var modal = this;
                 $(".confirm_quit .quit_button").click(function(){
+                    window.stop_timer();
         		    modal.close();
-        		    
-                    if(round_number <= NUMBER_OF_ROUNDS){
-                      update_round() 
-                      setTimeout(function(){ window.quit()}, 10);                         
-                    } else{
-        		      // let it close the modal, and open a new one
-        		      setTimeout(function(){ window.quit()}, 10);
-                    }   		        
+        		    // let it close the modal, and open a new one
+        		    setTimeout(function(){ window.quit()}, 10); 		        
     		    })
                 $(".confirm_quit .cancel_button").click(function(){
                     modal.close();
@@ -159,7 +154,6 @@ $(document).ready(function() {
             //MAKE IT SO WHEN IT TIMES OUT IT CHECKS WHAT ROUND IT IS ON AND DOES THE RIghT ThinG
             if(window.round_number < NUMBER_OF_ROUNDS){
                 window.stop_timer();
-                update_round();
                 var msg = "";
                 msg = "This round has timed out, your next round starts now!";
                 $(".score_card .msg").html(msg);    
@@ -174,12 +168,10 @@ $(document).ready(function() {
                 window.finished_modal();
             }
 
-        } else if(window.round_number <= NUMBER_OF_ROUNDS){
+        } else if(window.round_number < NUMBER_OF_ROUNDS){
             window.score_card_modal()
 
         } else {
-            // stop the timer
-            window.stop_timer();
             // remove unload handler so we can reset things easily
             window.onbeforeunload = undefined;
             window.finished_modal();
@@ -237,6 +229,7 @@ $(document).ready(function() {
                     });  
 
                     $(".done .done_button").click(function(){
+                        update_round();
                         modal.close();
                     });
                 }         
@@ -507,7 +500,7 @@ $(document).ready(function() {
     window.update_round = function update_round(){
         //update round number
         window.round_number++;
-        $(".round").html("r" + window.round_number);
+        $(".round").html("Round " + window.round_number);
         //clear cache
         cached_essays = {};
         $('.content').html("");
