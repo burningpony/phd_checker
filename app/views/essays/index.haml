@@ -80,8 +80,8 @@
             .body
 
             .continue
-                %a{:href => '#', :onClick => "window.location.reload()"}
-                    Prepare this computer for the next trial
+                =link_to "Prepare this computer for the next trial", root_path, class: ""
+                    
         
         
         .other_participants
@@ -91,30 +91,33 @@
             .button
                 Done
         .container
-            .menu
-                %table.table-condensed.table-bordered
-                    %tr
-                        -#%td
-                            %a{:href=> '#', :class=>'show_instructions'}
-                                Instructions
-                    %tr
-                        -#%td
-                            %a{:href=> '#', :class=>'practice_essay_link'}
-                                Practice
+            .row
+                .col-xs-1
+                    .menu
+                        %table.table-condensed.table-bordered
+                            %tr
+                                -#%td
+                                    %a{:href=> '#', :class=>'show_instructions'}
+                                        Instructions
+                            %tr
+                                -#%td
+                                    %a{:href=> '#', :class=>'practice_essay_link'}
+                                        Practice
 
-                    -@essays.each do |essay|
-                        %tr
-                            %td
-                                %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
-                                    Essay #{essay}
-                    
-                    %tr
-                        %td
-                            %a{:class=>'quit', :href=> '#'}
-                                Finish
-            
-            .content
+                            -@essays.each do |essay|
+                                %tr
+                                    %td
+                                        %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
+                                            Essay #{essay}
+                            
+                            %tr
+                                %td
+                                    %a{:class=>'quit', :href=> '#'}
+                                        Finish
+                .col-xs-9
+                    .content
+                .col-xs-2
+                    .col-spacer
+                        .timer
 
-            .timer
-
-            .round
+                        .round
