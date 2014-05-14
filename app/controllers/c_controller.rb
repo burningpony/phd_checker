@@ -4,6 +4,6 @@ class CController <  EssayBaseController
     @total_payment = @total_responses.count * 0.20
     @round_payment = @responses_from_round.count * 0.20
 
-    render :file => "essays/score_card.html.haml", :layout => false
+    render file: 'essays/score_card.html.haml', layout: false
   end
 end

@@ -1,23 +1,24 @@
 class UsersController < ApplicationController
   # GET /users
-  layout proc{ |c| c.request.xhr? ? false : "application" }
+  layout proc { |c| c.request.xhr? ? false : 'application' }
   # GET /users.xml
   def index
     @users = User.all
 
     respond_to do |format|
-      format.html { render :layout => "application"}
-      format.xml  { render :xml => @users }
+      format.html { render layout: 'application' }
+      format.xml  { render xml: @users }
     end
   end
+
   def mark_completed
-     @user = User.find_or_create_by_id(params[:participant_id], :group => params[:group])
-     @time = params[:time_to_complete].split(":")
-     @seconds = @time[0].to_i*60
-     @seconds = @seconds + @time[1].to_i
-     @user.time_to_complete = 3600 - @seconds
-     @user.save
-     render :js => "true"
+    @user = User.find_or_create_by_id(params[:participant_id], group: params[:group])
+    @time = params[:time_to_complete].split(':')
+    @seconds = @time[0].to_i * 60
+    @seconds = @seconds + @time[1].to_i
+    @user.time_to_complete = 3600 - @seconds
+    @user.save
+    render js: 'true'
   end
 
   # index view for experiments
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
   def stats
     @users = User.find_all_by_group(params[:group])
 
-    render :layout => false
+    render layout: false
   end
   # GET /users/1
   # GET /users/1.xml
@@ -43,8 +44,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html 
-            format.xml  { render :xml => @user }
+      format.html
+      format.xml  { render xml: @user }
     end
   end
 
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @user }
+      format.xml  { render xml: @user }
     end
   end
 
@@ -71,11 +72,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
+        format.html { redirect_to(@user, notice: 'User was successfully created.') }
+        format.xml  { render xml: @user, status: :created, location: @user }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.xml  { render xml: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -87,11 +88,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(@user, notice: 'User was successfully updated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.xml  { render xml: @user.errors, status: :unprocessable_entity }
       end
     end
   end

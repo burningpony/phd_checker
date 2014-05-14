@@ -8,8 +8,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module PhdChecker
   class Application < Rails::Application
-  
-config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -35,12 +34,11 @@ config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
     # Configure the default encoding used in templates for Ruby 1.9.
-    config.encoding = "utf-8"
+    config.encoding = 'utf-8'
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.assets.initialize_on_precompile = false
     config.assets.enabled = true
   end
-
 end

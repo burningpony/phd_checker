@@ -9,4 +9,3 @@ class AddGroupQuotaToResponses < ActiveRecord::Migration
     remove_column :users, :quota
   end
 end
-
