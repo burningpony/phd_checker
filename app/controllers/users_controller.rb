@@ -12,10 +12,11 @@ class UsersController < ApplicationController
   end
 
   def mark_completed
-    @user = User.find_or_create_by_id(params[:participant_id], group: params[:group])
+    @users = User.where(id: params[:participant_id], group: params[:group])
+    @user = @users.first_or_create
     @time = params[:time_to_complete].split(':')
     @seconds = @time[0].to_i * 60
-    @seconds = @seconds + @time[1].to_i
+    @seconds += @time[1].to_i
     @user.time_to_complete = 3600 - @seconds
     @user.save
     render js: 'true'
@@ -23,13 +24,14 @@ class UsersController < ApplicationController
 
   # index view for experiments
   def experiments
-    @experiments = { a: '$0.85 per essay',
-                     b: '$2.50 plus bonus',
-                     c: '$0.20',
-                     d: '$0.45 + bonus',
-                     e: '',
-                     f: '$25'
-                     }
+    @experiments = {
+      a: '$0.85 per essay',
+      b: '$2.50 plus bonus',
+      c: '$0.20',
+      d: '$0.45 + bonus',
+      e: '',
+      f: '$25'
+    }
     render 'experiments/experiments', layout: 'cover'
   end
 
