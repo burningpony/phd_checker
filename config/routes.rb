@@ -1,6 +1,5 @@
 PhdChecker::Application.routes.draw do
 
-  
   match 'a/score_card'                               => 'a#score_card'
   match 'b/score_card'                               => 'b#score_card'
   match 'c/score_card'                               => 'c#score_card'
@@ -18,14 +17,16 @@ PhdChecker::Application.routes.draw do
   resources :f
   resources :g
   resources :h
-  match 'responses/empty' => "responses#empty"
-  match 'responses/export' => "responses#export_to_csv"
-  resources :responses 
-    match 'users/complete' => 'users#mark_completed'
+
+  match 'responses/empty' => 'responses#empty'
+  match 'responses/export' => 'responses#export_to_csv'
+  resources :responses
+  match 'users/complete' => 'users#mark_completed'
   match 'users/stats' => 'users#stats'
   resources :users
-  root :to => "users#experiments"
+  root to: 'users#experiments'
 
-  # Note: This route will make all actions in every controller accessible via GET requests.
+  # Note: This route will make all actions in
+  # every controller accessible via GET requests.
   match ':controller(/:action(/:id(.:format)))'
 end
