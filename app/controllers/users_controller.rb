@@ -26,10 +26,10 @@ class UsersController < ApplicationController
   def experiments
     @experiments = {
       a: '$0.85 per essay',
-      b: '$2.50 plus bonus',
+      # b: '$2.50 plus bonus',
       c: '$0.20',
-      d: '$0.45 + bonus',
-      e: '',
+      # d: '$0.45 + bonus',
+      # e: '',
       f: '$25'
     }
     render 'experiments/experiments', layout: 'cover'
