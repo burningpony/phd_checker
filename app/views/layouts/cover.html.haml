@@ -10,12 +10,13 @@
     = stylesheet_link_tag("cover", :media => "all")
 
   %body
+    .vignette
     .site-wrapper
       .site-wrapper-inner
         .cover-container
-          .masthead.clearfix
-            .inner
-              %h3.masthead-brand Cover
+          / .masthead.clearfix
+          /   .inner
+          /     %h3.masthead-brand Cover
 
           .inner.cover
             %h1.cover-heading=yield :page_title
