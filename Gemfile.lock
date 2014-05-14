@@ -45,7 +45,6 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.25.3)
-    fastercsv (1.5.5)
     haml (4.0.5)
       tilt
     haml-rails (0.4)
@@ -138,7 +137,6 @@ DEPENDENCIES
   airbrake
   better_errors
   binding_of_caller
-  fastercsv
   haml
   haml-rails
   heroku

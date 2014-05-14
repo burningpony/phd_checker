@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+  require 'csv'
   # GET /responses
   # GET /responses.xml
   layout proc{ |c| c.request.xhr? ? false : "application" }
@@ -47,7 +48,7 @@ class ResponsesController < ApplicationController
   def export_to_csv
     @responses = Response.find(:all)
 
-    csv_string = FasterCSV.generate do |csv|
+    csv_string = CSV.generate do |csv|
       # header row
       csv << ["id", "participant_id", "group", "error", "essay", "Correct?", "Field Before Correction","Seconds to Complete", "Round", "Time Corrected"]
 
