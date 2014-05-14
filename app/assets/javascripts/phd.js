@@ -18,9 +18,10 @@ window.participant_id = undefined;
 window.group_id       = undefined;
 window.round_number = 1;
 
-$(document).ready(function() {
-    
+jQuery(function() {
+    console.log("preparing exam")
     // 1) Collect Group and Participant ID
+    if ($(".participant").length > 0) {
     $(".participant").modal({
         close:false,
 		overlayId: 'simplemodal-overlay',
@@ -507,6 +508,7 @@ $(document).ready(function() {
         $($(".essay_link")[0]).click();
         seconds = 0;
         window.start_timer();
+    };
     };
     
   // Handler for .ready() called.

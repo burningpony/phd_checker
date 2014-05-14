@@ -2,21 +2,7 @@
     Experiment
 
 :javascript
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
-
-:erb
-    <!-- jquery addons -->
-    <script type='text/javascript' src="/javascripts/jquery/simple_modal.js"></script>
-    
-    <script type='text/javascript' src="/javascripts/ben/phd.js"></script>
-    <script type='text/javascript' src="/javascripts/ben/diff.js"></script>
-    <script type='text/javascript' src="/javascripts/ben/save_function.js"></script>
-    
-    <!-- hard code in path to controller -->
-    <script>
-    window.path_to_controller = "/<%=params[:controller]%>";
-    </script>
+    window.path_to_controller = "/#{params[:controller]}";
 
 -if controller.show_quota_items
     :javascript

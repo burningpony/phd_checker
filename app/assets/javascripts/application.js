@@ -6,5 +6,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min.js
+//= require simple_modal
+//= require diff
+//= require save_function
+//= require phd
+//= require bootstrap/tooltip
+//= require bootstrap/popover
 //= require_tree .
