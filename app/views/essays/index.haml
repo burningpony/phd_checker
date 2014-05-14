@@ -77,14 +77,14 @@
             .menu
                 .well.well-sm
                     %ul.nav.nav-pills.nav-stacked
-                        %li
+                        / %li
                             
-                            %a{:href=> '#', :class=>'show_instructions'}
-                                Instructions
-                        %li
+                        /     %a{:href=> '#', :class=>'show_instructions'}
+                        /         Instructions
+                        / %li
                             
-                            %a{:href=> '#', :class=>'practice_essay_link'}
-                                Practice
+                        /     %a{:href=> '#', :class=>'practice_essay_link'}
+                        /         Practice
 
                         -@essays.each do |essay|
                             %li
