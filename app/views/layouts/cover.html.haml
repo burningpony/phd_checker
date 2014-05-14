@@ -1,0 +1,23 @@
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %meta{content: "", name: "description"}/
+    %meta{content: "", name: "author"}/
+    %title Choose
+    = stylesheet_link_tag("application", :media => "all")
+    = stylesheet_link_tag("cover", :media => "all")
+
+  %body
+    .site-wrapper
+      .site-wrapper-inner
+        .cover-container
+          .masthead.clearfix
+            .inner
+              %h3.masthead-brand Cover
+
+          .inner.cover
+            %h1.cover-heading=yield :page_title
+            %hr
+            =yield

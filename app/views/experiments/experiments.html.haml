@@ -1,33 +1,11 @@
-%html
-  %head
-  %body
-    .container
-      .well
-        %h3.text-center
-          Please select your payment structure
-        %table.table.table-condensed
-          -#%tr
-            %td
-              .text-center
-                =link_to "$2.50 plus bonus", "b", class: ""
-          %tr
-            %td
-              .text-center
-                =link_to "$0.85 per essay", "a", class: ""
-          %tr
-            %td
-              .text-center
-                =link_to "$0.20", "c", class: ""
-            -#%td
-              .text-center
-                =link_to "$0.45 + bonus", "d", class: ""
-          %tr
-            %td
-              .text-center
-                =link_to "$25", "f", class: ""
-          -#%tr
-            %td
-              .text-center
-  
-              
-
+-content_for :page_title do 
+  Please select your payment structure
+.row
+  -@experiments.each_slice(3) do |experiments|
+    .row
+      - experiments.each do |experiment, description|
+        .col-md-4
+          .panel.panel-default
+            .panel-body
+              %p.lead=description
+              =link_to "Begin", experiment.to_s, class: "btn btn-success"
