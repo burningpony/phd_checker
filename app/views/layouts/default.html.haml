@@ -1,2 +1,7 @@
-= stylesheet_link_tag("application", :media => "all")
-=yield
+!!!
+%html
+  %head
+    %title=yield :page_title
+    = stylesheet_link_tag("application", :media => "all")
+  %body
+    =yield

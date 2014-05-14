@@ -1,121 +1,119 @@
-%html
-    %head
-        -# 
-        %title
-            Experiment
+-content_for :page_title do 
+    Experiment
 
-        :javascript
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+:javascript
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
 
-        :erb
-            <!-- jquery addons -->
-            <script type='text/javascript' src="/javascripts/jquery/simple_modal.js"></script>
-            
-            <script type='text/javascript' src="/javascripts/ben/phd.js"></script>
-            <script type='text/javascript' src="/javascripts/ben/diff.js"></script>
-            <script type='text/javascript' src="/javascripts/ben/save_function.js"></script>
-            
-            <!-- hard code in path to controller -->
-            <script>
-            window.path_to_controller = "/<%=params[:controller]%>";
-            </script>
+:erb
+    <!-- jquery addons -->
+    <script type='text/javascript' src="/javascripts/jquery/simple_modal.js"></script>
     
-        -if controller.show_quota_items
-            :javascript
-                window.__show_quota_items = true;
-
-        -if controller.show_other_student_actions
-            :javascript
-                window.__show_other_student_actions = true;
-        -else
-            :javascript
-                window.__show_other_student_actions = false;
+    <script type='text/javascript' src="/javascripts/ben/phd.js"></script>
+    <script type='text/javascript' src="/javascripts/ben/diff.js"></script>
+    <script type='text/javascript' src="/javascripts/ben/save_function.js"></script>
     
-    %body
-        .participant
-            .h4.text-center
-                Group ID
-            %input{:type=>'text',:id=>'group_id'}
-            .h4.text-center
-                Participant ID
-            %input{:type=>'text', :id=>'participant_id'}
-            
-            %input{:type=>'button', :value=>'start', :class=> 'button'}
-            .error
-                    
-        .instructions
-            .h4.text-center
-                Instructions
-            %br
-            .instruction_body
-                %p
-                    Please wait for further instructions.  
-                    .button
-                        Start
-            
-        -# shown prompting us to finish or not, when we click finish
-        .confirm_quit
-            .well
-                .h4
-                    Are you sure you want to continue to next phase?
-            %input{:type=> 'button', :value => 'Cancel', :class => 'cancel_button'}
-            %input{:type=> 'button', :value => 'Confirm', :class => 'quit_button'}
-        .score_card
-            .msg
+    <!-- hard code in path to controller -->
+    <script>
+    window.path_to_controller = "/<%=params[:controller]%>";
+    </script>
 
-            .body
+-if controller.show_quota_items
+    :javascript
+        window.__show_quota_items = true;
 
-            .done
-                -#finish viewing score card
-                %input{:type=> 'button', :value => 'Done', :class => 'done_button'}
-        -# shown after we are completely finished
-        .finished
-            -# note when this loads, turn off the unload handler
-            .h4.text-center
-                Thank you for Participating 
-            .msg
+-if controller.show_other_student_actions
+    :javascript
+        window.__show_other_student_actions = true;
+-else
+    :javascript
+        window.__show_other_student_actions = false;
+
+
+.participant
+    %h4.text-center
+        Group ID
+    %input{:type=>'text',:id=>'group_id', class: 'form-control'}
+    %h4.text-center
+        Participant ID
+    %input{:type=>'text', :id=>'participant_id', class: 'form-control'}
+    %br
+    %input{:type=>'button', :value=>'start', :class=> 'btn btn-success btn-block'}
+    .error
             
-            -# body will contain the scores from russell's stuff
-            .body
+.instructions
+    .h4.text-center
+        Instructions
+    %br
+    .instruction_body
+        %p
+            Please wait for further instructions.  
+            .btn.btn-lg.btn-block.btn-success
+                Start
+    
+-# shown prompting us to finish or not, when we click finish
+.confirm_quit
+    .well
+        .h4
+            Are you sure you want to continue to next phase?
+    %input{:type=> 'button', :value => 'Cancel', :class => 'cancel_button'}
+    %input{:type=> 'button', :value => 'Confirm', :class => 'quit_button'}
+.score_card
+    .msg
 
-            .continue
-                =link_to "Prepare this computer for the next trial", root_path, class: ""
-        
-        .other_participants
-            -# this will get filled in with data from russell
-            .body
-            
-            .button
-                Done
-        .container
-            .row
-                .col-xs-1
-                    .menu
-                        %table.table-condensed.table-bordered
-                            %tr
-                                -#%td
-                                    %a{:href=> '#', :class=>'show_instructions'}
-                                        Instructions
-                            %tr
-                                -#%td
-                                    %a{:href=> '#', :class=>'practice_essay_link'}
-                                        Practice
+    .body
 
-                            -@essays.each do |essay|
-                                %tr
-                                    %td
-                                        %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
-                                            Essay #{essay}
+    .done
+        -#finish viewing score card
+        %input{:type=> 'button', :value => 'Done', :class => 'done_button'}
+-# shown after we are completely finished
+.finished
+    -# note when this loads, turn off the unload handler
+    .h4.text-center
+        Thank you for Participating 
+    .msg
+    
+    -# body will contain the scores from russell's stuff
+    .body
+
+    .continue
+        =link_to "Prepare this computer for the next trial", root_path, class: ""
+
+.other_participants
+    -# this will get filled in with data from russell
+    .body
+    
+    .button
+        Done
+.container
+    .row
+        .col-xs-1
+            .menu
+                .well.well-sm
+                    %ul.nav.nav-pills.nav-stacked
+                        %li
                             
-                            %tr
-                                %td
-                                    %a{:class=>'quit', :href=> '#'}
-                                        Finish
-                .col-xs-9
-                    .content
-                .col-xs-2
-                    .col-spacer
-                        .timer
+                            %a{:href=> '#', :class=>'show_instructions'}
+                                Instructions
+                        %li
+                            
+                            %a{:href=> '#', :class=>'practice_essay_link'}
+                                Practice
 
-                        .round
+                        -@essays.each do |essay|
+                            %li
+                            
+                                %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
+                                    Essay #{essay}
+                        
+                        %li
+                            
+                            %a{:class=>'quit', :href=> '#'}
+                                Finish
+        .col-xs-9
+            .content
+        .col-xs-2
+            .col-spacer
+                .timer
+
+                .round

@@ -37,7 +37,7 @@ $(document).ready(function() {
             });
             
 			// if the user clicks "yes"
-			$('.participant .button').click(function () {
+			$('.participant input[type=button]').click(function () {
 			    // clear error message
                 $('.participant .error').html("");
                 
@@ -300,12 +300,11 @@ $(document).ready(function() {
        var essay_id     = "#essay_" + essay_number;
        
        $('.essay_link').each(function(){
-          this.className ="essay_link" 
+          $(this).parents('li').removeClass("active");
        });
        
-       // when clicked give it selected_link
-       this.className = "essay_link selected_link";
-       
+       // when clicked give it state of active
+       $(this).parents('li').addClass("active");
        // hide all content
        $('.content').hide()
        $(".essay_content").hide();
