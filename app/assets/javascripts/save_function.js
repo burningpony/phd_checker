@@ -23,9 +23,11 @@ window.send_correction = function(group_id, participant_id, essay_id, field_id, 
             correct: (correct_answer == current_value),
             correct_answer: correct_answer,
             quota: quota,
-            round_number :round_number
+            round_number: round_number, 
+            controller: window.path_to_controller 
         }
     };
+    
     if(window.console) {
         console.log("storing data:", params)
     }
