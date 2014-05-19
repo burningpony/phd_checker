@@ -1,4 +1,4 @@
-var TIME_LIMIT_IN_MINUTES = 7;
+var TIME_LIMIT_IN_MINUTES = 1;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
 var NUMBER_OF_ROUNDS = 4;
@@ -484,14 +484,14 @@ jQuery(function() {
         // timer related functions and variables
         var timer = null;
         var seconds = 0;
+
         window.start_timer = function() {
             window.stop_timer();
 
             timer = setInterval(function() {
-                seconds += 1;
 
                 var minutes_to_render = TIME_LIMIT_IN_MINUTES - parseInt(seconds / 60) - 1
-                var seconds_to_render = 60 - parseInt(seconds % 60)
+                var seconds_to_render = 59 - parseInt(seconds % 60)
 
                 var spacer = '0';
 
@@ -501,6 +501,8 @@ jQuery(function() {
 
                 // render the seconds
                 $(".timer").html(minutes_to_render + ":" + spacer + seconds_to_render);
+
+                seconds += 1;
 
                 // show other student scores
                 if (seconds % INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS == 0 && window.__show_other_student_actions) {
