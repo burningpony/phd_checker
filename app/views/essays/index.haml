@@ -86,11 +86,11 @@
                         /     %a{:href=> '#', :class=>'practice_essay_link'}
                         /         Practice
 
-                        -@essays.each do |essay|
+                        -@essays.each_with_index do |essay, i|
                             %li
                             
-                                %a{:href=> '#', :class=>'essay_link', :rel => "#{essay}" }
-                                    Essay #{essay}
+                                %a{:href=> '#', :class=>'essay_link hide', data: {round: essay[:round], essay: essay[:essay]} }
+                                    Essay #{essay[:essay]}
                         
                         %li
                             %a{:class=>'quit', :href=> '#'}

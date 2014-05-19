@@ -5,10 +5,12 @@ class EssayBaseController < ApplicationController
     view_directory = File.expand_path('../../views/essays', __FILE__)
     Dir.foreach(view_directory).each do |view|
       if view.match(/(\d\d*)/)
-        @essays << Regexp.last_match[1].to_i
+        essay = view[/.*(?=\..+$)/][/.*(?=\..+$)/]
+        essay_data = essay.split("_")
+        @essays << {essay: essay_data[1].to_i, round: essay_data[0].to_i }
       end
     end
-    @essays = @essays.sort
+    @essays = @essays.sort{|a, b|  a[:essay] <=> b[:essay]}
 
     render file: 'essays/index', layout: 'default'
   end
@@ -19,7 +21,7 @@ class EssayBaseController < ApplicationController
       @essay_title = 'Practice Essay'
       render file: 'essays/practice', layout: 'essay'
     else
-      @essay_id = params[:id].match(/\d+/)[0]
+      @essay_id = params[:id].match(/\d_\d+/)[0]
       @essay_title = "Essay #{@essay_id}"
       render file: 'essays/' + @essay_id, layout: 'essay'
     end

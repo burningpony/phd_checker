@@ -71,9 +71,20 @@ jQuery(function() {
 		}
     });
     
+    window.reset_essay_links = function(){
+        $('.essay_link').addClass('hide');
+        $('.essay_link[data-round="' + window.round_number +'"]').removeClass('hide');
+    }
+
+   window.get_first_essay = function(){
+        $('.essay_link[data-round="' + window.round_number +'"]')[0].click();
+    }
+
     // Add instructions
     window.show_instructions= function() {
         var timer_started = false;
+        $(".round").html("Round " + window.round_number);
+        reset_essay_links()
         $(".round").html("Round " + window.round_number);
         $('.instructions').modal({
             close:true,
@@ -297,7 +308,7 @@ jQuery(function() {
     $('.essay_link').click(function(event){
        event.stopPropagation();
        
-       var essay_number = $(this).attr('rel');
+       var essay_number = $(this).attr('data-round')  + "_" + $(this).attr('data-essay')
        var essay_id     = "#essay_" + essay_number;
        
        $('.essay_link').each(function(){
@@ -504,8 +515,9 @@ jQuery(function() {
         //clear cache
         cached_essays = {};
         $('.content').html("");
+        reset_essay_links();
         console.log("Reseting Essays", cached_essays);
-        $($(".essay_link")[0]).click();
+        get_first_essay();
         seconds = 0;
         window.start_timer();
     };
