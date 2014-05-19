@@ -50,11 +50,11 @@ class ResponsesController < ApplicationController
 
     csv_string = CSV.generate do |csv|
       # header row
-      csv << ['id', 'participant_id', 'group', 'error', 'essay', 'Correct?', 'Field Before Correction', 'Seconds to Complete', 'Round', 'Time Corrected']
+      csv << ['id', 'participant_id', 'group', 'error', 'essay', 'Correct?', 'Field Before Correction', 'Seconds to Complete', 'Round','Treatment', 'Time Corrected']
 
       # data rows
       @responses.each do |response|
-        csv << [response.id, response.user_id, response.user.group, response.error, response.essay, response.correct, response.uncorrected, response.round_number, response.user.time_to_complete, response.created_at]
+        csv << [response.id, response.user_id, response.user.group, response.error, response.essay, response.correct, response.uncorrected, response.round_number, response.user.time_to_complete, response.controller, response.created_at]
       end
     end
 
