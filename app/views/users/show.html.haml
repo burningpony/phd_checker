@@ -1,7 +1,6 @@
-- content_for :sidebar, render(:partial => 'sidebar')
 - content_for(:title) do
-  = t("web-app-theme.all", :default => "All")
-  Responses
+  = t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "Name"))
+  = @user.name
 
 %table.table.table-striped
   %thead
@@ -19,7 +18,8 @@
       %th Treatment
       %th= t("web-app-theme.created_at", :default => "Created at")
       %th.last  
-  - @responses.each do |response|
+      
+  - @user.responses.each do |response|
     %tr
       %td= response.id
       %td= link_to response.user_id, response_path(response)
@@ -33,6 +33,8 @@
       %td= response.controller
       %td= response.created_at
       %td
-        = link_to "#{t("web-app-theme.delete", :default => "Delete")}", response_path(response), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", class: "btn btn-danger btn-xs"
+.actions
+  = link_to fa_icon("pencil") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_user_path(@user), :class => "btn btn-default"
+  = link_to fa_icon("trash-o") + " " + t("web-app-theme.delete", :default => "Delete"), user_path(@user), :method => "delete", :class => "btn btn-default", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
 
-
+- content_for :sidebar, render(:partial => 'sidebar')
