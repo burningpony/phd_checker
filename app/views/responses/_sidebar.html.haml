@@ -1,0 +1,6 @@
+
+%h3 Actions
+%ul.nav.nav-sidebar
+
+  %li= link_to fa_icon('trash-o') + " Clear All Responses", responses_empty_path, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+  %li= link_to fa_icon('file-excel-o') + " Export To CSV", responses_export_path

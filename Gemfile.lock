@@ -47,6 +47,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.25.3)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     haml (4.0.5)
       tilt
     haml-rails (0.4)
@@ -141,7 +143,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  haml
+  font-awesome-rails
   haml-rails
   heroku
   jquery-rails
