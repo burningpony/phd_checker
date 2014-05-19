@@ -1,6 +1,5 @@
 class EController <  EssayBaseController
   def score_card
-    instance_variable_setup
     round_completed_essay = @responses_from_round.map { |x| x.essay }.uniq.count
     total_completed_essay = @total_responses.map { |x| x.essay }.uniq.count
     @total_payment = 2.5 * round_completed_essay

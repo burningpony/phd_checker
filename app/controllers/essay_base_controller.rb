@@ -1,4 +1,5 @@
 class EssayBaseController < ApplicationController
+  before_filter :instance_variable_setup
   def index
     @essays = []
     view_directory = File.expand_path('../../views/essays', __FILE__)
@@ -37,7 +38,8 @@ class EssayBaseController < ApplicationController
   def instance_variable_setup
     @user = User.find_or_create_by_id(params[:participant_id])
     @total_responses = @user.responses
-    previous_round = Integer(params[:round_number]) - 1
+    @round = Integer(params[:round_number]) || 1
+    previous_round = @round - 1
     @responses_from_round = @user.responses.where(round_number: previous_round)
   end
 end
