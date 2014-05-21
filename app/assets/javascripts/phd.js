@@ -479,7 +479,9 @@ jQuery(function() {
             $(essay_id + " span.correctme").each(function() {
                 if ($(this).attr("rel") != $(this).text()) {
                     errors++;
+                    console.log("Error", $(this).attr("rel"), $(this).text(), ($(this).attr("rel") != $(this).text()))
                 }
+
                 generate_box(this);
 
             });
@@ -487,13 +489,13 @@ jQuery(function() {
             console.log("errors detected", errors);
 
             window.total_corrections_avaliable += $(essay_id + " span.correctme").length;
-            window.total_errors_shown += errors; 
+            window.total_errors_shown += errors;
 
             console.log("Total boxes", window.total_corrections_avaliable);
             console.log("Total errors detected", window.total_errors_shown);
 
 
-            $(essay_id + " h2").html("Essay "+ essay_number)// + ": Contains "+ errors + " Errors");
+            $(essay_id + " h2").html("Essay " + essay_number) // + ": Contains "+ errors + " Errors");
         }
 
 
@@ -546,7 +548,11 @@ jQuery(function() {
 
         window.update_round = function update_round() {
             //update round number
+
             window.round_number++;
+            window.total_corrections_avaliable = 0;
+            window.total_errors_shown = 0;
+
             $(".round").html("Round " + window.round_number);
             //clear cache
             cached_essays = {};
