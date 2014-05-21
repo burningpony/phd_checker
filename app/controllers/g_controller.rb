@@ -4,7 +4,7 @@
 # b.  The verbiage should be:
 # i.  Because you only changed X number of services, your counterpart has taxed you $Y.
 
-class FController < EssayBaseController
+class GController < EssayBaseController
   def score_card
     @total_payment = -1
     @round_payment = -1

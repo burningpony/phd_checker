@@ -7,7 +7,7 @@
 # iv. Etc.
 # c.  The cost to the player will need to be reported above the finish button
 
-class FController < EssayBaseController
+class HController < EssayBaseController
   def score_card
     @total_payment = -1
     @round_payment = -1
