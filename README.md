@@ -1,12 +1,7 @@
-Takes a post request from a static HTML file. 
+#PHD Checker
+This tool is designed to present users with options of payment for correcting essays. 
 
-Keeps track of scoring. 
-
-Posts is to "responses"
-
-it returns with create.js.erb in the responses view folder. 
-
-** Getting Started **
+##Getting Started
 
 * bundle install
 * bundle exec rake db:create
