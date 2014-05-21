@@ -1,11 +1,11 @@
 var TIME_LIMIT_IN_MINUTES = 7;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
-var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15*1000;
+var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15 * 1000;
 var NUMBER_OF_ROUNDS = 4;
 
 
 window.participant_id = undefined;
-window.group_id       = undefined;
+window.group_id = undefined;
 window.round_number = 1;
 
 jQuery(function() {
@@ -309,9 +309,9 @@ jQuery(function() {
         var cached_essays = {}
         $('.essay_link').click(function(event) {
             event.stopPropagation();
-
-            var essay_number = $(this).attr('data-round') + "_" + $(this).attr('data-essay')
-            var essay_id = "#essay_" + essay_number;
+            var essay_number = $(this).attr('data-essay')
+            var essay_round_id = $(this).attr('data-round') + "_" + $(this).attr('data-essay')
+            var essay_id = "#essay_" + essay_round_id;
 
             $('.essay_link').each(function() {
                 $(this).parents('li').removeClass("active");
@@ -329,12 +329,12 @@ jQuery(function() {
                 window.essay_id = essay_id;
 
             } else {
-                $.get('/essay_base/show/' + essay_number, function(data) {
+                $.get('/essay_base/show/' + essay_round_id, function(data) {
                     $('.content').append(data);
                     cached_essays[essay_id] = true;
 
                     // process the div
-                    attach_event_handlers_to_essay(essay_id);
+                    attach_event_handlers_to_essay(essay_id, essay_number);
 
                     window.essay_id = essay_id;
                     $(essay_id).show();
@@ -472,12 +472,17 @@ jQuery(function() {
 
         // given an essay ID attach all the correct event handlers
 
-        function attach_event_handlers_to_essay(essay_id) {
-
+        function attach_event_handlers_to_essay(essay_id, essay_number) {
+            errors = 0;
             // generate boxes
             $(essay_id + " span.correctme").each(function() {
+                if ($(this).attr("rel") != $(this).text()) {
+                    errors++;
+                }
                 generate_box(this);
+
             });
+            $(".essay_title").html("Essay "+ essay_number + ": Contains "+ errors + " Errors");
         }
 
 
