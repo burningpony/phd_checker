@@ -12,8 +12,7 @@ class UsersController < ApplicationController
   end
 
   def mark_completed
-    @users = User.where(id: params[:participant_id], group: params[:group])
-    @user = @users.first_or_create
+    @user = User.find_or_create_by_id(params[:participant_id])
     @time = params[:time_to_complete].split(':')
     @seconds = @time[0].to_i * 60
     @seconds += @time[1].to_i
