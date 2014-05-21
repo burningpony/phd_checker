@@ -7,7 +7,8 @@ var NUMBER_OF_ROUNDS = 4;
 window.participant_id = undefined;
 window.group_id = undefined;
 window.round_number = 1;
-
+window.total_errors_shown = 0;
+window.total_corrections_avaliable = 0;
 jQuery(function() {
     if ($(".participant").length > 0) {
 
@@ -482,6 +483,16 @@ jQuery(function() {
                 generate_box(this);
 
             });
+            console.log("correctme boxes", $(essay_id + " span.correctme").length)
+            console.log("errors detected", errors);
+
+            window.total_corrections_avaliable += $(essay_id + " span.correctme").length;
+            window.total_errors_shown += errors; 
+
+            console.log("Total boxes", window.total_corrections_avaliable);
+            console.log("Total errors detected", window.total_errors_shown);
+
+
             $(essay_id + " h2").html("Essay "+ essay_number)// + ": Contains "+ errors + " Errors");
         }
 
