@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   # index view for experiments
   def experiments
     @experiments = {
-      a: '$0.85 per essay',
+      a: '$0.625 per essay',
       # b: '$2.50 plus bonus',
       c: '$0.20',
       # d: '$0.45 + bonus',
