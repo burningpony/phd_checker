@@ -482,7 +482,7 @@ jQuery(function() {
                 generate_box(this);
 
             });
-            $(essay_id + " h2").html("Essay "+ essay_number + ": Contains "+ errors + " Errors");
+            $(essay_id + " h2").html("Essay "+ essay_number)// + ": Contains "+ errors + " Errors");
         }
 
 
