@@ -42,6 +42,9 @@ class ResponsesController < ApplicationController
   def empty
     Response.delete_all
     @responses = []
+    ActiveRecord::Base.connection.tables.each do |t|
+      ActiveRecord::Base.connection.reset_pk_sequence!(t)
+    end
     redirect_to responses_url
   end
 
@@ -60,8 +63,8 @@ class ResponsesController < ApplicationController
 
     # send it to the browsah
     send_data csv_string,
-              type: 'text/csv; charset=iso-8859-1; header=present',
-              disposition: 'attachment; filename=responses.csv'
+      type: 'text/csv; charset=iso-8859-1; header=present',
+      disposition: 'attachment; filename=responses.csv'
   end
 
   # POST /responses
