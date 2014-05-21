@@ -7,7 +7,7 @@ gem 'heroku'
 
 # Bundle gems needed for Haml
 gem 'haml-rails'
-
+gem 'newrelic_rpm'
 gem 'jquery-rails'
 gem 'rspec-rails', '>= 2.0.1', :group => [:development, :test]
 gem "font-awesome-rails"
