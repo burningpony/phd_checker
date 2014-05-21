@@ -41,7 +41,6 @@ class EssayBaseController < ApplicationController
     @user = User.find_or_create_by_id(params[:participant_id])
     @total_responses = @user.responses
     @round = (params[:round_number] || 1).to_i
-    previous_round = @round - 1
-    @responses_from_round = @user.responses.where(round_number: previous_round)
+    @responses_from_round = @user.responses.where(round_number: @round)
   end
 end
