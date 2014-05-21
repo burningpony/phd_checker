@@ -3,7 +3,7 @@
 # b.  These suggestions will each have a cost to the player.
 # i.  Was  5pts
 # ii. Were 10 pts
-# iii.  Wasn’t 2 pts
+# iii.  Wasn't 2 pts
 # iv. Etc.
 # c.  The cost to the player will need to be reported above the finish button
 
