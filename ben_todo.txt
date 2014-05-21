@@ -1,2 +1,0 @@
-1. implement Quit and Quit Confirm
-2. implement the modal timer that interrupts stuff
