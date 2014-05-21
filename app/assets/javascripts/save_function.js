@@ -18,7 +18,7 @@ window.send_correction = function(group_id, participant_id, essay_id, field_id, 
         "response": {
             essay: essay_id,
             id: field_id,
-            group: group_id
+            group: group_id,
             uncorrected: original_value,
             corrected: current_value,
             correct: (correct_answer == current_value),
