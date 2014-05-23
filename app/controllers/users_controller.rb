@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @seconds = @time[0].to_i * 60
     @seconds += @time[1].to_i
 
-    sum = @user.time_to_complete.to_i + 3600 - @seconds
+    sum = @user.time_to_complete.to_i + 420 - @seconds
     @user.time_to_complete = sum
     @user.save
     render js: 'true'
