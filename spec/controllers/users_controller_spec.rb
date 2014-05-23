@@ -9,7 +9,15 @@ describe UsersController do
   def mock_user(stubs = {})
     @mock_user ||= mock_model(User, stubs).as_null_object
   end
-
+  desribe 'mark completed' do
+    params = {participant_id: 5,  group: 3}
+    u = User.find_or_create_by_id(params[:participant_id], group: params[:group])
+    it 'sets participant_id' do
+      puts u
+      u.id.should eq 5
+      u.group.should eq 3
+    end
+  end
   describe 'GET index' do
     it 'assigns all users as @users' do
       User.stub(:all) { [mock_user] }
