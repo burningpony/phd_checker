@@ -43,12 +43,20 @@ jQuery(function() {
                     // close the dialog
                     window.participant_id = $('.participant #participant_id').val();
                     window.group_id = $('.participant #group_id').val();
-
+                    
                     if (window.participant_id && window.group_id && window.group_id.match(/^\d\d*$/) && window.participant_id.match(/^\d\d*$/)) {
 
                         modal.close();
-                        // move on to the next step..
-
+                        // create the user
+                        $.ajax({
+                        type: 'POST',
+                        url: "users",
+                        data: {
+                                "participant_id": window.participant_id,
+                                "group": window.group_id,
+                                controller: window.path_to_controller
+                            }
+                        });
 
                         // HACK: setTimeout because we can only have one modal dialog 
                         //       at a time

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def mark_completed
-    @user = User.find_or_create_by_id(params[:participant_id], group: params[:group])
+    @user = User.find(params[:participant_id])
     @time = params[:time_to_complete].split(':')
     @seconds = @time[0].to_i * 60
     @seconds += @time[1].to_i
@@ -70,13 +70,15 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
+    @user = User.find_or_create_by_id(params[:participant_id], group: params[:group])
 
     respond_to do |format|
       if @user.save
+        format.js
         format.html { redirect_to(@user, notice: 'User was successfully created.') }
         format.xml  { render xml: @user, status: :created, location: @user }
       else
+        format.js { render js: "#{ @user.errors}" }
         format.html { render action: 'new' }
         format.xml  { render xml: @user.errors, status: :unprocessable_entity }
       end

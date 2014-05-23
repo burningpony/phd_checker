@@ -24,7 +24,7 @@ window.send_correction = function(group_id, participant_id, essay_id, field_id, 
             correct_answer: correct_answer,
             quota: quota,
             round_number: round_number, 
-            controller: window.path_to_controller 
+            controller: window.path_to_controller
         }
     };
     
