@@ -199,7 +199,6 @@ jQuery(function() {
                     containerId: 'quit-container',
                     onShow: function() {
                         // Hack to steal the time from the timer. 
-                        var time = $(".timer").html();
                         // TODO: k you may need to change the url to the score_card
                         // Do an ajax request to get the body we are looking for
                         $.get(window.path_to_controller + '/score_card', {
@@ -207,15 +206,6 @@ jQuery(function() {
                             round_number: window.round_number
                         }, function(data) {
                             $('.finished .body').html(data);
-                        });
-                        //Send the time to the backend
-                        $.ajax({
-                            type: 'POST',
-                            url: "users/complete",
-                            data: {
-                                "participant_id": window.participant_id,
-                                "time_to_complete": time
-                            }
                         });
                     }
                 })
@@ -232,7 +222,6 @@ jQuery(function() {
                     containerId: 'quit-container',
                     onShow: function() {
                         // Hack to steal the time from the timer. 
-                        var time = $(".timer").html();
                         var modal = this;
                         // TODO: k you may need to change the url to the score_card
                         // Do an ajax request to get the body we are looking for
@@ -548,6 +537,17 @@ jQuery(function() {
 
         window.update_round = function update_round() {
             //update round number
+            //Send the time to the backend
+            var time = $(".timer").html();
+            $.ajax({
+                type: 'POST',
+                url: "users/complete",
+                data: {
+                    "participant_id": window.participant_id,
+                    "group": window.group_id,
+                    "time_to_complete": time
+                }
+            });
 
             window.round_number++;
             window.total_corrections_avaliable = 0;
@@ -562,6 +562,7 @@ jQuery(function() {
             get_first_essay();
             seconds = 0;
             window.start_timer();
+
         };
     };
 
