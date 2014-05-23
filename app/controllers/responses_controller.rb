@@ -70,8 +70,8 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.xml
   def create
-    @user = User.find(params[:participant_id])
-    @response =  @user.responses.find_or_create_by_error_and_round_number(params[:response][:id], params[:response][:round_number])
+    @user = User.find_or_create_by_id(params[:participant_id], group: params[:group])
+    @response =  @user.responses.where(:error => params[:response][:id], :round_number => params[:response][:round_number]).first_or_create
     @response.update_attributes(params[:response])
 
     respond_to do |format|
