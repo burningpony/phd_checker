@@ -1,5 +1,5 @@
 class EssayBaseController < ApplicationController
-  
+  before_filter :instance_variable_setup, :only => [:score_card]
   def index
     @essays = []
     view_directory = File.expand_path('../../views/essays', __FILE__)
