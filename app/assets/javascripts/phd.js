@@ -328,7 +328,7 @@ jQuery(function() {
 
                     window.essay_id = essay_id;
                     $(essay_id).show();
-                    $('.content').show()
+                    $('.content').show();
                 });
             }
         });
@@ -348,7 +348,7 @@ jQuery(function() {
             //clear it
             $(span).html("");
 
-            var input = document.createElement("input")
+            var input = document.createElement("input");
             input.type = "text";
             input.value = original_text;
             input.size = input.value.length * 1.2;
@@ -374,13 +374,13 @@ jQuery(function() {
                             status: "correct",
                             msg: correct_answer,
                             style_class: "state_correct"
-                        }
+                        };
                     } else if (current_value == original_text) {
                         return {
                             status: "incorrect - reverted to original",
                             msg: "modified but returned to normal",
                             style_class: "state_reverted"
-                        }
+                        };
                     } else {
                         // find the differnce between original and difference
                         // using the diffString Algorithm
@@ -391,7 +391,7 @@ jQuery(function() {
                             status: "incorrect - modified",
                             msg: difference,
                             style_class: "state_modified"
-                        }
+                        };
                     }
 
                 } else {
@@ -468,13 +468,13 @@ jQuery(function() {
             $(essay_id + " span.correctme").each(function() {
                 if ($(this).attr("rel") != $(this).text()) {
                     errors++;
-                    console.log("Error", $(this).attr("rel"), $(this).text(), ($(this).attr("rel") != $(this).text()))
+                    console.log("Error", $(this).attr("rel"), $(this).text(), ($(this).attr("rel") != $(this).text()));
                 }
 
                 generate_box(this);
 
             });
-            console.log("correctme boxes", $(essay_id + " span.correctme").length)
+            console.log("correctme boxes", $(essay_id + " span.correctme").length);
             console.log("errors detected", errors);
 
             window.total_corrections_avaliable += $(essay_id + " span.correctme").length;
@@ -484,7 +484,7 @@ jQuery(function() {
             console.log("Total errors detected", window.total_errors_shown);
 
 
-            $(essay_id + " h2").html("Essay " + essay_number) // + ": Contains "+ errors + " Errors");
+            $(essay_id + " h2").html("Essay " + essay_number);// + ": Contains "+ errors + " Errors");
         }
 
 
@@ -503,7 +503,7 @@ jQuery(function() {
                 var spacer = '0';
 
                 if (seconds_to_render > 9) {
-                    spacer = ''
+                    spacer = '';
                 }
 
                 // render the seconds
@@ -512,7 +512,7 @@ jQuery(function() {
                 seconds += 1;
 
                 // show other student scores
-                if (seconds % INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS == 0 && window.__show_other_student_actions) {
+                if ((seconds % INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS) == 0 && window.__show_other_student_actions) {
                     window.stop_timer();
                     window.show_other_student_actions();
                 }
@@ -531,7 +531,7 @@ jQuery(function() {
 
         window.stop_timer = function() {
             if (timer) {
-                clearInterval(timer)
+                clearInterval(timer);
             }
         };
 
@@ -564,7 +564,7 @@ jQuery(function() {
             window.start_timer();
 
         };
-    };
+    }
 
     // Handler for .ready() called.
 });
