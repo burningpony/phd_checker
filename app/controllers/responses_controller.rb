@@ -35,6 +35,7 @@ class ResponsesController < AdminBaseController
 
   def empty
     Response.delete_all
+    User.delete_all
     @responses = []
     ActiveRecord::Base.connection.tables.each do |t|
       ActiveRecord::Base.connection.reset_pk_sequence!(t)
