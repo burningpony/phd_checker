@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sass-rails', '>= 3.2'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'puma'
 
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
