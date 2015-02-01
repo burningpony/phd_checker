@@ -3,7 +3,7 @@
   = t("web-app-theme.all", :default => "All")
   Responses
 
-%table.table.table-striped
+%table.table.table-striped.table-condensed
   %thead
     %tr
       %th.first ID
@@ -34,5 +34,7 @@
       %td= response.created_at
       %td
         = link_to "#{t("web-app-theme.delete", :default => "Delete")}", response_path(response), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", class: "btn btn-danger btn-xs"
+.pagination
+  = will_paginate @responses, renderer: BootstrapPagination::Rails 
 
 

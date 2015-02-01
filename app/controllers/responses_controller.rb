@@ -3,7 +3,7 @@ class ResponsesController < AdminBaseController
   # GET /responses
   layout proc { |c| c.request.xhr? ? false : 'application' }
   def index
-    @responses = Response.all
+    @responses = Response.order(:created_at).paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
