@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
-ruby '2.1.1'
-gem 'rails', '3.2.17'
+ruby '2.1.5'
+gem 'rails', '3.2.21'
 
 gem 'pg'
 gem 'heroku'
@@ -20,6 +20,6 @@ group :development, :test do
   gem 'binding_of_caller'
 end
 
-group :production do 
+group :production do
   gem 'rails_12factor'
 end

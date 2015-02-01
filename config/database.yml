@@ -5,6 +5,7 @@ development:
   database: phd_dev
   pool: 5
   timeout: 5000
+  host: 0 
   username: 
   password:
 
@@ -16,6 +17,7 @@ test:
   database: phd_test
   pool: 5
   timeout: 5000
+  host: 0 
   username: 
   password:
 
@@ -24,5 +26,6 @@ production:
   database: phd_production
   pool: 5
   timeout: 5000
+  host: 0 
   username: 
   password:
