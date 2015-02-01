@@ -9,10 +9,13 @@ gem 'heroku'
 gem 'haml-rails'
 gem 'newrelic_rpm'
 gem 'jquery-rails'
-gem 'rspec-rails', '>= 2.0.1', :group => [:development, :test]
+gem 'rspec-rails', '< 3.0', :group => [:development, :test]
 gem "font-awesome-rails"
 gem 'airbrake'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'sass-rails', '>= 3.2'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
