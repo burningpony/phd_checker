@@ -12,7 +12,7 @@ describe ResponsesController do
 
   describe 'GET index' do
     it 'assigns all responses as @responses' do
-      Response.stub(:all) { [mock_response] }
+      Response.stub_chain(:order, :paginate) { [mock_response] }
       get :index
       assigns(:responses).should eq([mock_response])
     end
@@ -43,16 +43,17 @@ describe ResponsesController do
   end
 
   describe 'POST create' do
+    before {User.create}
     describe 'with valid params' do
       it 'assigns a newly created response as @response' do
         Response.stub(:new).with({"these"=>"params"}, {}) { mock_response(save: true) }
-        post :create, response: { 'these' => 'params' }
+        post :create, response: { 'these' => 'params' }, user_id: User.first
         assigns(:response).should be(mock_response)
       end
 
       it 'redirects to the created response' do
         Response.stub(:new) { mock_response(save: true) }
-        post :create, response: {}
+        post :create, response: {}, user_id: User.first
         response.should redirect_to(response_url(mock_response))
       end
     end
@@ -60,13 +61,13 @@ describe ResponsesController do
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved response as @response' do
         Response.stub(:new).with({"these"=>"params"}, {}) { mock_response(save: false) }
-        post :create, response: { 'these' => 'params' }
+        post :create, response: { 'these' => 'params' }, user_id: User.first
         assigns(:response).should be(mock_response)
       end
 
       it "re-renders the 'new' template" do
         Response.stub(:new) { mock_response(save: false) }
-        post :create, response: {}
+        post :create, response: {}, user_id: User.first
         response.should render_template('new')
       end
     end

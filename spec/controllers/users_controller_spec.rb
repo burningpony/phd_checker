@@ -52,8 +52,8 @@ describe UsersController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'assigns a newly created user as @user' do
-        User.stub(:new).with({"group"=>nil}, {}) { mock_user(save: true) }
-        post :create, user: { "group"=>nil }
+        User.stub(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: true) }
+        post :create, user: {:participant_id=>nil, :group=>nil}
         assigns(:user).should be(mock_user)
       end
 
@@ -66,8 +66,8 @@ describe UsersController do
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved user as @user' do
-        User.stub(:new).with({"group"=>nil}, {}) { mock_user(save: false) }
-        post :create, user: { "group"=>nil }
+        User.stub(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: false) }
+        post :create, user: {:participant_id=>nil, :group=>nil}
         assigns(:user).should be(mock_user)
       end
 
