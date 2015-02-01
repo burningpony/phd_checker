@@ -88,8 +88,8 @@ class ResponsesController < AdminBaseController
 
   # POST /responses
   def create
-    @user = User.find_or_create_by_id(params[:participant_id], group: params[:group])
-    @response =  @user.responses.where(error: params[:response][:id], round_number: params[:response][:round_number]).first_or_initialize(params[:response])
+    @user = User.find(params[:user_id])
+    @response =  @user.responses.where(error: params[:response][:field_id], round_number: params[:response][:round_number]).first_or_initialize(params[:response])
 
     respond_to do |format|
       if @response.save

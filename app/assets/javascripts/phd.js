@@ -50,12 +50,15 @@ jQuery(function() {
                         // create the user
                         $.ajax({
                         type: 'POST',
-                        url: "users",
+                        url: "users.json",
                         data: {
                                 "participant_id": window.participant_id,
                                 "group": window.group_id,
                                 controller: window.path_to_controller
-                            }
+                            },
+                        success:function(data) {
+                            window.user = data.user
+                        }
                         });
 
                         // HACK: setTimeout because we can only have one modal dialog 

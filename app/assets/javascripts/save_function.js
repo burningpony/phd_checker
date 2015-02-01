@@ -13,11 +13,12 @@
 // Russell's correction function
 window.send_correction = function(group_id, participant_id, essay_id, field_id, original_value, current_value, correct_answer, quota, round_number ) {
     var params = {
+        "user_id": window.user.id,
         "participant_id": participant_id,
 		"group" : group_id,
         "response": {
             essay: essay_id,
-            id: field_id,
+            field_id: field_id,
             uncorrected: original_value,
             corrected: current_value,
             correct: (correct_answer == current_value),

@@ -71,11 +71,12 @@ class UsersController < AdminBaseController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.find_or_create_by_id(params[:participant_id], group: params[:group])
+    @user = User.new(participant_id: params[:participant_id], group: params[:group])
 
     respond_to do |format|
       if @user.save
-        format.js
+          
+        format.json {render json: @user.to_json}
         format.html { redirect_to(@user, notice: 'User was successfully created.') }
         format.xml  { render xml: @user, status: :created, location: @user }
       else

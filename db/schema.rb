@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140521013702) do
+ActiveRecord::Schema.define(:version => 20150201205600) do
 
   create_table "responses", :force => true do |t|
     t.integer  "user_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20140521013702) do
     t.datetime "updated_at",       :null => false
     t.string   "group"
     t.string   "time_to_complete"
+    t.string   "participant_id"
   end
 
 end
