@@ -10,6 +10,4 @@
 //= require diff
 //= require save_function
 //= require phd
-//= require bootstrap/tooltip
-//= require bootstrap/popover
 //= require_tree .
