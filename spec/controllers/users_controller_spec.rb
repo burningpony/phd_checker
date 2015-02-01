@@ -13,68 +13,68 @@ describe UsersController do
     params = {participant_id: 5,  group: 3}
     u = User.find_or_create_by_id(params[:participant_id], group: params[:group])
     it 'sets participant_id' do
-      u.id.should eq 5
-      u.group.should eq '3'
+      expect(u.id).to eq 5
+      expect(u.group).to eq '3'
     end
   end
   describe 'GET index' do
     it 'assigns all users as @users' do
-      User.stub(:all) { [mock_user] }
+      allow(User).to receive(:all) { [mock_user] }
       get :index
-      assigns(:users).should eq([mock_user])
+      expect(assigns(:users)).to eq([mock_user])
     end
   end
 
   describe 'GET show' do
     it 'assigns the requested user as @user' do
-      User.stub(:find).with('37') { mock_user }
+      allow(User).to receive(:find).with('37') { mock_user }
       get :show, id: '37'
-      assigns(:user).should be(mock_user)
+      expect(assigns(:user)).to be(mock_user)
     end
   end
 
   describe 'GET new' do
     it 'assigns a new user as @user' do
-      User.stub(:new) { mock_user }
+      allow(User).to receive(:new) { mock_user }
       get :new
-      assigns(:user).should be(mock_user)
+      expect(assigns(:user)).to be(mock_user)
     end
   end
 
   describe 'GET edit' do
     it 'assigns the requested user as @user' do
-      User.stub(:find).with('37') { mock_user }
+      allow(User).to receive(:find).with('37') { mock_user }
       get :edit, id: '37'
-      assigns(:user).should be(mock_user)
+      expect(assigns(:user)).to be(mock_user)
     end
   end
 
   describe 'POST create' do
     describe 'with valid params' do
       it 'assigns a newly created user as @user' do
-        User.stub(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: true) }
+        allow(User).to receive(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: true) }
         post :create, user: {:participant_id=>nil, :group=>nil}
-        assigns(:user).should be(mock_user)
+        expect(assigns(:user)).to be(mock_user)
       end
 
       it 'redirects to the created user' do
-        User.stub(:new) { mock_user(save: true) }
+        allow(User).to receive(:new) { mock_user(save: true) }
         post :create, user: {}
-        response.should redirect_to(user_url(mock_user))
+        expect(response).to redirect_to(user_url(mock_user))
       end
     end
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved user as @user' do
-        User.stub(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: false) }
+        allow(User).to receive(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: false) }
         post :create, user: {:participant_id=>nil, :group=>nil}
-        assigns(:user).should be(mock_user)
+        expect(assigns(:user)).to be(mock_user)
       end
 
       it "re-renders the 'new' template" do
-        User.stub(:new) { mock_user(save: false) }
+        allow(User).to receive(:new) { mock_user(save: false) }
         post :create, user: {}
-        response.should render_template('new')
+        expect(response).to render_template('new')
       end
     end
   end
@@ -82,50 +82,50 @@ describe UsersController do
   describe 'PUT update' do
     describe 'with valid params' do
       it 'updates the requested user' do
-        User.stub(:find).with('37') { mock_user }
-        mock_user.should_receive(:update_attributes).with({"group"=>nil})
+        allow(User).to receive(:find).with('37') { mock_user }
+        expect(mock_user).to receive(:update_attributes).with({"group"=>nil})
         put :update, id: '37', user: { "group"=>nil }
       end
 
       it 'assigns the requested user as @user' do
-        User.stub(:find) { mock_user(update_attributes: true) }
+        allow(User).to receive(:find) { mock_user(update_attributes: true) }
         put :update, id: '1'
-        assigns(:user).should be(mock_user)
+        expect(assigns(:user)).to be(mock_user)
       end
 
       it 'redirects to the user' do
-        User.stub(:find) { mock_user(update_attributes: true) }
+        allow(User).to receive(:find) { mock_user(update_attributes: true) }
         put :update, id: '1'
-        response.should redirect_to(user_url(mock_user))
+        expect(response).to redirect_to(user_url(mock_user))
       end
     end
 
     describe 'with invalid params' do
       it 'assigns the user as @user' do
-        User.stub(:find) { mock_user(update_attributes: false) }
+        allow(User).to receive(:find) { mock_user(update_attributes: false) }
         put :update, id: '1'
-        assigns(:user).should be(mock_user)
+        expect(assigns(:user)).to be(mock_user)
       end
 
       it "re-renders the 'edit' template" do
-        User.stub(:find) { mock_user(update_attributes: false) }
+        allow(User).to receive(:find) { mock_user(update_attributes: false) }
         put :update, id: '1'
-        response.should render_template('edit')
+        expect(response).to render_template('edit')
       end
     end
   end
 
   describe 'DELETE destroy' do
     it 'destroys the requested user' do
-      User.stub(:find).with('37') { mock_user }
-      mock_user.should_receive(:destroy)
+      allow(User).to receive(:find).with('37') { mock_user }
+      expect(mock_user).to receive(:destroy)
       delete :destroy, id: '37'
     end
 
     it 'redirects to the users list' do
-      User.stub(:find) { mock_user }
+      allow(User).to receive(:find) { mock_user }
       delete :destroy, id: '1'
-      response.should redirect_to(users_url)
+      expect(response).to redirect_to(users_url)
     end
   end
 

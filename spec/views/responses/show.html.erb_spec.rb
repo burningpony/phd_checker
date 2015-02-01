@@ -13,12 +13,12 @@ describe 'responses/show.html.erb' do
   it 'renders attributes in <p>' do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/1/)
+    expect(rendered).to match(/1/)
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/false/)
+    expect(rendered).to match(/false/)
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Corrected/)
+    expect(rendered).to match(/Corrected/)
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    rendered.should match(/Uncorrected/)
+    expect(rendered).to match(/Uncorrected/)
   end
 end
