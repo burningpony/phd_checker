@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < AdminBaseController
   # GET /users
   layout proc { |c| c.request.xhr? ? false : 'application' }
   # GET /users.xml

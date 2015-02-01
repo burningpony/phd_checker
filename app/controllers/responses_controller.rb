@@ -1,4 +1,4 @@
-class ResponsesController < ApplicationController
+class ResponsesController < AdminBaseController
   require 'csv'
   # GET /responses
   layout proc { |c| c.request.xhr? ? false : 'application' }
