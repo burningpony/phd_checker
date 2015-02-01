@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Essays::AController do
+describe AController do
 
 end

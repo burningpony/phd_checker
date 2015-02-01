@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Essays::EController do
+describe EController do
 
 end

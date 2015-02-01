@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Essays::FController do
+describe FController do
 
 end

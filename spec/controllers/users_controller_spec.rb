@@ -9,13 +9,12 @@ describe UsersController do
   def mock_user(stubs = {})
     @mock_user ||= mock_model(User, stubs).as_null_object
   end
-  desribe 'mark completed' do
+  describe 'mark completed' do
     params = {participant_id: 5,  group: 3}
     u = User.find_or_create_by_id(params[:participant_id], group: params[:group])
     it 'sets participant_id' do
-      puts u
       u.id.should eq 5
-      u.group.should eq 3
+      u.group.should eq '3'
     end
   end
   describe 'GET index' do
@@ -53,8 +52,8 @@ describe UsersController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'assigns a newly created user as @user' do
-        User.stub(:new).with('these' => 'params') { mock_user(save: true) }
-        post :create, user: { 'these' => 'params' }
+        User.stub(:new).with({"group"=>nil}, {}) { mock_user(save: true) }
+        post :create, user: { "group"=>nil }
         assigns(:user).should be(mock_user)
       end
 
@@ -67,8 +66,8 @@ describe UsersController do
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved user as @user' do
-        User.stub(:new).with('these' => 'params') { mock_user(save: false) }
-        post :create, user: { 'these' => 'params' }
+        User.stub(:new).with({"group"=>nil}, {}) { mock_user(save: false) }
+        post :create, user: { "group"=>nil }
         assigns(:user).should be(mock_user)
       end
 
@@ -84,8 +83,8 @@ describe UsersController do
     describe 'with valid params' do
       it 'updates the requested user' do
         User.stub(:find).with('37') { mock_user }
-        mock_user.should_receive(:update_attributes).with('these' => 'params')
-        put :update, id: '37', user: { 'these' => 'params' }
+        mock_user.should_receive(:update_attributes).with({"group"=>nil})
+        put :update, id: '37', user: { "group"=>nil }
       end
 
       it 'assigns the requested user as @user' do

@@ -45,7 +45,7 @@ describe ResponsesController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'assigns a newly created response as @response' do
-        Response.stub(:new).with('these' => 'params') { mock_response(save: true) }
+        Response.stub(:new).with({"these"=>"params"}, {}) { mock_response(save: true) }
         post :create, response: { 'these' => 'params' }
         assigns(:response).should be(mock_response)
       end
@@ -59,7 +59,7 @@ describe ResponsesController do
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved response as @response' do
-        Response.stub(:new).with('these' => 'params') { mock_response(save: false) }
+        Response.stub(:new).with({"these"=>"params"}, {}) { mock_response(save: false) }
         post :create, response: { 'these' => 'params' }
         assigns(:response).should be(mock_response)
       end
