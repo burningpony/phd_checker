@@ -1,4 +1,4 @@
--content_for :page_title do 
+-content_for :page_title do
     Experiment
 
 :javascript
@@ -15,10 +15,14 @@
     :javascript
         window.__show_other_student_actions = false;
 
+.error-modal
+    %h4.text-center System Error, Please Wait
+    %a.close-modal.btn.btn-danger.btn-block
+        Retry
 
 .participant
     %h4.text-center
-        Group ID
+        Group
     %input{:type=>'text',:id=>'group_id', class: 'form-control'}
     %h4.text-center
         Participant ID
@@ -26,17 +30,17 @@
     %br
     %input{:type=>'button', :value=>'start', :class=> 'btn btn-success btn-block'}
     .error
-            
+
 .instructions
     .h4.text-center
         Instructions
     %br
     .instruction_body
         %p
-            Please wait for further instructions.  
+            Please wait for further instructions.
             .btn.btn-lg.btn-block.btn-success
                 Start
-    
+
 -# shown prompting us to finish or not, when we click finish
 .confirm_quit
     .well
@@ -56,9 +60,9 @@
 .finished
     -# note when this loads, turn off the unload handler
     .h4.text-center
-        Thank you for Participating 
+        Thank you for Participating
     .msg
-    
+
     -# body will contain the scores from russell's stuff
     .body
 
@@ -68,7 +72,7 @@
 .other_participants
     -# this will get filled in with data from russell
     .body
-    
+
     .button
         Done
 .container
@@ -78,20 +82,20 @@
                 .well.well-sm
                     %ul.nav.nav-pills.nav-stacked
                         / %li
-                            
+
                         /     %a{:href=> '#', :class=>'show_instructions'}
                         /         Instructions
                         / %li
-                            
+
                         /     %a{:href=> '#', :class=>'practice_essay_link'}
                         /         Practice
 
                         -@essays.each_with_index do |essay, i|
                             %li
-                            
+
                                 %a{:href=> '#', :class=>'essay_link hide', data: {round: essay[:round], essay: essay[:essay]} }
                                     Essay #{essay[:essay]}
-                        
+
                         %li
                             %a{:class=>'quit', :href=> '#'}
                                 Finish
