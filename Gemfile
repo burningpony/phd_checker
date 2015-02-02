@@ -9,7 +9,7 @@ gem 'heroku'
 gem 'haml-rails'
 gem 'newrelic_rpm'
 gem 'jquery-rails'
-gem 'rspec-rails', '< 3.0', :group => [:development, :test]
+gem 'rspec-rails', '>= 3.0', :group => [:development, :test]
 gem "font-awesome-rails"
 gem 'airbrake'
 gem 'bootstrap-sass', '~> 3.3.3'

@@ -1,12 +1,11 @@
 !!!
 %html
   %head
-    %title PHD Checko'Matic
+    %title PHD
     = stylesheet_link_tag :application, :admin
     = javascript_include_tag :application
     = csrf_meta_tag
   %body
-
     .navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
       .container-fluid
         .navbar-header
@@ -15,7 +14,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{href: "#"} PHD Checko'Matic
+          %a.navbar-brand{href: "/users"} PHD
         .navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar-right
             %li{class: controller.controller_path == 'users' ? 'active' : ''}
@@ -24,8 +23,6 @@
               %a{href: responses_path} Responses
             %li{class: controller.controller_path == 'essays' ? 'active' : ''}
               %a{href: root_url} Essays
-            %li
-              %a.logout{href: "/logout"}= t("web-app-theme.logout", :default => "Logout")
 
     .container-fluid
       .row
