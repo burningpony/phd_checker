@@ -7,7 +7,7 @@ require 'spec_helper'
 describe ResponsesController do
 
   def mock_response(stubs = {})
-    @mock_response ||= mock_model(Response, stubs).as_null_object
+    @mock_response ||= mock_model(Response, stubs)
   end
 
   describe 'GET index' do

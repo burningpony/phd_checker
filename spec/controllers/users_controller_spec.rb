@@ -7,7 +7,7 @@ require 'spec_helper'
 describe UsersController do
 
   def mock_user(stubs = {})
-    @mock_user ||= mock_model(User, stubs).as_null_object
+    @mock_user ||= mock_model(User, stubs)
   end
   describe 'mark completed' do
     params = {participant_id: 5,  group: 3}

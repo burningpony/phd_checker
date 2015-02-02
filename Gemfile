@@ -9,7 +9,7 @@ gem 'heroku'
 gem 'haml-rails'
 gem 'newrelic_rpm'
 gem 'jquery-rails'
-gem 'rspec-rails', '>= 3.0', :group => [:development, :test]
+
 gem "font-awesome-rails"
 gem 'airbrake'
 gem 'bootstrap-sass', '~> 3.3.3'
@@ -22,6 +22,8 @@ group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails', '>= 3.0'
+  gem 'rspec-activemodel-mocks'
 end
 
 group :production do
