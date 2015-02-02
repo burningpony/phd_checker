@@ -12,7 +12,7 @@ describe ResponsesController do
 
   describe 'GET index' do
     it 'assigns all responses as @responses' do
-      Response.stub_chain(:order, :paginate) { [mock_response] }
+      allow(Response).to receive_message_chain(:order, :paginate) { [mock_response] }
       get :index
       expect(assigns(:responses)).to eq([mock_response])
     end
