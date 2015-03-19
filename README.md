@@ -1,5 +1,8 @@
 #PHD Checker
-This tool is designed to present users with options of payment for correcting essays. 
+
+[![Code Climate](https://codeclimate.com/github/burningpony/phd_checker/badges/gpa.svg)](https://codeclimate.com/github/burningpony/phd_checker)
+
+This tool is designed to present users with options of payment for correcting essays.
 
 ##Getting Started
 
