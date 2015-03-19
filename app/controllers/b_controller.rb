@@ -2,7 +2,7 @@ class BController <  EssayBaseController
   def score_card
     round_completed_essay = @responses_from_round.map { |x| x.essay }.uniq.count
     total_completed_essay = @total_responses.map { |x| [x.essay, x.round_number] }.uniq.count
-
+    @name = "b"
     @total_payment = 0.85 * total_completed_essay
     @round_payment = 0.85 * round_completed_essay
     # set the quota here

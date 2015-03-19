@@ -3,7 +3,7 @@ class DController <  EssayBaseController
    # 4.	Fee For Service plus Quota Bonus
     @total_payment =  @total_responses.count * 0.20
     @round_payment =  @responses_from_round.count * 0.20
-
+    @name = "D"
     # set the quota here
     @round_payment.count > 9 ? @payment += 1 : @round_payment
 
