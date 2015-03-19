@@ -1,5 +1,7 @@
 class EssayBaseController < ApplicationController
   before_filter :instance_variable_setup, :only => [:score_card]
+  after_filter :record_round, :only => [:score_card]
+
   def index
     @essays = []
     view_directory = File.expand_path('../../views/essays', __FILE__)
@@ -38,9 +40,14 @@ class EssayBaseController < ApplicationController
   private
 
   def instance_variable_setup
-    @user = User.find(params[:participant_id])
+    @user = User.find(params[:user_id])
     @total_responses = @user.responses
     @round = (params[:round_number] || 1).to_i
     @responses_from_round = @user.responses.where(round_number: @round)
+    @time = params[:round_time]
+  end
+
+  def record_round
+    Round.create!(user_id: @user.id, round_number: @round, treatment: self.class.to_s.gsub("Controller", ""), running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time)
   end
 end

@@ -3,7 +3,7 @@ var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one 
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15 * 1000;
 var NUMBER_OF_ROUNDS = 4;
 
-
+window.elapsed_time_in_seconds = 0;
 window.participant_id = undefined;
 window.group_id = undefined;
 window.round_number = 1;
@@ -163,8 +163,6 @@ jQuery(function() {
                 }
             });
 
-
-
             return false;
         });
 
@@ -209,14 +207,26 @@ jQuery(function() {
                     overlayId: 'quit-overlay',
                     containerId: 'quit-container',
                     onShow: function() {
-                        // Hack to steal the time from the timer. 
+                        // Hack to steal the time from the timer.
+                        time = window.elapsed_time_in_seconds 
                         // TODO: k you may need to change the url to the score_card
                         // Do an ajax request to get the body we are looking for
                         $.get(window.path_to_controller + '/score_card', {
-                            participant_id: window.participant_id,
-                            round_number: window.round_number
+                            user_id: window.user.id,
+                            round_number: window.round_number,
+                            round_time: window.elapsed_time_in_seconds
                         }, function(data) {
                             $('.finished .body').html(data);
+                            time = window.elapsed_time_in_seconds
+                            $.ajax({
+                                type: 'POST',
+                                url: "users/complete",
+                                data: {
+                                    "user_id": window.user.id,
+                                    "group": window.group_id,
+                                    "time_to_complete": time
+                                }
+                            });
                         });
                     }
                 })
@@ -235,10 +245,12 @@ jQuery(function() {
                         // Hack to steal the time from the timer. 
                         var modal = this;
                         // TODO: k you may need to change the url to the score_card
+                        time = window.elapsed_time_in_seconds 
                         // Do an ajax request to get the body we are looking for
                         $.get(window.path_to_controller + '/score_card', {
-                            participant_id: window.participant_id,
-                            round_number: window.round_number
+                            user_id: window.user.id,
+                            round_number: window.round_number,
+                            round_time: window.elapsed_time_in_seconds
                         }, function(data) {
                             $('.score_card .body').html(data);
                         });
@@ -479,20 +491,20 @@ jQuery(function() {
             $(essay_id + " span.correctme").each(function() {
                 if ($(this).attr("rel") != $(this).text()) {
                     errors++;
-                    console.log("Error", $(this).attr("rel"), $(this).text(), ($(this).attr("rel") != $(this).text()));
+                    //console.log("Error", $(this).attr("rel"), $(this).text(), ($(this).attr("rel") != $(this).text()));
                 }
 
                 generate_box(this);
 
             });
-            console.log("correctme boxes", $(essay_id + " span.correctme").length);
-            console.log("errors detected", errors);
+            // console.log("correctme boxes", $(essay_id + " span.correctme").length);
+            // console.log("errors detected", errors);
 
             window.total_corrections_avaliable += $(essay_id + " span.correctme").length;
             window.total_errors_shown += errors;
 
-            console.log("Total boxes", window.total_corrections_avaliable);
-            console.log("Total errors detected", window.total_errors_shown);
+            // console.log("Total boxes", window.total_corrections_avaliable);
+            // console.log("Total errors detected", window.total_errors_shown);
 
 
             $(essay_id + " h2").html("Essay " + essay_number);// + ": Contains "+ errors + " Errors");
@@ -522,6 +534,8 @@ jQuery(function() {
 
                 seconds += 1;
 
+                window.elapsed_time_in_seconds = seconds
+
                 // show other student scores
                 if ((seconds % INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS) == 0 && window.__show_other_student_actions) {
                     window.stop_timer();
@@ -549,16 +563,6 @@ jQuery(function() {
         window.update_round = function update_round() {
             //update round number
             //Send the time to the backend
-            var time = $(".timer").html();
-            $.ajax({
-                type: 'POST',
-                url: "users/complete",
-                data: {
-                    "participant_id": window.participant_id,
-                    "group": window.group_id,
-                    "time_to_complete": time
-                }
-            });
 
             window.round_number++;
             window.total_corrections_avaliable = 0;
@@ -572,6 +576,7 @@ jQuery(function() {
             console.log("Reseting Essays", cached_essays);
             get_first_essay();
             seconds = 0;
+            window.elapsed_time_in_seconds = seconds;
             window.start_timer();
 
         };
