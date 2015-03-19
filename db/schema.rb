@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150201205600) do
+ActiveRecord::Schema.define(:version => 20150319204504) do
 
   create_table "responses", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(:version => 20150201205600) do
     t.integer  "round_number"
     t.string   "controller"
   end
+
+  create_table "rounds", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "time_to_complete_in_seconds"
+    t.string   "name"
+    t.string   "treatment"
+    t.integer  "round_number"
+    t.float    "running_total_payment"
+    t.float    "round_payment"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "rounds", ["user_id"], :name => "index_rounds_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

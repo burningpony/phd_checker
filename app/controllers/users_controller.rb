@@ -12,12 +12,8 @@ class UsersController < AdminBaseController
   end
 
   def mark_completed
-    @user = User.find(params[:participant_id])
-    @time = params[:time_to_complete].split(':')
-    @seconds = @time[0].to_i * 60
-    @seconds += @time[1].to_i
-
-    sum = @user.time_to_complete.to_i + 420 - @seconds
+    @user = User.find(params[:user_id])
+    sum = @user.rounds.sum(:time_to_complete_in_seconds)
     @user.time_to_complete = sum
     @user.save
     render js: 'true'
