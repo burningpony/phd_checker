@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
         'id',
         'group',
         'data_id',
+        'treatment',
         'round_1_edit',
         'round_1_correct',
         'round_2_edit',
@@ -19,7 +20,6 @@ class User < ActiveRecord::Base
         'total_edited',
         'total_correct',
         'total_earned',
-        'treatment',
         'time_to_complete_round_1',
         'time_to_complete_round_2',
         'time_to_complete_round_3',
@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
         'counter_part_impact_2',
         'counter_part_impact_3',
         'counter_part_impact_4',
+        'cumulative_impact',
         'created_at'
       ]
       users.each do |user|
@@ -41,6 +42,7 @@ class User < ActiveRecord::Base
           user.id,
           user.group,
           user.participant_id,
+          user.rounds.first.name,
           user.responses.where(round_number: 1).count,
           user.responses.where(round_number: 1, correct: true).count,
           user.responses.where(round_number: 2).count,
@@ -52,7 +54,6 @@ class User < ActiveRecord::Base
           user.responses.count,
           user.responses.where(correct: true).count,
           user.rounds.sum(:round_payment),
-          user.rounds.first.name,
           user.rounds.where(round_number: 1).pluck(:time_to_complete_in_seconds).first,
           user.rounds.where(round_number: 2).pluck(:time_to_complete_in_seconds).first,
           user.rounds.where(round_number: 3).pluck(:time_to_complete_in_seconds).first,
@@ -67,6 +68,7 @@ class User < ActiveRecord::Base
           user.round_impact(2),
           user.round_impact(3),
           user.round_impact(4),
+          User.counter_part_impact(user.responses.where(correct: true).count, user.responses.where(correct: false).count),
           user.created_at
         ]
       end
