@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
           user.responses.where(correct: true).count,
           user.rounds.sum(:round_payment),
           User.counter_part_impact(user.responses.where(correct: true).count, user.responses.where(correct: false).count),
-          user.rounds.where(round_number: 4).pluck(:completed_in_time).first.to_i,
+          user.rounds.where(completed_in_time: true).present?,
           user.created_at,
           user.responses.where(round_number: 1).count,
           user.responses.where(round_number: 1, correct: true).count,
