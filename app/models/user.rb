@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
         'total_correct',
         'total_earned',
         'cumulative_impact',
-        'finished_early'
+        'finished_early',
         'created_at',
         'round_1_edit',
         'round_1_correct',
