@@ -12,7 +12,6 @@ describe 'responses/index.html.haml' do
       ),
       stub_model(Response,
                  user_id: @u.id,
-
                  correct: false,
                  corrected: 'Corrected',
                  uncorrected: 'Uncorrected'
