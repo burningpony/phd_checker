@@ -1,5 +1,4 @@
 class ResponsesController < AdminBaseController
-  require 'csv'
   # GET /responses
   layout proc { |c| c.request.xhr? ? false : 'application' }
   def index
@@ -43,47 +42,15 @@ class ResponsesController < AdminBaseController
     redirect_to responses_url
   end
 
-  def export_to_csv
-    @responses = Response.find(:all)
+  def export_raw_csv
+    @responses = Response.all
 
-    csv_string = CSV.generate do |csv|
-      # header row
-      csv << [
-        'id',
-        'participant_id',
-        'group',
-        'error',
-        'essay',
-        'Correct?',
-        'Field Before Correction',
-        'Seconds to Complete',
-        'Round',
-        'Treatment',
-        'Time Corrected'
-      ]
-
-      # data rows
-      @responses.each do |response|
-        csv << [
-          response.id,
-          response.user_id,
-          response.user.group,
-          response.error,
-          response.essay,
-          response.correct,
-          response.uncorrected,
-          response.round_number,
-          response.user.time_to_complete,
-          response.controller,
-          response.created_at
-        ]
-      end
-    end
+    csv_string = Response.raw_csv(@responses)
 
     # send it to the browsah
     send_data csv_string,
               type: 'text/csv; charset=iso-8859-1; header=present',
-              disposition: 'attachment; filename=responses.csv'
+              disposition: 'attachment; filename=raw_responses.csv'
   end
 
   # POST /responses

@@ -19,7 +19,8 @@ PhdChecker::Application.routes.draw do
   resources :h
 
   match 'responses/empty' => 'responses#empty'
-  match 'responses/export' => 'responses#export_to_csv'
+  match 'responses/export_raw' => 'responses#export_raw_csv'
+  match 'users/export_aggregate_analysis' => 'users#export_aggregate_analysis'
   resources :responses
   match 'users/complete' => 'users#mark_completed'
   match 'users/stats' => 'users#stats'

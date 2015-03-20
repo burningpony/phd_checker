@@ -1,7 +1,8 @@
 %h4 Actions
 %ul.nav.nav-sidebar
   %li.divider
-  %li= link_to fa_icon('file-excel-o') + " Export To CSV", responses_export_path
+  %li= link_to fa_icon('file-excel-o') + " User Analysis", users_export_aggregate_analysis_path
+  %li= link_to fa_icon('file-excel-o') + " Export Raw", responses_export_raw_path
   %li= link_to fa_icon('database') + " Dataclip", 'https://dataclips-next.heroku.com/tvyhlsuksquhgnheheogscsxylry-PHD-Checker-data', target: 'blank'
   %li.divider
   %li= link_to fa_icon('trash-o') + " Clear Database", responses_empty_path, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"

@@ -83,6 +83,15 @@ class UsersController < AdminBaseController
     end
   end
 
+  def export_aggregate_analysis
+    @users = User.all
+    csv_string = User.aggregate_analysis(@users)
+    # send it to the browsah
+    send_data csv_string,
+              type: 'text/csv; charset=iso-8859-1; header=present',
+              disposition: 'attachment; filename=formatted_responses.csv'
+  end
+
   # PUT /users/1
   # PUT /users/1.xml
   def update
