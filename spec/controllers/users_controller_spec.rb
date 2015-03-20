@@ -11,10 +11,12 @@ describe UsersController do
   end
   describe 'mark completed' do
     params = {participant_id: 5,  group: 3}
-    u = User.find_or_create_by_id(params[:participant_id], group: params[:group])
+    u = User.new(participant_id: params[:participant_id], group: params[:group])
     it 'sets participant_id' do
-      expect(u.id).to eq 5
-      expect(u.group).to eq '3'
+      u.save
+      expect(u.id).to_not eq nil
+      expect(u.participant_id).to eq 5
+      expect(u.group).to eq 3
     end
   end
   describe 'GET index' do
