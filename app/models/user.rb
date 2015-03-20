@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
           user.id,
           user.group,
           user.participant_id,
-          user.rounds.pluck(:name).first,
+          user.rounds.pluck(:name).first.try(:to_i),
           user.rounds.sum(:time_to_complete_in_seconds),
           user.responses.count,
           user.responses.where(correct: true).count,
@@ -74,10 +74,10 @@ class User < ActiveRecord::Base
           user.round_impact(2),
           user.round_impact(3),
           user.round_impact(4),
-          user.rounds.where(round_number: 1).pluck(:completed_in_time).first,
-          user.rounds.where(round_number: 2).pluck(:completed_in_time).first,
-          user.rounds.where(round_number: 3).pluck(:completed_in_time).first,
-          user.rounds.where(round_number: 4).pluck(:completed_in_time).first
+          user.rounds.where(round_number: 1).pluck(:completed_in_time).first.try(:to_i),
+          user.rounds.where(round_number: 2).pluck(:completed_in_time).first.try(:to_i),
+          user.rounds.where(round_number: 3).pluck(:completed_in_time).first.try(:to_i),
+          user.rounds.where(round_number: 4).pluck(:completed_in_time).first.try(:to_i)
         ]
       end
     end
