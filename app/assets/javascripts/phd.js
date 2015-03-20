@@ -8,6 +8,7 @@ window.group_id = undefined;
 window.round_number = 1;
 window.total_errors_shown = 0;
 window.total_corrections_avaliable = 0;
+window.completed_in_time = true
 jQuery(function() {
   if ($(".participant").length > 0) {
     // Setup the back button warning:
@@ -151,12 +152,14 @@ jQuery(function() {
       if (kwargs && kwargs.timeout) {
         //MAKE IT SO WHEN IT TIMES OUT IT CHECKS WHAT ROUND IT IS ON AND DOES THE RIghT ThinG
         if (window.round_number < NUMBER_OF_ROUNDS) {
+          window.completed_in_time = false
           window.stop_timer();
           var msg = "";
           msg = "This round has timed out, your next round starts now!";
           $(".score_card .msg").html(msg);
           window.score_card_modal();
         } else {
+          window.completed_in_time = false
           window.stop_timer();
           var msg = "";
           msg = "You ran out of time, but at least it's over :-)";
@@ -166,9 +169,11 @@ jQuery(function() {
           window.finished_modal();
         }
       } else if (window.round_number < NUMBER_OF_ROUNDS) {
+        window.completed_in_time = true
         window.score_card_modal()
       } else {
         // remove unload handler so we can reset things easily
+        window.completed_in_time = true
         window.onbeforeunload = undefined;
         window.finished_modal();
       }
@@ -189,7 +194,8 @@ jQuery(function() {
             $.get(window.path_to_controller + '/score_card', {
               user_id: window.user.id,
               round_number: window.round_number,
-              round_time: window.elapsed_time_in_seconds
+              round_time: window.elapsed_time_in_seconds,
+              completed_in_time: window.completed_in_time
             }, function(data) {
               $('.finished .body').html(data);
               time = window.elapsed_time_in_seconds
@@ -199,7 +205,7 @@ jQuery(function() {
                 data: {
                   "user_id": window.user.id,
                   "group": window.group_id,
-                  "time_to_complete": time
+                  "time_to_complete": time,
                 }
               });
             });
@@ -224,7 +230,8 @@ jQuery(function() {
             $.get(window.path_to_controller + '/score_card', {
               user_id: window.user.id,
               round_number: window.round_number,
-              round_time: window.elapsed_time_in_seconds
+              round_time: window.elapsed_time_in_seconds,
+              completed_in_time: window.completed_in_time
             }, function(data) {
               $('.score_card .body').html(data);
             });
