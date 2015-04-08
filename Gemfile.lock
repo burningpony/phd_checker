@@ -52,6 +52,11 @@ GEM
     erubis (2.7.0)
     excon (0.44.0)
     execjs (2.2.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     haml (4.0.6)
@@ -173,6 +178,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.3)
+  factory_girl_rails
   font-awesome-rails
   haml-rails
   heroku
