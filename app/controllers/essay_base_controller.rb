@@ -1,6 +1,6 @@
 class EssayBaseController < ApplicationController
   before_filter :instance_variable_setup, :only => [:score_card]
-  after_filter :record_round, :only => [:score_card]
+  after_filter :record_data, :only => [:score_card]
 
   def index
     @essays = []
@@ -48,7 +48,8 @@ class EssayBaseController < ApplicationController
     @completed_in_time = params[:completed_in_time]
   end
 
-  def record_round
+  def record_data
+    @user.update_attributes(total_payment: @total_payment)
     Round.create!(user_id: @user.id, round_number: @round, treatment: self.class.to_s.gsub("Controller", ""), running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time)
   end
 end
