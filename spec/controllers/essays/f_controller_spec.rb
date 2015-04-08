@@ -14,6 +14,8 @@ describe FController do
 
       assigns(:total_payment).should be 25
       assigns(:round_payment).should be 0
+      u.reload
+      expect(u.total_payment).to eq 25.0
     end
   end
 end
