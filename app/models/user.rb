@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
           user.rounds.sum(:time_to_complete_in_seconds),
           user.responses.count,
           user.responses.where(correct: true).count,
-          user.rounds.sum(:round_payment),
+          user.total_payment,
           User.counter_part_impact(user.responses.where(correct: true).count, user.responses.where(correct: false).count),
           user.rounds.where(completed_in_time: true).present?.to_i,
           user.created_at,
@@ -91,5 +91,5 @@ class User < ActiveRecord::Base
     0.15 * number_correct.to_f - 0.05 * number_wrong.to_f
   end
 
-  
+
 end
