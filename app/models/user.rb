@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
         'finish_round_3_early',
         'finish_round_4_early'
       ]
-      users.each do |user|
+      users.order(:group).each do |user|
         csv << [
           user.id,
           user.group,
