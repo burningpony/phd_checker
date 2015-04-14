@@ -57,21 +57,10 @@ jQuery(function() {
             .match(/^\d\d*$/) && window.participant_id.match(
               /^\d\d*$/)) {
             modal.close();
-            // create the user
-            $.ajax({
-              type: 'POST',
-              url: "users.json",
-              data: {
-                "participant_id": window.participant_id,
-                "group": window.group_id,
-                controller: window.path_to_controller
-              },
-              success: function(data) {
-                window.user = data.user
-              }
-            });
-            // HACK: setTimeout because we can only have one modal dialog
-            //       at a time
+
+            //create user
+            create_user(window.participant_id, window.group_id)
+
             setTimeout(function() {
               window.show_instructions();
             }, 10);
@@ -106,6 +95,9 @@ jQuery(function() {
         overlayId: 'instructions-overlay',
         containerId: 'instructions-container',
         onClose: function() {
+
+          window.start_round(window.round_number, window.user.id)
+
           if (!timer_started) {
             window.start_timer();
             timer_started = true;
@@ -146,6 +138,7 @@ jQuery(function() {
         onShow: function() {
           var modal = this;
           $(".confirm_quit .quit_button").click(function() {
+
             window.stop_timer();
             modal.close();
             // let it close the modal, and open a new one
@@ -201,28 +194,8 @@ jQuery(function() {
           overlayId: 'quit-overlay',
           containerId: 'quit-container',
           onShow: function() {
-            // Hack to steal the time from the timer.
             time = window.elapsed_time_in_seconds
-              // TODO: k you may need to change the url to the score_card
-              // Do an ajax request to get the body we are looking for
-            $.get(window.path_to_controller + '/score_card', {
-              user_id: window.user.id,
-              round_number: window.round_number,
-              round_time: window.elapsed_time_in_seconds,
-              completed_in_time: window.completed_in_time
-            }, function(data) {
-              $('.finished .body').html(data);
-              time = window.elapsed_time_in_seconds
-              $.ajax({
-                type: 'POST',
-                url: "users/complete",
-                data: {
-                  "user_id": window.user.id,
-                  "group": window.group_id,
-                  "time_to_complete": time,
-                }
-              });
-            });
+            window.complete_round
           }
         })
       }, 10)
@@ -240,15 +213,7 @@ jQuery(function() {
             var modal = this;
             // TODO: k you may need to change the url to the score_card
             time = window.elapsed_time_in_seconds
-              // Do an ajax request to get the body we are looking for
-            $.get(window.path_to_controller + '/score_card', {
-              user_id: window.user.id,
-              round_number: window.round_number,
-              round_time: window.elapsed_time_in_seconds,
-              completed_in_time: window.completed_in_time
-            }, function(data) {
-              $('.score_card .body').html(data);
-            });
+            window.complete_round
             $(".done .done_button").click(function() {
               update_round();
               modal.close();
@@ -500,6 +465,7 @@ jQuery(function() {
       get_first_essay();
       seconds = 0;
       window.elapsed_time_in_seconds = seconds;
+      window.start_round(window.round_number, window.user.id)
       window.start_timer();
     };
   }
