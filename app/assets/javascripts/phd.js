@@ -16,6 +16,20 @@ jQuery(function() {
       return
         'Hitting the back button will break this experiment, and is disabled, hit cancel';
     }
+    window.onunload = function() {
+      $.ajax({
+        type: 'POST',
+        url: "rounds.json",
+        data: {
+          "user_id": user_id,
+          "round_number": round_number,
+          "round": {
+            "early_exit": true,
+          },
+          controller: window.path_to_controller
+        },
+      });
+    }
     console.log("preparing exam")
       // 1) Collect Group and Participant ID
     $(".participant").modal({
