@@ -2,19 +2,33 @@
   User
   = @user.id
   %small participant: #{@user.participant_id} group: #{@user.group}
+
+
+
 .panel.panel-default
   .panel-title.panel-heading Analysis
-  %table.table.table-striped
+  %table.table.table-striped.table-hover
 
     -@user.analyze.each do |k,v|
       %tr
         %th=k.to_s.titleize
         %td=v.to_s.titleize
 
+.panel.panel-default
+  .panel-title.panel-heading User
+  %table.table.table-striped.table-hover
+    %thead
+      %tr
+        -User.column_names.each do |v|
+          %td=v.titleize
+
+    %tr
+      -@user.attributes.values.each do |v|
+        %td=v
 
 .panel.panel-default
   .panel-title.panel-heading Rounds
-  %table.table.table-striped
+  %table.table.table-striped.table-hover
     %thead
       %tr
         -Round.column_names.each do |v|
@@ -24,8 +38,8 @@
         -round.attributes.values.each do |v|
           %td=v
 .panel.panel-default
-  .panel-title.panel-heading Rounds
-  %table.table.table-striped
+  .panel-title.panel-heading Responses
+  %table.table.table-striped.table-hover
     %thead
       %tr
         -Response.column_names.each do |v|
