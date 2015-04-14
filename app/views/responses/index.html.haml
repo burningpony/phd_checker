@@ -33,8 +33,9 @@
       %td= response.controller
       %td= response.created_at
       %td
+        = link_to fa_icon('user') + " User", user_path(response.user.id), class: "btn btn-default btn-xs"
         = link_to "#{t("web-app-theme.delete", :default => "Delete")}", response_path(response), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", class: "btn btn-danger btn-xs"
 .pagination
-  = will_paginate @responses, renderer: BootstrapPagination::Rails 
+  = will_paginate @responses, renderer: BootstrapPagination::Rails
 
 

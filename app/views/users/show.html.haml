@@ -1,38 +1,40 @@
 - content_for(:title) do
-  = t("activerecord.attributes.user.name", :default => t("activerecord.labels.name", :default => "Name"))
-  = @user.name
+  User
+  = @user.id
+  %small participant: #{@user.participant_id} group: #{@user.group}
+.panel.panel-default
+  .panel-title.panel-heading Analysis
+  %table.table.table-striped
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th.first ID
-      %th
-        = t("activerecord.attributes.response.user_id", :default => t("activerecord.labels.user_id", :default => "User_id"))
-      %th Group ID
-      %th Error ID
-      %th Essay ID
-      %th Correct?
-      %th Field Before Correction
-      %th Seconds To Complete
-      %th Round Number
-      %th Treatment
-      %th= t("web-app-theme.created_at", :default => "Created at")
-      %th.last  
-      
-  - @user.responses.each do |response|
-    %tr
-      %td= response.id
-      %td= link_to response.user_id, response_path(response)
-      %td= response.user.group
-      %td= response.error
-      %td= response.essay
-      %td= response.correct
-      %td= response.uncorrected
-      %td= response.user.time_to_complete
-      %td= response.round_number
-      %td= response.controller
-      %td= response.created_at
-      %td
+    -@user.analyze.each do |k,v|
+      %tr
+        %th=k.to_s.titleize
+        %td=v.to_s.titleize
+
+
+.panel.panel-default
+  .panel-title.panel-heading Rounds
+  %table.table.table-striped
+    %thead
+      %tr
+        -Round.column_names.each do |v|
+          %td=v.titleize
+    -@user.rounds.each do |round|
+      %tr
+        -round.attributes.values.each do |v|
+          %td=v
+.panel.panel-default
+  .panel-title.panel-heading Rounds
+  %table.table.table-striped
+    %thead
+      %tr
+        -Response.column_names.each do |v|
+          %td=v.titleize
+    -@user.responses.each do |response|
+      %tr
+        -response.attributes.values.each do |v|
+          %td=v
+
 .actions
   = link_to fa_icon("pencil") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_user_path(@user), :class => "btn btn-default"
   = link_to fa_icon("trash-o") + " " + t("web-app-theme.delete", :default => "Delete"), user_path(@user), :method => "delete", :class => "btn btn-default", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
