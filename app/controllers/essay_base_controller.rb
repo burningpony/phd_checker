@@ -50,6 +50,6 @@ class EssayBaseController < ApplicationController
 
   def record_data
     @user.update_attributes(total_payment: @total_payment)
-    Round.create!(user_id: @user.id, round_number: @round, treatment: self.class.to_s.gsub("Controller", ""), running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time)
+    Round.create!(user_id: @user.id, round_number: @round, treatment: self.class.to_s.gsub("Controller", ""), running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time, early_exit: false, end_time: DateTime.now)
   end
 end
