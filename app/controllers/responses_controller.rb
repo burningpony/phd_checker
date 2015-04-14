@@ -62,11 +62,9 @@ class ResponsesController < AdminBaseController
       if @response.save
         format.js
         format.html { redirect_to(@response, notice: 'Response was successfully created.') }
-
       else
         format.js { render js: "#{ @response.errors}" }
         format.html { render action: 'new' }
-
       end
     end
   end
