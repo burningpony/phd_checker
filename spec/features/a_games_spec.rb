@@ -41,6 +41,5 @@ RSpec.feature "AGames", :type => :feature, js: true do
       end
     end
 
-    snapshot_user_page
   end
 end

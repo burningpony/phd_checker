@@ -42,7 +42,7 @@ RSpec.feature "FGames", :type => :feature, js: true do
     finish_stage
 
     expect(subject).to have_content('Total earnings so far:')
-
+    expect(User.last.analyze[:finish_round_4_early]).to have_content(1)
     click_link 'Prepare this computer for the next trial'
 
     snapshot_user_page
