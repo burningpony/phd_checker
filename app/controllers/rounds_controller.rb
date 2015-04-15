@@ -1,8 +1,7 @@
-class RoundController < AdminBaseController
+class RoundsController < AdminBaseController
   def create
-
     @user = User.find(params[:user_id])
-    @round = Round.where(params[:round]).first_or_initialize(user_id: params [:user_id], round_number: params[:round_number])
+    @round = Round.where(params[:round]).first_or_initialize(user_id: params[:user_id], round_number: params[:round_number])
 
     respond_to do |format|
       if @round.save
