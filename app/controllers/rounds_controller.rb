@@ -5,6 +5,7 @@ class RoundsController < AdminBaseController
 
     if params[:early_exit]
       @round.early_exit = params[:early_exit]
+    end
 
     respond_to do |format|
       if @round.save
