@@ -38,7 +38,7 @@ RSpec.feature "FGames", :type => :feature, js: true do
 
     correct_essay(4, 5)
     correct_essay(4, 6)
-
+    sleep 0.3
     finish_stage
 
     expect(subject).to have_content('Total earnings so far:')

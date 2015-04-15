@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-RSpec.feature "AGames", :type => :feature, js: true do
+RSpec.feature "DGames", :type => :feature, js: true do
   subject { page }
 
-  scenario 'plays 0.625 per essay' do
-    visit a_index_path
+  scenario 'plays ?' do
+    visit d_index_path
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
@@ -15,14 +15,16 @@ RSpec.feature "AGames", :type => :feature, js: true do
     correct_essay(1, 2)
 
     complete_round do
+      pending
+      raise
       expect(subject).to have_content('Total earnings so far:')
 
       within '.earnings' do
-        expect(subject).to have_content('$1.25')
+        expect(subject).to have_content('$2.70')
       end
 
       within '.round_earnings' do
-        expect(subject).to have_content('$1.25')
+        expect(subject).to have_content('$2.70')
       end
     end
 
@@ -33,11 +35,11 @@ RSpec.feature "AGames", :type => :feature, js: true do
       expect(subject).to have_content('Total earnings so far:')
 
       within '.earnings' do
-        expect(subject).to have_content('$2.50')
+        expect(subject).to have_content('$5.40')
       end
 
       within '.round_earnings' do
-        expect(subject).to have_content('$1.25')
+        expect(subject).to have_content('$2.70')
       end
     end
 

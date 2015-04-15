@@ -23,6 +23,6 @@ def snapshot_user_page
   within_window open_new_window do
 
     visit user_path(id: User.last.id)
-    screenshot_and_open_image
+    # screenshot_and_open_image
   end
 end
