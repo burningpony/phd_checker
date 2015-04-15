@@ -1,28 +1,19 @@
 require 'spec_helper'
 
-RSpec.feature "FullGames", :type => :feature, js: true do
+RSpec.feature "AGames", :type => :feature, js: true do
   subject { page }
 
   scenario 'plays salary' do
-    visit f_index_path
+    visit a_index_path
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
     sleep 0.3
     click_link 'Start'
-    sleep 0.3
 
-    within '#essay_1_1' do
-      page.all(:css, '.correctme').each do |el|
-        el.set el[:rel]
-      end
-    end
-    click_link 'Essay 2'
-    within '#essay_1_2' do
-      page.all(:css, '.correctme').each do |el|
-        el.set el[:rel]
-      end
-    end
+    correct_essay(1)
+    correct_essay(2)
+
     click_link 'Finish'
     click_button 'Confirm'
 
