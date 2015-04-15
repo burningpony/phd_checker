@@ -4,7 +4,10 @@ RSpec.feature "FGames", :type => :feature, js: true do
   subject { page }
 
   scenario 'completes the test with entering no answers' do
-    visit a_index_path
+    visit root_path
+    within '#experiment-a' do
+      click_link 'Begin'
+    end
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
