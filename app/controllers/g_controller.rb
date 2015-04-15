@@ -8,7 +8,7 @@ class GController < EssayBaseController
   def score_card
     @total_payment = -1
     @round_payment = -1
-    render file: 'essays/score_card.html.haml', layout: false
+    render file: 'essays/score_card', formats: [:html], layout: false
     @name = "G"
   end
 end

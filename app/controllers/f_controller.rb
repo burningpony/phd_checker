@@ -4,6 +4,6 @@ class FController < EssayBaseController
     @round_payment_override = "-"
     @total_payment = 25
     @name = "3"
-    render file: 'essays/score_card.html.haml', layout: false
+    render file: 'essays/score_card', formats: [:html], layout: false
   end
 end
