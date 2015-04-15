@@ -1,5 +1,5 @@
 def correct_essay(round, number)
-  sleep 0.2
+  sleep 0.3
   click_link "Essay #{number}"
   within "#essay_#{round}_#{number}" do
     page.all(:css, '.correctme').each do |el|
