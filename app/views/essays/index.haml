@@ -23,11 +23,18 @@
 .participant
     %h4.text-center
         Group
-    %input{:type=>'text',:id=>'group_id', class: 'form-control'}
+
+    .form-group
+        %label.sr-only{:for => "group_id"} Group
+        %input#group_id.form-control{:placeholder => "Enter Group", :type => "text"}/
+    %br
     %h4.text-center
         Participant ID
-    %input{:type=>'text', :id=>'participant_id', class: 'form-control'}
-    %br
+    .form-group
+        %label.sr-only{:for => "participant_id"} Group
+        %input#participant_id.form-control{:placeholder => "Enter Participant ID", :type => "text"}/
+
+
     %input{:type=>'button', :value=>'start', :class=> 'btn btn-success btn-block'}
     .error
 
@@ -38,7 +45,7 @@
     .instruction_body
         %p
             Please wait for further instructions.
-            .btn.btn-lg.btn-block.btn-success
+            %a.btn.btn-lg.btn-block.btn-success{href: '#'}
                 Start
 
 -# shown prompting us to finish or not, when we click finish
