@@ -10,4 +10,5 @@
 //= require diff
 //= require save_functions
 //= require phd
+//= require disallowed
 //= require_tree .
