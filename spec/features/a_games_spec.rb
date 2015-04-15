@@ -20,12 +20,13 @@ RSpec.feature "AGames", :type => :feature, js: true do
     expect(subject).to have_content('Total earnings so far:')
 
     within '.earnings' do
-      expect(subject).to have_content('$25.00')
+      expect(subject).to have_content('$0.00')
     end
 
     within '.round_earnings' do
-      expect(subject).to have_content('-')
+      expect(subject).to have_content('$0.00')
     end
+    screenshot_and_open_image
 
     visit user_path(id: User.last.id)
 

@@ -234,6 +234,7 @@ DEPENDENCIES
   haml-rails
   heroku
   jquery-rails
+  launchy
   newrelic_rpm
   pg
   poltergeist!

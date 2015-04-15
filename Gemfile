@@ -37,6 +37,7 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver', '>= 2.35'
   gem 'poltergeist', github: 'teampoltergeist/poltergeist'
+  gem 'launchy'
 end
 
 group :production do

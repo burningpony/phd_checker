@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature "FullGames", :type => :feature, js: true do
+RSpec.feature "FGames", :type => :feature, js: true do
   subject { page }
 
   scenario 'plays salary' do
