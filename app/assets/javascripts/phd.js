@@ -13,11 +13,11 @@ jQuery(function() {
   if ($(".participant").length > 0) {
     // Setup the back button warning:
     $(window).on('beforeunload', function() {
-        var x = earlyExit();
-        return x;
+      return 'Hitting the back button will break this experiment, and is disabled, hit cancel';
     });
-    earlyExit = function() {
-      $.ajax({
+
+    $(window).unload( function() {
+        $.ajax({
         type: 'POST',
         url: "rounds.json",
         data: {
@@ -25,10 +25,10 @@ jQuery(function() {
           "round_number": window.round_number,
           "early_exit": true,
           controller: window.path_to_controller
-        }
+        },
+        async : false
       });
-      return 'Hitting the back button will break this experiment, and is disabled, hit cancel';
-    }
+    });
 
     console.log("preparing exam")
       // 1) Collect Group and Participant ID
