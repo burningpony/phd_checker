@@ -1,2 +1,0 @@
-module Essays::CHelper
-end
