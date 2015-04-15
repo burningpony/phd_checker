@@ -12,7 +12,11 @@ window.completed_in_time = true
 jQuery(function() {
   if ($(".participant").length > 0) {
     // Setup the back button warning:
-    window.onbeforeunload = function() {
+    $(window).on('beforeunload', function() {
+        var x = earlyExit();
+        return x;
+    });
+    earlyExit = function() {
       $.ajax({
         type: 'POST',
         url: "rounds.json",
@@ -21,10 +25,10 @@ jQuery(function() {
           "round_number": round_number,
           "early_exit": true,
           controller: window.path_to_controller
-        },
+        }
       });
       return
-        'Hitting the back button will break this experiment, and is disabled, hit cancel';
+            'Hitting the back button will break this experiment, and is disabled, hit cancel';
     }
 
     console.log("preparing exam")
