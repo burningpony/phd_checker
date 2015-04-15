@@ -10,7 +10,9 @@
     %p
       Total earnings so far:
     %p
-      %strong= number_to_currency(@total_payment)
+      %strong.earnings
+        = number_to_currency(@total_payment)
     %p Total earnings from round:
     %p
-      %strong= @round_payment_override || number_to_currency(@round_payment)
+      %strong.round_earnings
+        = @round_payment_override || number_to_currency(@round_payment)
