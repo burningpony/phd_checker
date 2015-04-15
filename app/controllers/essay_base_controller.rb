@@ -44,7 +44,7 @@ class EssayBaseController < ApplicationController
     @round = Round.find(params[:round_id])
     @total_responses = @user.responses
     @round_number = (params[:round_number] || 1).to_i
-    @responses_from_round = @user.responses.where(round_number: @round)
+    @responses_from_round = @user.responses.where(round_number: @round_number)
     @time = params[:round_time]
     @completed_in_time = params[:completed_in_time]
   end
