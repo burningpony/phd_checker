@@ -56,6 +56,6 @@ class User < ActiveRecord::Base
   end
 
   def self.counter_part_impact(number_correct, number_wrong)
-    0.15 * number_correct.to_f - 0.05 * number_wrong.to_f
+    (0.15 * number_correct.to_f - 0.05 * number_wrong.to_f).round(5)
   end
 end
