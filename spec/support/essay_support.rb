@@ -1,5 +1,5 @@
 def correct_essay(round, number)
-  sleep 0.5
+  sleep 0.2
   click_link "Essay #{number}"
   within "#essay_#{round}_#{number}" do
     page.all(:css, '.correctme').each do |el|
@@ -20,8 +20,9 @@ def finish_stage
 end
 
 def snapshot_user_page
-  page.execute_script('window.onbeforeunload = null;')
-  page.execute_script('window.onunload = null;')
-  visit user_path(id: User.last.id)
-  screenshot_and_open_image
+  # page.execute_script('window.onbeforeunload = undefined;')
+  # page.execute_script('window.onunload = undefined;')
+
+  # visit user_path(id: User.last.id)
+  # screenshot_and_open_image
 end
