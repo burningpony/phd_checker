@@ -3,7 +3,7 @@ def correct_essay(round, number)
   click_link "Essay #{number}"
   within "#essay_#{round}_#{number}" do
     page.all(:css, '.correctme').each do |el|
-      el.set el[:rel]
+      el.find('input').set el[:rel]
     end
   end
 end
