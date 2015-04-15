@@ -24,10 +24,13 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'rspec-rails', '>= 3.0'
   gem 'rspec-activemodel-mocks'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'timecop'
 end
 
 group :production do
