@@ -195,7 +195,25 @@ jQuery(function() {
           containerId: 'quit-container',
           onShow: function() {
             time = window.elapsed_time_in_seconds
-            window.complete_round
+            $.get(window.path_to_controller + '/score_card', {
+              user_id: window.user.id,
+              round_number: window.round_number,
+              round_time: window.elapsed_time_in_seconds,
+              completed_in_time: window.completed_in_time,
+              round_id: window.round.id,
+            }, function(data) {
+              $('.finished .body').html(data);
+              time = window.elapsed_time_in_seconds
+              $.ajax({
+                type: 'POST',
+                url: "users/complete",
+                data: {
+                  "user_id": window.user.id,
+                  "group": window.group_id,
+                  "time_to_complete": time,
+                }
+              });
+            });
           }
         })
       }, 10)
@@ -213,7 +231,15 @@ jQuery(function() {
             var modal = this;
             // TODO: k you may need to change the url to the score_card
             time = window.elapsed_time_in_seconds
-            window.complete_round
+            $.get(window.path_to_controller + '/score_card', {
+              user_id: window.user.id,
+              round_number: window.round_number,
+              round_time: window.elapsed_time_in_seconds,
+              completed_in_time: window.completed_in_time,
+              round_id: window.round.id,
+            }, function(data) {
+              $('.score_card .body').html(data);
+            });
             $(".done .done_button").click(function() {
               update_round();
               modal.close();
@@ -453,6 +479,7 @@ jQuery(function() {
     window.update_round = function update_round() {
       //update round number
       //Send the time to the backend
+
       window.round_number++;
       window.total_corrections_avaliable = 0;
       window.total_errors_shown = 0;
