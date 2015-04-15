@@ -18,18 +18,28 @@ RSpec.feature "AGames", :type => :feature, js: true do
       expect(subject).to have_content('Total earnings so far:')
 
       within '.earnings' do
-        expect(subject).to have_content('$0.00')
+        expect(subject).to have_content('$1.25')
       end
 
       within '.round_earnings' do
-        expect(subject).to have_content('$0.00')
+        expect(subject).to have_content('$1.25')
       end
     end
 
     correct_essay(2, 3)
     correct_essay(2, 4)
 
-    complete_round
+    complete_round do
+      expect(subject).to have_content('Total earnings so far:')
+
+      within '.earnings' do
+        expect(subject).to have_content('$2.50')
+      end
+
+      within '.round_earnings' do
+        expect(subject).to have_content('$1.25')
+      end
+    end
 
     snapshot_user_page
   end
