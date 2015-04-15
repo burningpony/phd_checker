@@ -21,14 +21,13 @@ jQuery(function() {
         type: 'POST',
         url: "rounds.json",
         data: {
-          "user_id": user_id,
-          "round_number": round_number,
+          "user_id": window.user.id,
+          "round_number": window.round_number,
           "early_exit": true,
           controller: window.path_to_controller
         }
       });
-      return
-            'Hitting the back button will break this experiment, and is disabled, hit cancel';
+      return 'Hitting the back button will break this experiment, and is disabled, hit cancel';
     }
 
     console.log("preparing exam")
