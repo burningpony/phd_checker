@@ -9,7 +9,7 @@ class DController <  EssayBaseController
 
     @total_payment += @total_responses.group(:round_number).count.select { |round, count| count > 9 }.size
 
-    render file: 'essays/score_card.html.haml', layout: false
+    render file: 'essays/score_card', formats: [:html], layout: false
   end
 
   def show_quota_items

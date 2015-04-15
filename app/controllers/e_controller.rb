@@ -5,7 +5,7 @@ class EController <  EssayBaseController
     @total_payment = 2.5 * round_completed_essay
     @round_payment = 2.5 * total_completed_essay
     @name = "E"
-    render file: 'essays/score_card.html.haml', layout: false
+    render file: 'essays/score_card', formats: [:html], layout: false
   end
 
   def show_other_student_actions

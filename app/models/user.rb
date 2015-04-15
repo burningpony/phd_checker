@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
       id: id,
       group: group,
       data_id: participant_id,
-      treatment: rounds.pluck(:name).first.try(:to_i),
-      total_time_taken: rounds.sum(:time_to_complete_in_seconds),
+      treatment: rounds.pluck(:name).compact.first.try(:to_i),
+      total_time_taken: rounds.reduce(0) {|sum, r| r.calculated_time.to_i},
       total_edited: responses.count,
       total_correct: responses.where(correct: true).count,
       total_earned: total_payment,
@@ -32,10 +32,10 @@ class User < ActiveRecord::Base
       round_3_correct: responses.where(round_number: 3, correct: true).count,
       round_4_edit: responses.where(round_number: 4).count,
       round_4_correct: responses.where(round_number: 4, correct: true).count,
-      time_to_complete_round_1: rounds.where(round_number: 1).pluck(:time_to_complete_in_seconds).first,
-      time_to_complete_round_2: rounds.where(round_number: 2).pluck(:time_to_complete_in_seconds).first,
-      time_to_complete_round_3: rounds.where(round_number: 3).pluck(:time_to_complete_in_seconds).first,
-      time_to_complete_round_4: rounds.where(round_number: 4).pluck(:time_to_complete_in_seconds).first,
+      calc_time_to_complete_round_1: rounds.where(round_number: 1).first.try(:calculated_time),
+      calc_time_to_complete_round_2: rounds.where(round_number: 2).first.try(:calculated_time),
+      calc_time_to_complete_round_3: rounds.where(round_number: 3).first.try(:calculated_time),
+      calc_time_to_complete_round_4: rounds.where(round_number: 4).first.try(:calculated_time),
       round_1_earned: rounds.where(round_number: 1).pluck(:round_payment).first,
       round_2_earned: rounds.where(round_number: 2).pluck(:round_payment).first,
       round_3_earned: rounds.where(round_number: 3).pluck(:round_payment).first,
@@ -44,10 +44,10 @@ class User < ActiveRecord::Base
       counter_part_impact_2: round_impact(2),
       counter_part_impact_3: round_impact(3),
       counter_part_impact_4: round_impact(4),
-      finish_round_1_early: rounds.where(round_number: 1).pluck(:completed_in_time).first,
-      finish_round_2_early: rounds.where(round_number: 2).pluck(:completed_in_time).first,
-      finish_round_3_early: rounds.where(round_number: 3).pluck(:completed_in_time).first,
-      finish_round_4_early: rounds.where(round_number: 4).pluck(:completed_in_time).first
+      finish_round_1_early: rounds.where(round_number: 1).pluck(:completed_in_time).first.to_i,
+      finish_round_2_early: rounds.where(round_number: 2).pluck(:completed_in_time).first.to_i,
+      finish_round_3_early: rounds.where(round_number: 3).pluck(:completed_in_time).first.to_i,
+      finish_round_4_early: rounds.where(round_number: 4).pluck(:completed_in_time).first.to_i,
     }
   end
 
@@ -56,6 +56,6 @@ class User < ActiveRecord::Base
   end
 
   def self.counter_part_impact(number_correct, number_wrong)
-    0.15 * number_correct.to_f - 0.05 * number_wrong.to_f
+    (0.15 * number_correct.to_f - 0.05 * number_wrong.to_f).round(5)
   end
 end

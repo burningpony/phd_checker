@@ -8,6 +8,6 @@
 //= require jquery_ujs
 //= require simple_modal
 //= require diff
-//= require save_function
+//= require save_functions
 //= require phd
 //= require_tree .

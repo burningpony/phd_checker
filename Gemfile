@@ -24,10 +24,20 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'rspec-rails', '>= 3.0'
   gem 'rspec-activemodel-mocks'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'timecop'
+  gem 'simplecov', :require => false
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver', '>= 2.35'
+  gem 'poltergeist', github: 'teampoltergeist/poltergeist'
+  gem 'launchy'
 end
 
 group :production do

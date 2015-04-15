@@ -59,3 +59,40 @@ window.send_correction = function( group_id, participant_id, essay_id, field_id,
             }
     } );
 }
+
+window.create_user = function(participant_id, group_id) {
+    if ( window.console ) {
+        console.log( "storing user")
+    }
+    $.ajax({
+      type: 'POST',
+      url: "users.json",
+      data: {
+        "participant_id": participant_id,
+        "group": group_id,
+        controller: window.path_to_controller
+      },
+      success: function(data) {
+        window.user = data.user
+      }
+    });
+
+}
+
+window.start_round = function(round_number, user_id){
+    if ( window.console ) {
+        console.log( "updating round")
+    }
+    $.ajax({
+      type: 'POST',
+      url: "rounds.json",
+      data: {
+        "user_id": user_id,
+        "round_number": round_number,
+        controller: window.path_to_controller
+      },
+      success: function(data) {
+        window.round = data.round
+      }
+    });
+}

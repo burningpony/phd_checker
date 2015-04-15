@@ -26,6 +26,7 @@ PhdChecker::Application.routes.draw do
   match 'users/stats' => 'users#stats'
   resources :users
   root to: 'users#experiments'
+  resources :rounds
 
   # Note: This route will make all actions in
   # every controller accessible via GET requests.
