@@ -16,8 +16,8 @@ describe FController do
 
       post :score_card, form.merge(format: 'json')
 
-      assigns(:total_payment).should be 25
-      assigns(:round_payment).should be 0
+      expect(assigns(:total_payment)).to be 25
+      expect(assigns(:round_payment)).to be 0
       u.reload
       expect(u.total_payment).to eq 25.0
     end
