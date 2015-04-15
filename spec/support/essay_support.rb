@@ -20,9 +20,9 @@ def finish_stage
 end
 
 def snapshot_user_page
-  # page.execute_script('window.onbeforeunload = undefined;')
-  # page.execute_script('window.onunload = undefined;')
+  within_window open_new_window do
 
-  # visit user_path(id: User.last.id)
-  # screenshot_and_open_image
+    visit user_path(id: User.last.id)
+    screenshot_and_open_image
+  end
 end

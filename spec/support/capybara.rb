@@ -37,12 +37,12 @@
   # Resize selenium browser window to avoid Selenium::WebDriver::Error::MoveTargetOutOfBoundsError errors
   RSpec.configure do |config|
     config.before(:each) do
-      page.driver.browser.manage.window.resize_to(1200, 800)  if Capybara.current_driver == :chrome
+      page.driver.browser.manage.window.resize_to(1200, 1200)  if Capybara.current_driver == :chrome
     end
 
     # If on before reload is set, kill it to prevent test state leakage.
     config.after(:each, js: true) do
-      page.execute_script('window.onbeforeunload = null;')
+      page.execute_script('window.onbeforeunload = undefined;')
     end
 
     if ENV['WEBDRIVER'] == 'accessible'
