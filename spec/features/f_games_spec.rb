@@ -11,24 +11,40 @@ RSpec.feature "FGames", :type => :feature, js: true do
     sleep 0.3
     click_link 'Start'
 
-    correct_essay(1)
-    correct_essay(2)
+    correct_essay(1, 1)
+    correct_essay(1, 2)
 
-    click_link 'Finish'
-    click_button 'Confirm'
+    complete_round do
+      expect(subject).to have_content('Total earnings so far:')
+
+      within '.earnings' do
+        expect(subject).to have_content('$25.00')
+      end
+
+      within '.round_earnings' do
+        expect(subject).to have_content('-')
+      end
+    end
+
+    correct_essay(2, 3)
+    correct_essay(2, 4)
+
+    complete_round
+
+    correct_essay(3, 5)
+    correct_essay(3, 6)
+
+    complete_round
+
+    correct_essay(4, 5)
+    correct_essay(4, 6)
+
+    finish_stage
 
     expect(subject).to have_content('Total earnings so far:')
 
-    within '.earnings' do
-      expect(subject).to have_content('$25.00')
-    end
+    click_link 'Prepare this computer for the next trial'
 
-    within '.round_earnings' do
-      expect(subject).to have_content('-')
-    end
-
-    visit user_path(id: User.last.id)
-
-    screenshot_and_open_image
+    snapshot_user_page
   end
 end
