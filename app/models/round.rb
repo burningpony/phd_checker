@@ -1,10 +1,11 @@
 class Round < ActiveRecord::Base
   belongs_to :user
 
+  ##
+  # Number of seconds spent on round
+  # nil if cannot be established
   def calculated_time
-    if end_time == nil || created_at == nil
-      return nil
-    end
-    ((end_time - created_at) * 24 * 60 * 60).to_i
+    return if end_time.nil? || created_at.nil?
+    end_time - created_at
   end
 end
