@@ -96,14 +96,3 @@ window.start_round = function(round_number, user_id){
       }
     });
 }
-
-window.complete_round = function(){
-    $.get(window.path_to_controller + '/score_card', {
-      user_id: window.user.id,
-      round_number: window.round_number,
-      round_time: window.elapsed_time_in_seconds,
-      completed_in_time: window.completed_in_time
-    }, function(data) {
-      $('.body').html(data);
-    });
-}
