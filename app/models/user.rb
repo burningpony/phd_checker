@@ -3,10 +3,11 @@ class User < ActiveRecord::Base
   has_many :responses, dependent: :destroy
   has_many :rounds, dependent: :destroy
   def self.aggregate_analysis(users)
+
     CSV.generate do |csv|
-      csv << User.first.analyze.keys
+      csv << User.new.analyze.keys
       users.sort_by{|u| u.group}.each do |user|
-        csv << user.analyze.values
+        csv << user.analyze.values unless user.empty?
       end
     end
   end
