@@ -1,10 +1,10 @@
 
 selenium_browser = if ENV['SELENIUM_BROWSER'] == 'firefox'
-  :selenium
+                     :selenium
 elsif ENV['WEBDRIVER'] == 'accessible'
-  require 'capybara/accessible'
+                     require 'capybara/accessible'
 elsif ENV['SELENIUM_BROWSER']
-  ENV['SELENIUM_BROWSER'].to_sym
+                     ENV['SELENIUM_BROWSER'].to_sym
 else
   :poltergeist
 end
@@ -35,7 +35,7 @@ Capybara.default_wait_time = 15
 # # Take screenshots when feature specs fail
 require 'capybara-screenshot/rspec'
 Capybara::Screenshot.prune_strategy = :keep_last_run
-Capybara.save_and_open_page_path = "tmp/capybara"
+Capybara.save_and_open_page_path = 'tmp/capybara'
 
 # Resize selenium browser window to avoid Selenium::WebDriver::Error::MoveTargetOutOfBoundsError errors
 RSpec.configure do |config|

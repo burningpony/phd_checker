@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature "AbuseGames", :type => :feature, js: true do
+RSpec.feature 'AbuseGames', type: :feature, js: true do
   subject { page }
 
   scenario 'completes the test with entering no answers' do
@@ -77,7 +77,7 @@ RSpec.feature "AbuseGames", :type => :feature, js: true do
     snapshot_user_page
   end
 
-    scenario 'completes the test with entering no answers' do
+  scenario 'completes the test with entering no answers' do
     visit root_path
     within '#experiment-a' do
       click_link 'Begin'

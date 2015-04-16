@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature "DGames", :type => :feature, js: true do
+RSpec.feature 'DGames', type: :feature, js: true do
   subject { page }
 
   scenario 'plays ?' do
@@ -16,7 +16,7 @@ RSpec.feature "DGames", :type => :feature, js: true do
 
     complete_round do
       pending
-      raise
+      fail
       expect(subject).to have_content('Total earnings so far:')
 
       within '.earnings' do

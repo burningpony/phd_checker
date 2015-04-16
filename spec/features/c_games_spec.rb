@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature "CGames", :type => :feature, js: true do
+RSpec.feature 'CGames', type: :feature, js: true do
   subject { page }
 
   scenario 'plays 0.20 per error' do

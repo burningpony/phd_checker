@@ -10,7 +10,7 @@ describe UsersController do
     @mock_user ||= mock_model(User, stubs)
   end
   describe 'mark completed' do
-    params = {participant_id: 5,  group: 3}
+    params = { participant_id: 5,  group: 3 }
     u = User.new(participant_id: params[:participant_id], group: params[:group])
     it 'sets participant_id' do
       u.save
@@ -54,8 +54,8 @@ describe UsersController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'assigns a newly created user as @user' do
-        allow(User).to receive(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: true) }
-        post :create, user: {:participant_id=>nil, :group=>nil}
+        allow(User).to receive(:new).with(participant_id: nil, group: nil) { mock_user(save: true) }
+        post :create, user: { participant_id: nil, group: nil }
         expect(assigns(:user)).to be(mock_user)
       end
 
@@ -68,8 +68,8 @@ describe UsersController do
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved user as @user' do
-        allow(User).to receive(:new).with({:participant_id=>nil, :group=>nil}) { mock_user(save: false) }
-        post :create, user: {:participant_id=>nil, :group=>nil}
+        allow(User).to receive(:new).with(participant_id: nil, group: nil) { mock_user(save: false) }
+        post :create, user: { participant_id: nil, group: nil }
         expect(assigns(:user)).to be(mock_user)
       end
 
@@ -85,8 +85,8 @@ describe UsersController do
     describe 'with valid params' do
       it 'updates the requested user' do
         allow(User).to receive(:find).with('37') { mock_user }
-        expect(mock_user).to receive(:update_attributes).with({"group"=>nil})
-        put :update, id: '37', user: { "group"=>nil }
+        expect(mock_user).to receive(:update_attributes).with('group' => nil)
+        put :update, id: '37', user: { 'group' => nil }
       end
 
       it 'assigns the requested user as @user' do

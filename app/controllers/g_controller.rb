@@ -9,6 +9,6 @@ class GController < EssayBaseController
     @total_payment = -1
     @round_payment = -1
     render file: 'essays/score_card', formats: [:html], layout: false
-    @name = "G"
+    @name = 'G'
   end
 end

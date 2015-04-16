@@ -10,7 +10,7 @@ gem 'haml-rails'
 gem 'newrelic_rpm'
 gem 'jquery-rails'
 
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'airbrake'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sass-rails', '>= 3.2'
@@ -31,7 +31,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'timecop'
-  gem 'simplecov', :require => false
+  gem 'simplecov', require: false
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'database_cleaner'

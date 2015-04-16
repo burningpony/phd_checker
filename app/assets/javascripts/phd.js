@@ -8,16 +8,17 @@ window.group_id = undefined;
 window.round_number = 1;
 window.total_errors_shown = 0;
 window.total_corrections_avaliable = 0;
-window.completed_in_time = true
+window.completed_in_time = true;
 jQuery(function() {
   if ($(".participant").length > 0) {
     // Setup the back button warning:
     $(window).on('beforeunload', function() {
-      return 'Hitting the back button will break this experiment, and is disabled, hit cancel';
+      return
+        'Hitting the back button will break this experiment, and is disabled, hit cancel';
     });
 
-    $(window).unload( function() {
-        $.ajax({
+    $(window).unload(function() {
+      $.ajax({
         type: 'POST',
         url: "rounds.json",
         data: {
@@ -26,7 +27,7 @@ jQuery(function() {
           "early_exit": true,
           controller: window.path_to_controller
         },
-        async : false
+        async: false
       });
     });
 

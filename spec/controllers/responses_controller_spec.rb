@@ -43,10 +43,10 @@ describe ResponsesController do
   end
 
   describe 'POST create' do
-    before {User.create}
+    before { User.create }
     describe 'with valid params' do
       it 'assigns a newly created response as @response' do
-        allow(Response).to receive(:new).with({"these"=>"params"}, {}) { mock_response(save: true) }
+        allow(Response).to receive(:new).with({ 'these' => 'params' }, {}) { mock_response(save: true) }
         post :create, response: { 'these' => 'params' }, user_id: User.first
         expect(assigns(:response)).to be(mock_response)
       end
@@ -60,7 +60,7 @@ describe ResponsesController do
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved response as @response' do
-        allow(Response).to receive(:new).with({"these"=>"params"}, {}) { mock_response(save: false) }
+        allow(Response).to receive(:new).with({ 'these' => 'params' }, {}) { mock_response(save: false) }
         post :create, response: { 'these' => 'params' }, user_id: User.first
         expect(assigns(:response)).to be(mock_response)
       end

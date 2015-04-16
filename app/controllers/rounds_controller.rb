@@ -9,7 +9,7 @@ class RoundsController < AdminBaseController
 
     respond_to do |format|
       if @round.save
-        format.json {render json: @round.to_json}
+        format.json { render json: @round.to_json }
         format.html { redirect_to(@round, notice: 'Round was successfully created.') }
         format.xml  { render xml: @round, status: :created, location: @round }
       else

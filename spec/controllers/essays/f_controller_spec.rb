@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 describe FController do
-  describe "scorecard with errors" do
+  describe 'scorecard with errors' do
 
-    it "salary with errors" do
+    it 'salary with errors' do
       u = FactoryGirl.create(:user_with_responses, response_count: 5)
-      round = Round.create(       user_id: u.id,
-                                  round_number: 1,
+      round = Round.create(user_id: u.id,
+                           round_number: 1
                                   )
-      form = {user_id: u.id,
-              round_number: 4,
-              round_id: round.id,
-              round_time: 157,
-              completed_in_time: 5}
+      form = { user_id: u.id,
+               round_number: 4,
+               round_id: round.id,
+               round_time: 157,
+               completed_in_time: 5 }
 
       post :score_card, form.merge(format: 'json')
 

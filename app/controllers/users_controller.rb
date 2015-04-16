@@ -72,7 +72,7 @@ class UsersController < AdminBaseController
     respond_to do |format|
       if @user.save
 
-        format.json {render json: @user.to_json}
+        format.json { render json: @user.to_json }
         format.html { redirect_to(@user, notice: 'User was successfully created.') }
         format.xml  { render xml: @user, status: :created, location: @user }
       else

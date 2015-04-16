@@ -1,6 +1,6 @@
 class EssayBaseController < ApplicationController
-  before_filter :instance_variable_setup, :only => [:score_card]
-  after_filter :record_data, :only => [:score_card]
+  before_filter :instance_variable_setup, only: [:score_card]
+  after_filter :record_data, only: [:score_card]
 
   def index
     @essays = []
@@ -8,11 +8,11 @@ class EssayBaseController < ApplicationController
     Dir.foreach(view_directory).each do |view|
       if view.match(/(\d\d*)/)
         essay = view[/.*(?=\..+$)/][/.*(?=\..+$)/]
-        essay_data = essay.split("_")
-        @essays << {essay: essay_data[1].to_i, round: essay_data[0].to_i }
+        essay_data = essay.split('_')
+        @essays << { essay: essay_data[1].to_i, round: essay_data[0].to_i }
       end
     end
-    @essays = @essays.sort{|a, b|  a[:essay] <=> b[:essay]}
+    @essays = @essays.sort { |a, b|  a[:essay] <=> b[:essay] }
 
     render file: 'essays/index', layout: 'default'
   end
@@ -51,6 +51,6 @@ class EssayBaseController < ApplicationController
 
   def record_data
     @user.update_attributes(total_payment: @total_payment)
-    @round.update_attributes(user_id: @user.id, round_number: @round_number, treatment: self.class.to_s.gsub("Controller", ""), running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time, early_exit: false, end_time: DateTime.now)
+    @round.update_attributes(user_id: @user.id, round_number: @round_number, treatment: self.class.to_s.gsub('Controller', ''), running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time, early_exit: false, end_time: DateTime.now)
   end
 end

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     return if users.empty?
     CSV.generate do |csv|
       csv << User.new.analyze.keys
-      users.sort_by{|u| u.group}.each do |user|
+      users.sort_by(&:group).each do |user|
         csv << user.analyze.values
       end
     end
@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
       group: group,
       data_id: participant_id,
       treatment: rounds.pluck(:name).compact.first.try(:to_i),
-      total_time_taken: rounds.reduce(0) {|sum, r| r.calculated_time.to_i},
+      total_time_taken: rounds.reduce(0) { |_sum, r| r.calculated_time.to_i },
       total_edited: responses.count,
       total_correct: responses.where(correct: true).count,
       total_earned: total_payment,
-      cumulative_impact: User.counter_part_impact(responses.where(correct: true).count,responses.where(correct: false).count),
+      cumulative_impact: User.counter_part_impact(responses.where(correct: true).count, responses.where(correct: false).count),
       finished_early: rounds.where(completed_in_time: true).present?.to_i,
       created_at: created_at,
       round_1_edit: responses.where(round_number: 1).count,
@@ -48,12 +48,12 @@ class User < ActiveRecord::Base
       finish_round_1_early: rounds.where(round_number: 1).pluck(:completed_in_time).first.to_i,
       finish_round_2_early: rounds.where(round_number: 2).pluck(:completed_in_time).first.to_i,
       finish_round_3_early: rounds.where(round_number: 3).pluck(:completed_in_time).first.to_i,
-      finish_round_4_early: rounds.where(round_number: 4).pluck(:completed_in_time).first.to_i,
+      finish_round_4_early: rounds.where(round_number: 4).pluck(:completed_in_time).first.to_i
     }
   end
 
   def round_impact(round)
-    User.counter_part_impact( responses.where(round_number: round, correct: true).count, responses.where(round_number: round, correct: false).count)
+    User.counter_part_impact(responses.where(round_number: round, correct: true).count, responses.where(round_number: round, correct: false).count)
   end
 
   def self.counter_part_impact(number_correct, number_wrong)
