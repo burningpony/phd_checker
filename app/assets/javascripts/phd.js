@@ -13,8 +13,7 @@ jQuery(function() {
   if ($(".participant").length > 0) {
     // Setup the back button warning:
     $(window).on('beforeunload', function() {
-      return
-        'Hitting the back button will break this experiment, and is disabled, hit cancel';
+      return 'Hitting the back button will break this experiment, and is disabled, hit cancel';
     });
 
     $(window).unload(function() {
