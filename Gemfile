@@ -17,6 +17,8 @@ gem 'sass-rails', '>= 3.2'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'puma'
+gem 'rails-assets-airbrake-js', source: 'https://rails-assets.org'
+gem 'rails-assets-store.js', source: 'https://rails-assets.org'
 
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
