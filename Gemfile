@@ -19,6 +19,7 @@ gem 'will_paginate-bootstrap'
 gem 'puma'
 gem 'rails-assets-airbrake-js', source: 'https://rails-assets.org'
 gem 'rails-assets-store.js', source: 'https://rails-assets.org'
+gem 'coffee-rails'
 
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
