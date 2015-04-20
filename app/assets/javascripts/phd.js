@@ -90,8 +90,7 @@ jQuery(function() {
       reset_essay_links()
       $(".round").html("Round " + window.round_number);
       $('.instructions').modal({
-        close: true,
-        overlayClose: true,
+        escClose: false,
         overlayId: 'instructions-overlay',
         containerId: 'instructions-container',
         onClose: function() {
@@ -109,7 +108,7 @@ jQuery(function() {
         },
         onShow: function() {
           var modal = this;
-          $("#instructions-container").click(function() {
+          $(".simplemodal-close").click(function() {
             if (!timer_started) {
               window.start_timer();
               timer_started = true;
@@ -123,11 +122,6 @@ jQuery(function() {
         }
       });
     }
-    $(".show_instructions").click(function(event) {
-      event.stopPropagation();
-      show_instructions();
-      return false;
-    });
     $(".quit").click(function(event) {
       event.stopPropagation();
       $('.confirm_quit').modal({

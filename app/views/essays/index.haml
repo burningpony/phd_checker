@@ -45,7 +45,7 @@
     .instruction_body
         %p
             Please wait for further instructions.
-            %a.btn.btn-lg.btn-block.btn-success{href: '#'}
+            %a.btn.btn-lg.btn-block.btn-success.simplemodal-close{href: '#' }
                 Start
 
 -# shown prompting us to finish or not, when we click finish
@@ -77,7 +77,7 @@
         =link_to "Prepare this computer for the next trial", root_path, class: ""
 
 .other_participants
-    -# this will get filled in with data from russell
+    -# injected
     .body
 
     .button
@@ -88,15 +88,6 @@
             .menu
                 .well.well-sm
                     %ul.nav.nav-pills.nav-stacked
-                        / %li
-
-                        /     %a{:href=> '#', :class=>'show_instructions'}
-                        /         Instructions
-                        / %li
-
-                        /     %a{:href=> '#', :class=>'practice_essay_link'}
-                        /         Practice
-
                         -@essays.each_with_index do |essay, i|
                             %li
 
