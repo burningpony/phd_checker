@@ -11,8 +11,9 @@ RSpec.feature 'FGames', type: :feature, js: true do
     sleep 0.3
     click_link 'Start'
 
-    correct_essay(1, 1)
-    correct_essay(1, 2)
+    (1..2).each do |i|
+      correct_essay(1, i)
+    end
 
     complete_round do
       expect(subject).to have_content('Total earnings so far:')
@@ -46,5 +47,6 @@ RSpec.feature 'FGames', type: :feature, js: true do
     click_link 'Prepare this computer for the next trial'
 
     snapshot_user_page
+    verify_responses
   end
 end

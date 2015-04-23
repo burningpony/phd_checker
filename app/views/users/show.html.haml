@@ -43,9 +43,9 @@
         -Response.column_names.each do |v|
           %td=v.titleize
     -@user.responses.each do |response|
-      %tr
-        -response.attributes.values.each do |v|
-          %td=v
+      %tr.response
+        -response.attributes.each do |k,v|
+          %td{class: k}=v
 
 .actions
   = link_to fa_icon("pencil") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_user_path(@user), :class => "btn btn-default"
