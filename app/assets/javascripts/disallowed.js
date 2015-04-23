@@ -7,7 +7,7 @@ jQuery(function() {
     });
     // Disable f5 key from reloading the pag
     function disableF5(e) {
-        if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault();
+        if ((e.which || e.keyCode) == 116 ) e.preventDefault();
     };
 
     $(document).ready(function() {
