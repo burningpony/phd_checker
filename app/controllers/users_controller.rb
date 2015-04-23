@@ -24,7 +24,7 @@ class UsersController < AdminBaseController
     @experiments = {
       a: '$0.625 per essay',
       # b: '$2.50 plus bonus',
-      c: '$0.20 per error',
+      c: '$0.20 per edit',
       # d: '$0.45 + bonus',
       # e: '',
       f: '$25 Total'
