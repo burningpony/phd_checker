@@ -5,6 +5,12 @@ class Response < ActiveRecord::Base
   scope :incorrect, where(correct: false)
   scope :correct, where(correct: true)
 
+   before_validation :set_correct
+
+  def set_correct
+    assign_attributes(correct: correct_answer == corrected)
+  end
+
   def self.raw_csv(responses)
     CSV.generate do |csv|
       # header row
