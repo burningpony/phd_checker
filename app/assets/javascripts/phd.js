@@ -291,14 +291,16 @@ jQuery(function() {
     var cached_essays = {}
     $('.essay_link').click(function(event) {
       event.stopPropagation();
+      //set essay variables
       var essay_number = $(this).attr('data-essay')
       var essay_round_id = $(this).attr('data-round') + "_" + $(this).attr(
         'data-essay')
       var essay_id = "#essay_" + essay_round_id;
+      //remove active from all essay links
       $('.essay_link').each(function() {
         $(this).parents('li').removeClass("active");
       });
-      // when clicked give it state of active
+      // give this essay link status of active
       $(this).parents('li').addClass("active");
       // hide all content
       $('.content').hide()
@@ -425,18 +427,13 @@ jQuery(function() {
         $(essay_id + " span.correctme").each(function() {
           if ($(this).attr("rel") != $(this).text()) {
             errors++;
-            //console.log("Error", $(this).attr("rel"), $(this).text(), ($(this).attr("rel") != $(this).text()));
           }
           generate_box(this);
         });
-        // console.log("correctme boxes", $(essay_id + " span.correctme").length);
-        // console.log("errors detected", errors);
         window.total_corrections_avaliable += $(essay_id +
           " span.correctme").length;
         window.total_errors_shown += errors;
-        // console.log("Total boxes", window.total_corrections_avaliable);
-        // console.log("Total errors detected", window.total_errors_shown);
-        $(essay_id + " h2").html("Essay " + essay_number); // + ": Contains "+ errors + " Errors");
+        $(essay_id + " h2").html("Essay " + essay_number);
       }
       // timer related functions and variables
     var timer = null;
