@@ -283,35 +283,40 @@ jQuery(function() {
     //TODO: have a way to do the handler
     // add click handlers for all the individual essays
     var cached_essays = {}
+    window.essay_loading = false;
     $('.essay_link').click(function(event) {
       event.stopPropagation();
-      var essay_number = $(this).attr('data-essay')
-      var essay_round_id = $(this).attr('data-round') + "_" + $(this).attr(
-        'data-essay')
-      var essay_id = "#essay_" + essay_round_id;
-      $('.essay_link').each(function() {
-        $(this).parents('li').removeClass("active");
-      });
-      // when clicked give it state of active
-      $(this).parents('li').addClass("active");
-      // hide all content
-      $('.content').hide()
-      $(".essay_content").hide();
-      if (cached_essays[essay_id]) {
-        $(essay_id).show();
-        $('.content').show()
-        window.essay_id = essay_id;
-      } else {
-        $.get('/essay_base/show/' + essay_round_id, function(data) {
-          $('.content').append(data);
-          cached_essays[essay_id] = true;
-          // process the div
-          attach_event_handlers_to_essay(essay_id, essay_number);
-          window.essay_id = essay_id;
-          $(essay_id).show();
-          $('.content').show();
+      if (window.essay_loading == false ) {
+        window.essay_loading = true;
+        var essay_number = $(this).attr('data-essay')
+        var essay_round_id = $(this).attr('data-round') + "_" + $(this).attr(
+          'data-essay')
+        var essay_id = "#essay_" + essay_round_id;
+        $('.essay_link').each(function() {
+          $(this).parents('li').removeClass("active");
         });
-      }
+        // when clicked give it state of active
+        $(this).parents('li').addClass("active");
+        // hide all content
+        $('.content').hide()
+        $(".essay_content").hide();
+        if (cached_essays[essay_id]) {
+          $(essay_id).show();
+          $('.content').show()
+          window.essay_id = essay_id;
+          window.essay_loading = false
+        } else {
+          $.get('/essay_base/show/' + essay_round_id, function(data) {
+            $('.content').append(data);
+            cached_essays[essay_id] = true;
+            // process the div
+            attach_event_handlers_to_essay(essay_id, essay_number);
+            window.essay_id = essay_id;
+            $(essay_id).show();
+            $('.content').show();
+          }).success(function(d){ window.essay_loading = false });
+        }
+    };
     });
 
     function generate_box(span) {
