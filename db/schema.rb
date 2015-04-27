@@ -11,48 +11,48 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_150_414_221_817) do
+ActiveRecord::Schema.define(:version => 20150414221817) do
 
-  create_table 'responses', force: true do |t|
-    t.integer 'user_id'
-    t.string 'error'
-    t.string 'essay'
-    t.boolean 'correct'
-    t.string 'corrected'
-    t.string 'uncorrected'
-    t.datetime 'created_at',     null: false
-    t.datetime 'updated_at',     null: false
-    t.boolean 'quota'
-    t.string 'correct_answer'
-    t.integer 'round_number'
-    t.string 'controller'
+  create_table "responses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "error"
+    t.string   "essay"
+    t.boolean  "correct"
+    t.string   "corrected"
+    t.string   "uncorrected"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.boolean  "quota"
+    t.string   "correct_answer"
+    t.integer  "round_number"
+    t.string   "controller"
   end
 
-  create_table 'rounds', force: true do |t|
-    t.integer 'user_id'
-    t.integer 'time_to_complete_in_seconds'
-    t.string 'name'
-    t.string 'treatment'
-    t.integer 'round_number'
-    t.float 'running_total_payment'
-    t.float 'round_payment'
-    t.datetime 'created_at',                                     null: false
-    t.datetime 'updated_at',                                     null: false
-    t.boolean 'completed_in_time',           default: false
-    t.datetime 'end_time'
-    t.boolean 'early_exit'
+  create_table "rounds", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "time_to_complete_in_seconds"
+    t.string   "name"
+    t.string   "treatment"
+    t.integer  "round_number"
+    t.float    "running_total_payment"
+    t.float    "round_payment"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.boolean  "completed_in_time",           :default => false
+    t.datetime "end_time"
+    t.boolean  "early_exit"
   end
 
-  add_index 'rounds', ['user_id'], name: 'index_rounds_on_user_id'
+  add_index "rounds", ["user_id"], :name => "index_rounds_on_user_id"
 
-  create_table 'users', force: true do |t|
-    t.string 'name'
-    t.datetime 'created_at',                        null: false
-    t.datetime 'updated_at',                        null: false
-    t.string 'group'
-    t.string 'time_to_complete'
-    t.string 'participant_id'
-    t.float 'total_payment',    default: 0.0
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "group"
+    t.string   "time_to_complete"
+    t.string   "participant_id"
+    t.float    "total_payment",    :default => 0.0
   end
 
 end
