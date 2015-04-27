@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.feature 'CGames', type: :feature, js: true do
   subject { page }
   before do
-    setup_counts
+    setup_test_counts
   end
   scenario 'plays 0.20 per error' do
     visit c_index_path
