@@ -2,7 +2,9 @@ require 'spec_helper'
 
 RSpec.feature 'BGames', type: :feature, js: true do
   subject { page }
-
+  before do
+    setup_test_counts
+  end
   scenario 'plays ?' do
     visit b_index_path
     fill_in :participant_id, with: 100
