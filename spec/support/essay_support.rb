@@ -1,18 +1,25 @@
 def correct_essay(round, number, get_it_right: true)
 
-  sleep 0.5
+  uncorrected_answers = {}
   click_link "Essay #{number}"
   within "#essay_#{round}_#{number}" do
     # loop through and count things
     page.all(:css, '.correctme').each do |el|
       correct_value = el['rel']
-      uncorrected_value = el.find('input').value.dup
+      uncorrected_value = el.find('input').value.to_s.dup
+      uncorrected_answers[el['id']] = uncorrected_value
+
       @error_count += 1 if correct_value != uncorrected_value
       @r_count += 1 if correct_value != uncorrected_value && correct_value =~ /[rR]/
+    end
 
-      # empty all fields
-      page.execute_script "$('.correctme input').val('')"
+    # empty all fields
+    page.execute_script "$('.correctme input').val('')"
+
+    page.all(:css, '.correctme').each do |el|
       # expect(uncorrected_value).to eq('')
+      correct_value = el['rel']
+      uncorrected_value = uncorrected_answers[el['id']]
       expect( el.find('input').value ).to eq('')
 
       if get_it_right
