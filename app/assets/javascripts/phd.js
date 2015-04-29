@@ -492,8 +492,10 @@ jQuery(function() {
       get_first_essay();
       seconds = 0;
       window.elapsed_time_in_seconds = seconds;
-      window.start_round(window.round_number, window.user.id)
-      window.start_timer();
+      window.start_round(window.round_number, window.user.id).success(function (){
+        window.start_timer();
+      })
+
     };
   }
   // Handler for .ready() called.
