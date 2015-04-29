@@ -13,14 +13,17 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'airbrake'
 gem 'bootstrap-sass', '~> 3.3.3'
-gem 'sass-rails', '>= 3.2'
-gem 'uglifier'
+gem 'sass-rails', '~> 5.0'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.1.0'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'puma'
 gem 'rails-assets-airbrake-js', source: 'https://rails-assets.org'
 gem 'rails-assets-store.js', source: 'https://rails-assets.org'
-gem 'coffee-rails'
+
 
 group :development, :test do
   gem 'web-app-theme', '>= 0.6.2'
