@@ -63,7 +63,7 @@ window.create_user = function(participant_id, group_id) {
     if ( window.console ) {
         console.log( "storing user")
     }
-    $.ajax({
+    return $.ajax({
       type: 'POST',
       url: "users.json",
       data: {

@@ -59,11 +59,10 @@ jQuery(function() {
             modal.close();
 
             //create user
-            create_user(window.participant_id, window.group_id)
-
-            setTimeout(function() {
+            create_user(window.participant_id, window.group_id).success(function() {
               window.show_instructions();
-            }, 10);
+            })
+
           } else {
             var error =
               "You must enter a valid group id and participant id"
