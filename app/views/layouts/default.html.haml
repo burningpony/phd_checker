@@ -9,7 +9,6 @@
     = stylesheet_link_tag("application", :media => "all")
     = stylesheet_link_tag("cover", :media => "all")
     = javascript_include_tag(:application)
-    = javascript_include_tag 'airbrake-js/airbrake-shim.js', data: { 'airbrake-project-id'=> ENV['AIRBRAKE_JS_KEY'], 'airbrake-project-key'=> ENV['AIRBRAKE_JS_KEY'], 'airbrake-environment-name'=>Rails.env, 'airbrake-host'=>"https://#{Airbrake.configuration.host}"}
 
     = csrf_meta_tag
   %body
