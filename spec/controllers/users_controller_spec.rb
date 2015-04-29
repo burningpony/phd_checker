@@ -15,8 +15,8 @@ describe UsersController do
     it 'sets participant_id' do
       u.save
       expect(u.id).to_not eq nil
-      expect(u.participant_id).to eq 5
-      expect(u.group).to eq 3
+      expect(u.participant_id).to eq "5" #is a string
+      expect(u.group).to eq "3"
     end
   end
   describe 'GET index' do
