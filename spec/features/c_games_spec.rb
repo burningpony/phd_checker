@@ -7,8 +7,8 @@ RSpec.feature 'CGames', type: :feature, js: true do
   end
   scenario 'plays 0.20 per error' do
     visit c_index_path
-    fill_in :participant_id, with: 100
-    fill_in :group_id, with: 400
+    fill_in :participant_id, with: random_number
+    fill_in :group_id, with: random_number
     click_button 'start'
     sleep 0.3
     click_link 'Start'

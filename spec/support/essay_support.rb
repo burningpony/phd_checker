@@ -2,6 +2,7 @@ def correct_essay(round, number, get_it_right: true)
 
   uncorrected_answers = {}
   click_link "Essay #{number}"
+  sleep 0.3
   within "#essay_#{round}_#{number}" do
     # loop through and count things
     page.all(:css, '.correctme').each do |el|
@@ -57,11 +58,15 @@ end
 
 def snapshot_user_page
   within_window open_new_window do
-
+    page.driver.resize(2000, 900)
     visit user_path(id: User.last.id)
     verify_responses
     screenshot_and_open_image
   end
+end
+
+def random_number
+  "0000" + Random.rand(100..9999).to_s
 end
 
 def setup_test_counts
