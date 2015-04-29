@@ -143,6 +143,14 @@ a.modalCloseImg {
 }
 
 #spinner {
-    text-align: center;
-    color: white;
+  position: absolute; /* fixed not supported by IE */
+  top: -15px;
+  left: 40%;
+  width: 20%;
+  text-align: center;
+  padding: 2em;
+  z-index: 100;
+  filter: alpha(opacity=80);
+  opacity: 0.8;
+  color:white;
 }
