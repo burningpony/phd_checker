@@ -3,10 +3,10 @@ class Response < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user_id
   validates :corrected, length: {maximum: 100}
-  scope :incorrect, where(correct: false)
-  scope :correct, where(correct: true)
+  scope :incorrect, -> {where(correct: false)}
+  scope :correct, -> {where(correct: true)}
 
-   before_validation :set_correct
+  before_validation :set_correct
 
   def set_correct
     assign_attributes(correct: correct_answer == corrected)
