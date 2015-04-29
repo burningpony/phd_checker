@@ -32,16 +32,10 @@ build:
     after-steps:
         - wantedly/pretty-slack-notify:
             team: burningpony
-            token: $SLACK_TOKEN
             channel: dev
             username: wercker
             icon_url: https://avatars3.githubusercontent.com/u/1695193?s=140
             webhook_url: $SLACK_WEBHOOK_URL
-        - s3sync:
-            key_id: $AWS_ACCESS_KEY_ID
-            key_secret: $AWS_SECRET_ACCESS_KEY
-            bucket_url: $AWS_BUCKET_URL
-            source_dir: "tmp/capybara/"
 deploy:
     steps:
         - heroku-deploy:
