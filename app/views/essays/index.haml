@@ -53,8 +53,9 @@
     .well
         .h4
             Are you sure you want to continue to next phase?
-    %input{:type=> 'button', :value => 'Cancel', :class => 'btn btn-default cancel_button'}
-    %input{:type=> 'button', :value => 'Confirm', :class => 'btn btn-default btn-success quit_button'}
+
+    %input{:type=> 'button', :value => 'Confirm', :class => 'btn btn-block btn-success quit_button'}
+    %input{:type=> 'button', :value => 'Cancel', :class => 'btn btn-block btn-default cancel_button'}
 .score_card
     .msg
 
@@ -62,7 +63,7 @@
 
     .done
         -#finish viewing score card
-        %input{:type=> 'button', :value => 'Done', :class => 'btn btn-default btn-primary done_button'}
+        %input{:type=> 'button', :value => 'Done', :class => 'btn btn-block btn-primary done_button'}
 -# shown after we are completely finished
 .finished
     -# note when this loads, turn off the unload handler

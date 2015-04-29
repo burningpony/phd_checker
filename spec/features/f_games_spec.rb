@@ -30,17 +30,20 @@ RSpec.feature 'FGames', type: :feature, js: true do
       end
     end
 
+    expect(page).to have_content('Round 2')
+
     (1..10).each do |i|
       correct_essay(2, i)
     end
 
     complete_round
-
+    expect(page).to have_content('Round 3')
     (1..10).each do |i|
       correct_essay(3, i)
     end
 
     complete_round
+    expect(page).to have_content('Round 4')
 
     (1..10).each do |i|
       correct_essay(4, i)
