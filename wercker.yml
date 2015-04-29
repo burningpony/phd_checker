@@ -1,4 +1,4 @@
-box: wercker/ruby
+box: wercker/rvm
 services:
   - wercker/postgresql
 build:
