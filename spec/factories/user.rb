@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :user do
-    name 'King Sam'
+    # name 'King Sam'
     group 1
     time_to_complete 427
     participant_id 1
