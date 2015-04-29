@@ -1,20 +1,20 @@
 namespace :data do
   task :repair do
     responses = Response.where(correct: false, 'users.group' => '008').all(include: :user)
-    puts responses.count.to_s + " incorrect"
+    puts responses.count.to_s + ' incorrect'
     corrected_answers = 0
     responses.each do |r|
       unless r.correct_answer.length != r.corrected.length
         if sub_compare(r.corrected, r.correct_answer, 's', 'r')
-          corrected_answers+= 1
-          puts("response was: " + r.corrected.to_s)
+          corrected_answers += 1
+          puts('response was: ' + r.corrected.to_s)
           r.update_attributes(corrected: r.correct_answer, correct: true)
-          puts("corrected_to: " + r.correct_answer.to_s + "\n")
+          puts('corrected_to: ' + r.correct_answer.to_s + "\n")
 
         end
       end
     end
-    puts corrected_answers.to_s + " corrected"
+    puts corrected_answers.to_s + ' corrected'
   end
 
   def sub_compare(corrected, answer, sub_letter, correct_letter)

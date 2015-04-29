@@ -2,9 +2,9 @@ class Response < ActiveRecord::Base
   require 'csv'
   belongs_to :user
   validates :user_id, presence: true
-  validates :corrected, length: {maximum: 100}
-  scope :incorrect, -> {where(correct: false)}
-  scope :correct, -> {where(correct: true)}
+  validates :corrected, length: { maximum: 100 }
+  scope :incorrect, -> { where(correct: false) }
+  scope :correct, -> { where(correct: true) }
 
   before_validation :set_correct
 

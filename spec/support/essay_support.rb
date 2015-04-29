@@ -1,5 +1,4 @@
 def correct_essay(round, number, get_it_right: true)
-
   uncorrected_answers = {}
   click_link "Essay #{number}"
   sleep 0.3
@@ -21,22 +20,21 @@ def correct_essay(round, number, get_it_right: true)
       # expect(uncorrected_value).to eq('')
       correct_value = el['rel']
       uncorrected_value = uncorrected_answers[el['id']]
-      expect( el.find('input').value ).to eq('')
+      expect(el.find('input').value).to eq('')
 
       if get_it_right
-        el.find('input').native.send_keys( *correct_value )
+        el.find('input').native.send_keys(*correct_value)
         expect(el.find('input').value).to eq correct_value
       else
-        el.find('input').native.send_keys( *uncorrected_value )
+        el.find('input').native.send_keys(*uncorrected_value)
         expect(el.find('input').value).to eq uncorrected_value
         script = "$('#{el['id'].strip}').trigger('change');"
-        page.execute_script(script);
+        page.execute_script(script)
       end
 
     end
     @q_count += page.all(:css, '.correctme').size
   end
-
 end
 
 def complete_round(&block)
@@ -66,7 +64,7 @@ def snapshot_user_page
 end
 
 def random_number
-  "0000" + Random.rand(100..9999).to_s
+  '0000' + Random.rand(100..9999).to_s
 end
 
 def setup_test_counts
