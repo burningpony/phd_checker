@@ -59,7 +59,7 @@ def snapshot_user_page
     page.driver.resize(2000, 900)
     visit user_path(id: User.last.id)
     verify_responses
-    screenshot_and_open_image
+    # screenshot_and_open_image
   end
 end
 
