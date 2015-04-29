@@ -9,50 +9,52 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150414221817) do
+ActiveRecord::Schema.define(version: 20150429144006) do
 
-  create_table "responses", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "error"
-    t.string   "essay"
+    t.string   "error",          limit: 255
+    t.string   "essay",          limit: 255
     t.boolean  "correct"
-    t.string   "corrected"
-    t.string   "uncorrected"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "corrected",      limit: 255
+    t.string   "uncorrected",    limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.boolean  "quota"
-    t.string   "correct_answer"
+    t.string   "correct_answer", limit: 255
     t.integer  "round_number"
-    t.string   "controller"
+    t.string   "controller",     limit: 255
   end
 
-  create_table "rounds", :force => true do |t|
+  create_table "rounds", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "time_to_complete_in_seconds"
-    t.string   "name"
-    t.string   "treatment"
+    t.string   "name",                        limit: 255
+    t.string   "treatment",                   limit: 255
     t.integer  "round_number"
     t.float    "running_total_payment"
     t.float    "round_payment"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.boolean  "completed_in_time",           :default => false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.boolean  "completed_in_time",                       default: false
     t.datetime "end_time"
     t.boolean  "early_exit"
   end
 
-  add_index "rounds", ["user_id"], :name => "index_rounds_on_user_id"
+  add_index "rounds", ["user_id"], name: "index_rounds_on_user_id", using: :btree
 
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.string   "group"
-    t.string   "time_to_complete"
-    t.string   "participant_id"
-    t.float    "total_payment",    :default => 0.0
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "group",            limit: 255
+    t.string   "time_to_complete", limit: 255
+    t.string   "participant_id",   limit: 255
+    t.float    "total_payment",                default: 0.0
   end
 
 end
