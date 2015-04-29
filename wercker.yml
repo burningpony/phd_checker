@@ -1,6 +1,6 @@
-box: wercker/rvm
+box: wercker/ruby
 services:
-    - wercker/postgresql9.2
+  - wercker/postgresql
 build:
     steps:
         - script:
