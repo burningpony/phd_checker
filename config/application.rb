@@ -35,9 +35,14 @@ module PhdChecker
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    config.assets.initialize_on_precompile = false
-    config.assets.enabled = true
 
+    # Enable the asset pipeline
+    config.assets.enabled = true
+    config.assets.digest = true
+    config.assets.initialize_on_precompile = false
     config.assets.version = '1.0'
+
+    # Turn off strong params
+    config.action_controller.permit_all_parameters = true
   end
 end
