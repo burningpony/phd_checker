@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
-ruby '2.1.5'
-gem 'rails', '3.2.21'
+ruby '2.2.2'
+gem 'rails', '4.2.1'
 
 gem 'pg'
 gem 'heroku'
