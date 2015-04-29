@@ -12,3 +12,13 @@
 //= require phd
 //= require disallowed
 //= require_tree .
+
+jQuery.ajaxSetup({
+  beforeSend: function(xhr) {
+    $('#spinner').removeClass('hide');
+  },
+  // runs after AJAX requests complete, successfully or not
+  complete: function(xhr, status){
+    $('#spinner').addClass('hide');
+  }
+});

@@ -305,15 +305,20 @@ jQuery(function() {
           window.essay_id = essay_id;
           window.essay_loading = false
         } else {
-          $.get('/essay_base/show/' + essay_round_id, function(data) {
-            $('.content').append(data);
-            cached_essays[essay_id] = true;
-            // process the div
-            attach_event_handlers_to_essay(essay_id, essay_number);
-            window.essay_id = essay_id;
-            $(essay_id).show();
-            $('.content').show();
-          }).success(function(d){ window.essay_loading = false });
+          $.ajax({
+              type: 'GET',
+              url: '/essay_base/show/' + essay_round_id,
+          }).success(function(data) {
+              $('.content').append(data);
+              cached_essays[essay_id] = true;
+              // process the div
+              attach_event_handlers_to_essay(essay_id, essay_number);
+              window.essay_id = essay_id;
+              $(essay_id).show();
+              $('.content').show();
+              window.essay_loading = false;
+          });
+
         }
     };
     });

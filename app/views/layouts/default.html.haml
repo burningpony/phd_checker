@@ -13,9 +13,10 @@
     = csrf_meta_tag
   %body
     .vignette
-
     .cover-container
       .inner.cover
+        #spinner.hide
+          =fa_icon('circle-o-notch spin 4x')
         =yield
 :javascript
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
