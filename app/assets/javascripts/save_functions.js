@@ -29,7 +29,7 @@ window.send_correction = function( group_id, participant_id, essay_id, field_id,
     };
 
     if ( window.console ) {
-        console.log( "storing data:", params )
+        console.log( "storing data:", JSON.stringify(params) )
     }
 
     var str = jQuery.param( params );
@@ -41,7 +41,7 @@ window.send_correction = function( group_id, participant_id, essay_id, field_id,
             error: function( data ) {
 
                 window.stop_timer();
-                console.log( 'fail', data )
+                console.log( 'fail', JSON.stringify(data) )
                 $( ".error-modal" ).modal( {
                     close: false,
                     overlayId: 'simplemodal-overlay',
@@ -72,7 +72,7 @@ window.create_user = function(participant_id, group_id) {
         controller: window.path_to_controller
       },
       success: function(data) {
-        window.user = data.user
+        window.user = data
       }
     });
 
@@ -91,7 +91,7 @@ window.start_round = function(round_number, user_id){
         controller: window.path_to_controller
       },
       success: function(data) {
-        window.round = data.round
+        window.round = data
       }
     });
 }
