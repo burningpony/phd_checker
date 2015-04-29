@@ -90,6 +90,8 @@ jQuery(function() {
       $(".round").html("Round " + window.round_number);
       $('.instructions').modal({
         escClose: false,
+        close: false,
+        overlayClose: false,
         overlayId: 'instructions-overlay',
         containerId: 'instructions-container',
         onClose: function() {
