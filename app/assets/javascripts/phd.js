@@ -80,7 +80,7 @@ jQuery(function() {
         'hide');
     }
     window.get_first_essay = function() {
-        $('.essay_link[data-round="' + window.round_number + '"]')[0].click();
+        $('.essay_link[data-round="' + window.round_number + '"]:first-child').click();
       }
       // Add instructions
     window.show_instructions = function() {
