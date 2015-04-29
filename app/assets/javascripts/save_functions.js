@@ -72,7 +72,7 @@ window.create_user = function(participant_id, group_id) {
         controller: window.path_to_controller
       },
       success: function(data) {
-        window.user = data
+        window.user = data.user
       }
     });
 
@@ -82,7 +82,7 @@ window.start_round = function(round_number, user_id){
     if ( window.console ) {
         console.log( "updating round")
     }
-    $.ajax({
+    return $.ajax({
       type: 'POST',
       url: "rounds.json",
       data: {
@@ -91,7 +91,7 @@ window.start_round = function(round_number, user_id){
         controller: window.path_to_controller
       },
       success: function(data) {
-        window.round = data
+        window.round = data.round
       }
     });
 }
