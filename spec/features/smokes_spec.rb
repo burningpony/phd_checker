@@ -12,8 +12,8 @@ RSpec.feature 'Smokes', type: :feature, js: true, smoke: true do
 
   it 'plays salary' do
     visit f_index_path
-    fill_in :participant_id, with: '0000' + Random.rand(100..9999).to_s
-    fill_in :group_id, with: '0000' + Random.rand(100..9999).to_s
+    fill_in :participant_id, with: random_number
+    fill_in :group_id, with: random_number
     click_button 'start'
     sleep 0.3
     click_link 'Start'
