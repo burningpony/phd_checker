@@ -3,10 +3,12 @@
 .row
   -@experiments.each_slice(3) do |experiments|
     .row
-      - experiments.each do |experiment, description|
+      - experiments.each_with_index do |(experiment, description), index|
         .col-md-4{id: "experiment-#{experiment.to_s}"}
           .panel.panel-default
             .panel-body
+              %h4
+                ="Payment Method #{index + 1}"
               %p.lead=description
               =link_to "Begin", experiment.to_s, class: "btn btn-success"
 
