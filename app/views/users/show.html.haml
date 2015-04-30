@@ -10,7 +10,7 @@
     -@user.analyze.each do |k,v|
       %tr
         %th=k.to_s.titleize
-        %td=v.to_s.titleize
+        %td{class: k}=v.to_s.titleize
 
 .panel.panel-default
   .panel-title.panel-heading User
