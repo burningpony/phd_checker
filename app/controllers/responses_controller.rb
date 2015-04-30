@@ -34,6 +34,7 @@ class ResponsesController < AdminBaseController
 
   def empty
     Response.delete_all
+    Round.delete_all
     User.delete_all
     @responses = []
     ActiveRecord::Base.connection.tables.each do |t|
