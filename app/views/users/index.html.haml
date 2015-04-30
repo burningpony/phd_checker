@@ -23,4 +23,5 @@
       %td= user.created_at
       %td= user.updated_at
       %td
-        = link_to "#{t("web-app-theme.delete", :default => "Delete")}", user_path(user), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", class: "btn btn-danger btn-xs"
+        = link_to fa_icon('user') + " Show", user_path(user.id), class: "btn btn-default btn-xs"
+        = link_to fa_icon('trash') + " #{t("web-app-theme.delete", :default => "Delete")}", user_path(user), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", class: "btn btn-danger btn-xs"
