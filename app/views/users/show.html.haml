@@ -43,7 +43,7 @@
         -Response.column_names.each do |v|
           %td=v.titleize
     -@user.responses.each do |response|
-      %tr.response
+      %tr.response{class: (response.correct ? '' : 'danger')}
         -response.attributes.each do |k,v|
           %td{class: k}=v
 
