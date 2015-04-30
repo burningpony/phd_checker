@@ -115,7 +115,7 @@ jQuery(function() {
               timer_started = true;
               $(".content").show()
                 // click on first essay
-              $($(".essay_link")[0]).click();
+              window.get_first_essay();
             }
             modal.close();
             closed = true;
