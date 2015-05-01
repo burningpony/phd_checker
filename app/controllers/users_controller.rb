@@ -22,12 +22,12 @@ class UsersController < AdminBaseController
   # index view for experiments
   def experiments
     @experiments = {
-      a: '($0.625 per essay)',
+      a: '$0.625 per essay',
       # b: '$2.50 plus bonus',
-      c: '($0.20 per edit)',
+      c: '$0.20 per edit',
       # d: '$0.45 + bonus',
       # e: '',
-      f: '($25.00 Total)'
+      f: '$25.00 Total'
     }
     render 'experiments/experiments', layout: 'cover'
   end
