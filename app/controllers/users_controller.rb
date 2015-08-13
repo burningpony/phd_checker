@@ -29,6 +29,7 @@ class UsersController < AdminBaseController
       # e: '',
       f: '$25.00 Total'
     }
+    @options = {"1"=>"Written Essays", "2"=>"Math Quizzes", "3"=>"Combination"}
     render 'experiments/experiments', layout: 'cover'
   end
 

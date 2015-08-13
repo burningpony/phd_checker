@@ -18,14 +18,15 @@ class EssayBaseController < ApplicationController
   end
 
   def show
+    @option = params[:options] || 1
     if params[:id] == 'practice'
       @essay_id = 'practice'
       @essay_title = 'Practice Essay'
-      render file: 'essays/practice', layout: 'essay'
+      render file: 'essays/practice', layout: 'essay', :locals => { :option => @option }
     else
       @essay_id = params[:id].match(/\d_\d+/)[0]
       @essay_title = "Essay #{@essay_id}"
-      render file: 'essays/' + @essay_id, layout: 'essay'
+      render file: 'essays/' + @essay_id, layout: 'essay', :locals => { :option => @option }
     end
   end
 

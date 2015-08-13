@@ -11,7 +11,7 @@
 //= require save_functions
 //= require phd
 //= require disallowed
-//= require_tree .
+//= require experiment_selection
 
 jQuery.ajaxSetup({
   beforeSend: function(xhr) {
