@@ -78,7 +78,7 @@ window.create_user = function(participant_id, group_id) {
 
 }
 
-window.start_round = function(round_number, user_id){
+window.start_round = function(round_number, user_id, option, treatment){
     if ( window.console ) {
         console.log( "updating round")
     }
@@ -88,6 +88,8 @@ window.start_round = function(round_number, user_id){
       data: {
         "user_id": user_id,
         "round_number": round_number,
+        "option": window.option,
+        "treatment": treatment,
         controller: window.path_to_controller
       },
       success: function(data) {

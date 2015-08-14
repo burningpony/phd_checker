@@ -34,7 +34,6 @@ class EssayBaseController < ApplicationController
   private
 
   def instance_variable_setup
-    @option = params[:option]
     @user = User.find(params[:user_id])
     @round = Round.find(params[:round_id])
     @total_responses = @user.responses
@@ -46,6 +45,6 @@ class EssayBaseController < ApplicationController
 
   def record_data
     @user.update_attributes(total_payment: @total_payment)
-    @round.update_attributes(user_id: @user.id, round_number: @round_number, treatment: self.class.to_s.gsub('Controller', ''), running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time, early_exit: false, end_time: DateTime.now, option: @option)
+    @round.update_attributes(user_id: @user.id, round_number: @round_number, running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time, early_exit: false, end_time: DateTime.now)
   end
 end

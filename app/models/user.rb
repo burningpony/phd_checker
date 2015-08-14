@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
       group: group,
       data_id: participant_id,
       treatment: rounds.pluck(:name).compact.first.try(:to_i),
+      option: rounds.pluck(:option).compact.first.try(:to_i),
       total_time_taken: rounds.sum(:time_elapsed_in_seconds),
       total_edited: responses.count,
       total_correct: responses.where(correct: true).count,

@@ -1,7 +1,7 @@
 class RoundsController < AdminBaseController
   def create
     @user = User.find(params[:user_id])
-    @round = Round.where(user_id: params[:user_id], round_number: params[:round_number]).first_or_initialize
+    @round = Round.where(user_id: params[:user_id], round_number: params[:round_number], option: params[:option], treatment: params[:treatment]).first_or_initialize
 
     if params[:early_exit]
       @round.early_exit = params[:early_exit]

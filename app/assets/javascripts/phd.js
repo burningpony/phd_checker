@@ -96,7 +96,7 @@ jQuery(function() {
         containerId: 'instructions-container',
         onClose: function() {
 
-          window.start_round(window.round_number, window.user.id)
+          window.start_round(window.round_number, window.user.id, window.option, window.path_to_controller)
 
           if (!timer_started) {
             window.start_timer();
@@ -195,7 +195,7 @@ jQuery(function() {
               round_number: window.round_number,
               round_time: window.elapsed_time_in_seconds,
               completed_in_time: window.completed_in_time,
-              round_id: window.round.id,
+              round_id: window.round.id
             }, function(data) {
               $('.finished .body').html(data);
               time = window.elapsed_time_in_seconds
@@ -231,7 +231,7 @@ jQuery(function() {
               round_number: window.round_number,
               round_time: window.elapsed_time_in_seconds,
               completed_in_time: window.completed_in_time,
-              round_id: window.round.id,
+              round_id: window.round.id
             }, function(data) {
               $('.score_card .body').html(data);
             });
@@ -493,7 +493,7 @@ jQuery(function() {
       get_first_essay();
       seconds = 0;
       window.elapsed_time_in_seconds = seconds;
-      window.start_round(window.round_number, window.user.id).success(function (){
+      window.start_round(window.round_number, window.user.id, window.option, window.path_to_controller).success(function (){
         window.start_timer();
       })
 
