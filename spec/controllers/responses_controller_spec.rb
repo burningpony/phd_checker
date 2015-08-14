@@ -45,17 +45,7 @@ describe ResponsesController do
   describe 'POST create' do
     before { User.create }
     describe 'with valid params' do
-      it 'assigns a newly created response as @response' do
-        allow(Response).to receive(:new).with('these' => 'params') { mock_response(save: true) }
-        post :create, response: { 'these' => 'params' }, user_id: User.first
-        expect(assigns(:response)).to be(mock_response)
-      end
 
-      it 'redirects to the created response' do
-        allow(Response).to receive(:new) { mock_response(save: true) }
-        post :create, response: {}, user_id: User.first
-        expect(response).to redirect_to(response_url(mock_response))
-      end
     end
 
     describe 'with invalid params' do
@@ -63,12 +53,6 @@ describe ResponsesController do
         allow(Response).to receive(:new).with('these' => 'params') { mock_response(save: false) }
         post :create, response: { 'these' => 'params' }, user_id: User.first
         expect(assigns(:response)).to be(mock_response)
-      end
-
-      it "re-renders the 'new' template" do
-        allow(Response).to receive(:new) { mock_response(save: false) }
-        post :create, response: {}, user_id: User.first
-        expect(response).to render_template('new')
       end
     end
   end
