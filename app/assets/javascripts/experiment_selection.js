@@ -25,7 +25,7 @@ jQuery(function() {
   $( ".begin" ).click(function() {
     disableButtons();
     option = $(this).val();
-    $.get(payment_method, { option: option});
+    window.location = '/' + window.payment_method + '?option='+option
   });
 
   disableButtons = function(){
