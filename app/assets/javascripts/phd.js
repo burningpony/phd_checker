@@ -310,6 +310,7 @@ jQuery(function() {
           $.ajax({
               type: 'GET',
               url: '/essay_base/show/' + essay_round_id,
+              data: {option: window.option}
           }).success(function(data) {
               $('.content').append(data);
               cached_essays[essay_id] = true;
