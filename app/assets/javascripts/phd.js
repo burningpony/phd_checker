@@ -292,7 +292,7 @@ jQuery(function() {
         var essay_number = $(this).attr('data-essay')
         var essay_round_id = $(this).attr('data-round') + "_" + $(this).attr(
           'data-essay')
-        var essay_id = "#essay_" + essay_round_id;
+        var essay_id = "#o"+window.option + "_e" + essay_round_id;
         $('.essay_link').each(function() {
           $(this).parents('li').removeClass("active");
         });
@@ -418,7 +418,7 @@ jQuery(function() {
           //is_quota
           var round_number = window.round_number;
           window.send_correction(window.group_id, window.participant_id,
-            window.essay_id, field_id, original_value, current_value,
+            essay, field_id, original_value, current_value,
             correct_answer, is_quota, round_number);
         });
         span.appendChild(input);

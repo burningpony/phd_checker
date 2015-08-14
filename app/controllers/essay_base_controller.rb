@@ -18,6 +18,7 @@ class EssayBaseController < ApplicationController
   end
 
   def show
+    @option = params[:option]
     @essay_id = params[:id].match(/\d_\d+/)[0]
     @essay_title = "Essay #{@essay_id}"
     render file: "options/#{params[:option]}/" + @essay_id, layout: 'essay'
