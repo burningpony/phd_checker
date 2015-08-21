@@ -1,7 +1,7 @@
 def correct_essay(round: 1,  number: 1, option: 1, get_it_right: true)
   uncorrected_answers = {}
   click_link "Essay #{number}"
-  sleep 0.5
+  wait_for_ajax
   within "#o1_e#{round}_#{number}" do
     # loop through and count things
     page.all(:css, '.correctme').each do |el|
@@ -39,13 +39,17 @@ end
 
 def complete_round(&block)
   finish_stage
+  wait_for_ajax
   block.call if block_given?
   click_button 'Done'
+  wait_for_ajax
 end
 
 def finish_stage
   click_link 'Finish'
+  wait_for_ajax
   click_button 'Confirm'
+  wait_for_ajax
 end
 
 def verify_responses
