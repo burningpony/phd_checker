@@ -11,8 +11,18 @@ end
 
 if selenium_browser == :poltergeist
   require 'capybara/poltergeist'
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, window_size: [1200, 1200])
+
+  Capybara.register_driver(:poltergeist) do |app|
+    Capybara::Poltergeist::Driver.new app,
+      js_errors: false,
+      window_size: [1200, 1200],
+      timeout: 180,
+      logger: nil,      # phantomjs_logger: StringIO.new,
+      phantomjs_options:
+      [
+        '--load-images=no',
+        '--ignore-ssl-errors=yes'
+      ]
   end
 else
   Capybara.register_driver selenium_browser do |app|
