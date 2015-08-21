@@ -51,7 +51,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
       click_button 'Select'
     end
     within '#experiment-a' do
-      click_link 'Begin'
+      click_button 'Begin'
     end
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
@@ -91,7 +91,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
       click_button 'Select'
     end
     within '#experiment-a' do
-      click_link 'Begin'
+      click_button 'Begin'
     end
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
@@ -131,7 +131,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
       click_button 'Select'
     end
     within '#experiment-f' do
-      click_link 'Begin'
+      click_button 'Begin'
     end
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
