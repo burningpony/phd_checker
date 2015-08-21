@@ -10,7 +10,7 @@ RSpec.feature 'CGames', type: :feature, js: true do
     fill_in :participant_id, with: random_number
     fill_in :group_id, with: random_number
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
 
     (1..10).each do |i|

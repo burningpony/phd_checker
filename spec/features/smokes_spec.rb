@@ -15,7 +15,7 @@ RSpec.feature 'Smokes', type: :feature, js: true, smoke: true do
     fill_in :participant_id, with: random_number
     fill_in :group_id, with: random_number
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
     @start_time = Time.now
     (1..4).each do |round|
@@ -26,7 +26,7 @@ RSpec.feature 'Smokes', type: :feature, js: true, smoke: true do
       if round < 4
         complete_round
       else
-        sleep 0.3
+        sleep 0.9
         finish_stage
         click_link 'Prepare this computer for the next trial'
       end

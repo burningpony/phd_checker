@@ -11,7 +11,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
     fill_in :participant_id, with: random_number
     fill_in :group_id, with: random_number
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
 
     (1..10).each do |i|
@@ -49,7 +49,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
       correct_essay(round: 4, number: i, option: 1)
     end
 
-    sleep 0.3
+    sleep 0.9
     finish_stage
 
     expect(subject).to have_content('Total earnings so far:')
@@ -71,7 +71,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
     @start_time = Time.now
     (1..10).each do |i|
@@ -106,7 +106,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
       correct_essay(round: 4, number: i, option: 1, get_it_right: false)
     end
 
-    sleep 0.3
+    sleep 0.9
     finish_stage
     @end_time = Time.now
     expect(subject).to have_content('Total earnings so far:')

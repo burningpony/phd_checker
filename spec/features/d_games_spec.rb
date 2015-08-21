@@ -10,7 +10,7 @@ RSpec.feature 'DGames', type: :feature, js: true do
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
 
     correct_essay(round: 1, number: 1, option: 1)

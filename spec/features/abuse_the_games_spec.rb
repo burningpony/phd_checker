@@ -16,13 +16,13 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
 
     complete_round
-    sleep 0.3
+    sleep 0.9
     complete_round
-    sleep 0.3
+    sleep 0.9
     complete_round do
       expect(subject).to have_content('Total earnings so far:')
 
@@ -56,13 +56,13 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
 
     complete_round
-    sleep 0.3
+    sleep 0.9
     complete_round
-    sleep 0.3
+    sleep 0.9
     complete_round do
       expect(subject).to have_content('Total earnings so far:')
 
@@ -96,13 +96,13 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
 
     complete_round
-    sleep 0.3
+    sleep 0.9
     complete_round
-    sleep 0.3
+    sleep 0.9
     complete_round do
       expect(subject).to have_content('Total earnings so far:')
 
@@ -136,7 +136,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
-    sleep 0.3
+    sleep 0.9
     click_link 'Start'
 
     (1..10).each do |i|
