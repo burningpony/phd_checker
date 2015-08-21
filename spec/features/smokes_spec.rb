@@ -42,11 +42,21 @@ RSpec.feature 'Smokes', type: :feature, js: true, smoke: true do
     #   # verify_responses
     #   screenshot_and_open_image
     #   time_elapsed = (@end_time - @start_time).ceil
-    #   expect(find('td.total_time_taken').text.to_f).to be_within(5).of(time_elapsed)
-    #   expect(find('td.calc_time_to_complete_round_1').text.to_f).to be < time_elapsed
-    #   expect(find('td.calc_time_to_complete_round_2').text.to_f).to be < time_elapsed
-    #   expect(find('td.calc_time_to_complete_round_3').text.to_f).to be < time_elapsed
-    #   expect(find('td.calc_time_to_complete_round_4').text.to_f).to be < time_elapsed
+    #   expect(
+    #     find('td.total_time_taken').text.to_f
+    #   ).to be_within(5).of(time_elapsed)
+    #   expect(
+    #     find('td.calc_time_to_complete_round_1').text.to_f
+    #   ).to be < time_elapsed
+    #   expect(
+    #     find('td.calc_time_to_complete_round_2').text.to_f
+    #   ).to be < time_elapsed
+    #   expect(
+    #     find('td.calc_time_to_complete_round_3').text.to_f
+    #   ).to be < time_elapsed
+    #   expect(
+    #     find('td.calc_time_to_complete_round_4').text.to_f
+    #   ).to be < time_elapsed
     # end
 
     # it gets them all wrong anyway derp derp
