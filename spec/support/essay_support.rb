@@ -2,7 +2,7 @@ def correct_essay(round: 1,  number: 1, option: 1, get_it_right: true)
   uncorrected_answers = {}
   click_link "Essay #{number}"
   wait_for_ajax
-  within "#o1_e#{round}_#{number}" do
+  within "#o#{option}_e#{round}_#{number}" do
     # loop through and count things
     page.all(:css, '.correctme').each do |el|
       correct_value = el['rel']
