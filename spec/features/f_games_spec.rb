@@ -15,7 +15,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
     click_link 'Start'
 
     (1..10).each do |i|
-      correct_essay(1, i)
+      correct_essay(round: 1, number: i, option: 1)
     end
 
     complete_round do
@@ -33,20 +33,20 @@ RSpec.feature 'FGames', type: :feature, js: true do
     expect(page).to have_content('Round 2')
 
     (1..10).each do |i|
-      correct_essay(2, i)
+      correct_essay(round: 2, number: i, option: 1)
     end
 
     complete_round
     expect(page).to have_content('Round 3')
     (1..10).each do |i|
-      correct_essay(3, i)
+      correct_essay(round: 3, number: i, option: 1)
     end
 
     complete_round
     expect(page).to have_content('Round 4')
 
     (1..10).each do |i|
-      correct_essay(4, i)
+      correct_essay(round: 4, number: i, option: 1)
     end
 
     sleep 0.3
@@ -75,7 +75,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
     click_link 'Start'
     @start_time = Time.now
     (1..10).each do |i|
-      correct_essay(1, i, get_it_right: false)
+      correct_essay(round: 1, number: i, option: 1, get_it_right: false)
     end
 
     complete_round do
@@ -91,19 +91,19 @@ RSpec.feature 'FGames', type: :feature, js: true do
     end
 
     (1..10).each do |i|
-      correct_essay(2, i, get_it_right: false)
+      correct_essay(round: 2, number: i, option: 1, get_it_right: false)
     end
 
     complete_round
 
     (1..10).each do |i|
-      correct_essay(3, i, get_it_right: false)
+      correct_essay(round: 3, number: i, option: 1, get_it_right: false)
     end
 
     complete_round
 
     (1..10).each do |i|
-      correct_essay(4, i, get_it_right: false)
+      correct_essay(round: 4, number: i, option: 1, get_it_right: false)
     end
 
     sleep 0.3

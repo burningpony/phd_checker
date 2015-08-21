@@ -14,7 +14,7 @@ RSpec.feature 'CGames', type: :feature, js: true do
     click_link 'Start'
 
     (1..10).each do |i|
-      correct_essay(1, i)
+      correct_essay(round: 1, number: i, option: 1)
     end
 
     complete_round do
@@ -30,19 +30,19 @@ RSpec.feature 'CGames', type: :feature, js: true do
     end
 
     (1..10).each do |i|
-      correct_essay(2, i)
+      correct_essay(round: 2, number: i, option: 1)
     end
 
     complete_round
 
     (1..10).each do |i|
-      correct_essay(3, i)
+      correct_essay(round: 3, number: i, option: 1)
     end
 
     complete_round
 
     (1..10).each do |i|
-      correct_essay(4, i)
+      correct_essay(round: 4, number: i, option: 1)
     end
 
     finish_stage

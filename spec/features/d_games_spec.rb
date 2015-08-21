@@ -13,8 +13,8 @@ RSpec.feature 'DGames', type: :feature, js: true do
     sleep 0.3
     click_link 'Start'
 
-    correct_essay(1, 1)
-    correct_essay(1, 2)
+    correct_essay(round: 1, number: 1, option: 1)
+    correct_essay(round: 1, number: 2, option: 1)
 
     complete_round do
       pending
@@ -30,8 +30,8 @@ RSpec.feature 'DGames', type: :feature, js: true do
       end
     end
 
-    correct_essay(2, 3)
-    correct_essay(2, 4)
+    correct_essay(round: 2, number: 3, option: 1)
+    correct_essay(round: 2, number: 4, option: 1)
 
     complete_round do
       expect(subject).to have_content('Total earnings so far:')
@@ -44,6 +44,5 @@ RSpec.feature 'DGames', type: :feature, js: true do
         expect(subject).to have_content('$2.70')
       end
     end
-
   end
 end

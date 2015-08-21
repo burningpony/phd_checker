@@ -54,5 +54,4 @@ RSpec.feature 'Smokes', type: :feature, js: true, smoke: true do
     expect(@q_count).to eql(375)
     expect(@r_count).to eql(54)
   end
-
 end

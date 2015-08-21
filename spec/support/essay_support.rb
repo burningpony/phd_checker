@@ -1,8 +1,8 @@
-def correct_essay(round, number, get_it_right: true)
+def correct_essay(round: 1,  number: 1, option: 1, get_it_right: true)
   uncorrected_answers = {}
   click_link "Essay #{number}"
   sleep 0.3
-  within "#essay_#{round}_#{number}" do
+  within "#o1_e#{round}_#{number}" do
     # loop through and count things
     page.all(:css, '.correctme').each do |el|
       correct_value = el['rel']
