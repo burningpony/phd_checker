@@ -1,13 +1,13 @@
 jQuery(function() {
   $( ".select" ).click(function() {
     button = $(this)
-    selection = $(this).closest(".experiment")
-    window.payment_method = $(this).val();
-    console.log("payment_method", window.payment_method);
-    $("#selected_experiment").text($(selection).find(".experiment_title").text())
+    selection = $(this).closest(".option")
+    window.option = $(this).val();
+    console.log("option", window.option);
+    $("#selected_option").text($(selection).find(".option_title").text())
     disableButtons();
-    $(".experiment").fadeOut("fast", function(){
-      $(".options").fadeIn("fast");
+    $(".options").fadeOut("fast", function(){
+      $(".experiments").fadeIn("fast");
       enableButtons();
     });
   });
@@ -15,17 +15,16 @@ jQuery(function() {
   $( ".back" ).click(function() {
     button = $(this)
     disableButtons();
-    $(".options").fadeOut("fast", function(){
-      $(".experiment").fadeIn("fast");
+    $(".experiments").fadeOut("fast", function(){
+      $(".options").fadeIn("fast");
       enableButtons();
-      button.removeAttr("disabled")
     });
   });
 
   $( ".begin" ).click(function() {
     disableButtons();
-    option = $(this).val();
-    window.location = '/' + window.payment_method + '?option='+option
+    payment_method = $(this).val();
+    window.location = '/' + payment_method + '?option='+window.option
   });
 
   disableButtons = function(){
