@@ -3,7 +3,7 @@
 .row
   .options
     -@options.each do |number,option|
-      .option
+      .option{id: "option-#{number.to_s}"}
         .col-md-4
           .panel.panel-default
             .panel-body
@@ -17,7 +17,7 @@
     %h4#selected_option
     -@experiments.each_slice(3) do |experiments|
       - experiments.each_with_index do |(experiment, description), index|
-        .experiment
+        .experiment{id: "experiment-#{experiment.to_s}"}
           .col-md-4
             .panel.panel-default
               .panel-body
