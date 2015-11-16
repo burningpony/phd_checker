@@ -1,5 +1,4 @@
 PhdChecker::Application.routes.draw do
-
   get 'a/score_card'                               => 'a#score_card'
   get 'b/score_card'                               => 'b#score_card'
   get 'c/score_card'                               => 'c#score_card'
@@ -24,8 +23,10 @@ PhdChecker::Application.routes.draw do
   resources :responses
   post 'users/complete' => 'users#mark_completed'
   get 'users/stats' => 'users#stats'
+  get 'users/payment' => 'users#payment'
+  get 'users/options' => 'users#options'
   resources :users
-  root to: 'users#experiments'
+  root to: 'users#options'
   resources :rounds
 
   # Note: This route will make all actions in

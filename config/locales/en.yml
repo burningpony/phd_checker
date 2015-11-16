@@ -20,4 +20,27 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  initial_instruction: Please select your assignment structure
+  final_instruction: Please select your payment method
+  payment: "Payment Method %{index}"
+  option: "Option %{index}"
+  options:
+    essays:
+      title: Essays
+      payment_method:
+        a: $0.625 per essay
+        c: $0.20 per edit
+        f: $25.00 Total
+    math_quizzes:
+      title: Math Quizzes
+      payment_method:
+        a: $0.625 per quiz
+        c: $0.20 per question
+        f: $25.00 Total
+    combination:
+      title: Combination
+      payment_method:
+        a: $0.625 per assignment
+        c: $0.20 per change
+        f: $25.00 Total
+

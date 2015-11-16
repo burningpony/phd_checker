@@ -20,17 +20,15 @@ class UsersController < AdminBaseController
   end
 
   # index view for experiments
-  def experiments
-    @experiments = {
-      a: '$0.625 per essay',
-      # b: '$2.50 plus bonus',
-      c: '$0.20 per edit',
-      # d: '$0.45 + bonus',
-      # e: '',
-      f: '$25.00 Total'
-    }
-    @options = {"1"=>"Written Essays", "2"=>"Math Quizzes", "3"=>"Combination"}
-    render 'experiments/experiments', layout: 'cover'
+  def options
+    @options = ['essays', 'math_quizzes', 'combination']
+    render 'experiments/options', layout: 'cover'
+  end
+
+  def payment
+    @selected_option_name = params[:option_name]
+    @experiments = ['a', 'c', 'f']
+    render 'experiments/payment', layout: 'body'
   end
 
   def stats
