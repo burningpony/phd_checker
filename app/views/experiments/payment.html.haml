@@ -1,7 +1,7 @@
 -content_for :page_title do
   #instruction
     =t "final_instruction"
-.experiments{:style=>"display:none;"}
+.experiments
   %h4#selected_option
   -@experiments.each_with_index do |experiment, index|
     .experiment{id: "experiment-#{experiment.to_s}"}
