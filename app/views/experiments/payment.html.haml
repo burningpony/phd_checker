@@ -4,7 +4,7 @@
 .experiments{:style=>"display:none;"}
   %h4#selected_option
   -@experiments.each_with_index do |experiment, index|
-    .experiment
+    .experiment{id: "experiment-#{experiment.to_s}"}
       .col-md-4
         .panel.panel-default
           .panel-body
