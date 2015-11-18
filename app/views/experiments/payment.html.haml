@@ -1,0 +1,15 @@
+-content_for :page_title do
+  #instruction
+    =t "final_instruction"
+.experiments
+  %h4#selected_option
+  -@experiments.each_with_index do |experiment, index|
+    .experiment{id: "experiment-#{experiment.to_s}"}
+      .col-md-4
+        .panel.panel-default
+          .panel-body
+            %h4.experiment_title
+              =t "payment", index: index + 1
+            %p.lead=t "options.#{@selected_option_name}.payment_method.#{experiment}"
+            %button.begin.btn.btn-success{value: "#{experiment.to_s}"}
+              Begin

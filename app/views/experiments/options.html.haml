@@ -1,0 +1,15 @@
+-content_for :page_title do
+  #instruction
+    =t "initial_instruction"
+.row
+  .options
+    -@options.each_with_index do |option, index|
+      .option{id: "option-#{index + 1}"}
+        .col-md-4
+          .panel.panel-default
+            .panel-body
+              %h4.option_title
+                =t "option", index: index + 1
+              %p.lead=t "options.#{option}.title"
+              %button.select.btn.btn-success{value: "#{index + 1}:#{option}"}
+                Select
