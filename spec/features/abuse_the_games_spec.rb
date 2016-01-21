@@ -177,14 +177,14 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     sleep 0.9
     click_link 'Start'
 
-    (1..10).each do |i|
-      click_link "Essay #{i}"
-      click_link "Essay #{i}"
-      click_link "Essay #{i}"
+    (1..3).each do |i|
+      click_link "Quiz #{i}"
+      click_link "Quiz #{i}"
+      click_link "Quiz #{i}"
     end
 
-    (1..10).each do |i|
-      click_link "Essay #{i}"
+    (1..3).each do |i|
+      click_link "Quiz #{i}"
       expect(page).to_not have_content('<input type="text" ')
     end
   end

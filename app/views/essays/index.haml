@@ -92,9 +92,8 @@
                     %ul.nav.nav-pills.nav-stacked
                         -@essays.each_with_index do |essay, i|
                             %li
-
-                                %a{:href=> '#', :class=>'essay_link hide', data: {round: essay[:round], essay: essay[:essay]} }
-                                    Essay #{essay[:essay]}
+                                %a{:href=> '#', :class=>'essay_link hide', data: {round: essay[:round], essay: essay[:essay], type: essay[:type]} }
+                                    #{essay[:type].to_s.capitalize + ' ' + essay[:essay].to_s}
 
                         %li
                             %a{:class=>'quit', :href=> '#'}

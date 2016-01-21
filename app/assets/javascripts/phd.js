@@ -290,6 +290,7 @@ jQuery(function() {
       if (window.essay_loading == false ) {
         window.essay_loading = true;
         var essay_number = $(this).attr('data-essay')
+        window.problem_set_type = $(this).attr('data-type')
         var essay_round_id = $(this).attr('data-round') + "_" + $(this).attr(
           'data-essay')
         var essay_id = "#o"+window.option + "_e" + essay_round_id;
@@ -437,7 +438,7 @@ jQuery(function() {
         window.total_corrections_avaliable += $(essay_id +
           " span.correctme").length;
         window.total_errors_shown += errors;
-        $(essay_id + " h2").html("Essay " + essay_number);
+        $(essay_id + " h2").html(window.problem_set_type + ' ' + essay_number);
       }
       // timer related functions and variables
     var timer = null;

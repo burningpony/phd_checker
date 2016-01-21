@@ -10,7 +10,11 @@ class EssayBaseController < ApplicationController
       if view.match(/(\d\d*)/)
         essay = view[/.*(?=\..+$)/][/.*(?=\..+$)/]
         essay_data = essay.split('_')
-        @essays << { essay: essay_data[1].to_i, round: essay_data[0].to_i }
+        type = "Essay"
+        if params[:option] == "2"
+          type = "Quiz"
+        end
+        @essays << { essay: essay_data[1].to_i, round: essay_data[0].to_i, type: type }
       end
     end
     @essays = @essays.sort { |a, b|  a[:essay] <=> b[:essay] }
