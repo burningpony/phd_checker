@@ -88,7 +88,7 @@ class UsersController < AdminBaseController
     # send it to the browsah
     send_data csv_string,
               type: 'text/csv; charset=iso-8859-1; header=present',
-              disposition: 'attachment; filename=formatted_responses.csv'
+              disposition: "attachment; filename=formatted#{User.last.try(:updated_at)}.csv"
   end
 
   # PUT /users/1

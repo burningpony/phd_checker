@@ -51,7 +51,7 @@ class ResponsesController < AdminBaseController
     # send it to the browsah
     send_data csv_string,
               type: 'text/csv; charset=iso-8859-1; header=present',
-              disposition: 'attachment; filename=raw_responses.csv'
+              disposition: "attachment; filename=raw_responses#{Response.last.try(:updated_at)}.csv"
   end
 
   # POST /responses
