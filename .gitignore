@@ -1,6 +1,8 @@
 coverage/*
 .bundle
 db/*.sqlite3
+db/dumps/**
+db/sync_dumps/**
 log/*.log
 tmp/
 .sass-cache
