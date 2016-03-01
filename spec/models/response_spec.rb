@@ -7,4 +7,32 @@ describe Response do
       expect(Response.raw_csv(Response.all)).to end_with "\n"
     end
   end
+
+  describe "update actions" do
+    before do
+      @time_now = Time.new(2015,10,10)
+
+      @user = FactoryGirl.create(:user)
+      @round = FactoryGirl.create(:round, round_number: 1, user: @user)
+      allow(Time).to receive(:current).and_return(@time_now)
+      allow(@round).to receive(:updated_at).and_return(@time_now)
+
+      @response_1 = FactoryGirl.create(:response, user: @user, round_number: @round.round_number, correct_answer: "hi", corrected: "hi")
+
+      @response_2 = FactoryGirl.create(:response, user: @user, round_number: @round.round_number, correct_answer: "no", corrected: "hi")
+    end
+
+    it "first create" do
+      expect(@response_1.actions).to eq [{last_response: nil, time_since_last_action: @time_now - @round.created_at , correct?: true, time_of_action:  @time_now}.to_json]
+    end
+
+    it "second create" do
+      expect(@response_2.actions).to eq [{last_response: @response_1.id, time_since_last_action: @time_now - @response_1.created_at, correct?: false, time_of_action:  @time_now}.to_json]
+    end
+
+    it "on update" do
+      @response_2.update(correct_answer: "no", corrected: "no")
+      expect(@response_2.actions).to eq [{last_response: @response_1.id, time_since_last_action: @time_now - @response_1.created_at, correct?: false, time_of_action:  @time_now}.to_json, {last_response: @response_2.id, time_since_last_action: @time_now - @response_2.created_at, correct?: true, time_of_action:  @time_now}.to_json]
+    end
+  end
 end

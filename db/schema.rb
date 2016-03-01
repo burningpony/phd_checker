@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813201328) do
+ActiveRecord::Schema.define(version: 20160222232801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150813201328) do
     t.string   "correct_answer", limit: 255
     t.integer  "round_number"
     t.string   "controller",     limit: 255
+    t.json     "actions"
   end
 
   create_table "rounds", force: :cascade do |t|
