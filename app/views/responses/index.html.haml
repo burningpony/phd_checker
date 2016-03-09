@@ -35,7 +35,7 @@
       %td= response.controller
       %td= response.updated_at
       %td= response.created_at
-      %td= response.pretty_actions.join("\n")
+      %td= response.pretty_actions.count
       %td
         = link_to fa_icon('user') + " User", user_path(response.user.id), class: "btn btn-default btn-xs"
         = link_to "#{t("web-app-theme.delete", :default => "Delete")}", response_path(response), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", class: "btn btn-danger btn-xs"
