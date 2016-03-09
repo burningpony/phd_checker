@@ -17,7 +17,9 @@
       %th Seconds To Complete
       %th Round Number
       %th Treatment
+      %th= t("web-app-theme.created_at", :default => "Updated at")
       %th= t("web-app-theme.created_at", :default => "Created at")
+      %th Actions
       %th.last  
   - @responses.each do |response|
     %tr
@@ -31,7 +33,9 @@
       %td= response.user.time_to_complete
       %td= response.round_number
       %td= response.controller
+      %td= response.updated_at
       %td= response.created_at
+      %td= response.pretty_actions.join("\n")
       %td
         = link_to fa_icon('user') + " User", user_path(response.user.id), class: "btn btn-default btn-xs"
         = link_to "#{t("web-app-theme.delete", :default => "Delete")}", response_path(response), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", class: "btn btn-danger btn-xs"

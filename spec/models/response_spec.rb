@@ -8,6 +8,20 @@ describe Response do
     end
   end
 
+  describe "set correct" do
+    it "sets correct to true when uncorrected = corrected on save" do
+      user = FactoryGirl.create(:user)
+      subject = FactoryGirl.create(:response, user: user, round_number: 1, correct_answer: "hift", corrected: "hift")
+      expect(subject.correct).to eq true
+    end
+
+    it "sets correct to true when uncorrected != corrected on save" do
+      user = FactoryGirl.create(:user)
+      subject = FactoryGirl.create(:response, user: user, round_number: 1, correct_answer: "hi", corrected: "hif")
+      expect(subject.correct).to eq false
+    end
+  end
+
   describe "update actions" do
     before do
       @time_now = Time.new(2015,10,10)

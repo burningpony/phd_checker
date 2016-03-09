@@ -2,6 +2,7 @@ class Response < ActiveRecord::Base
   require 'csv'
   belongs_to :user
   before_save :update_actions
+  before_save :set_correct
   validates :user_id, presence: true
   validates :corrected, length: { maximum: 100 }
   scope :incorrect, -> { where(correct: false) }
@@ -25,11 +26,12 @@ class Response < ActiveRecord::Base
         'Seconds to Complete',
         'Round',
         'Treatment',
-        'Time Corrected'
+        'Time Corrected',
+        'actions'
       ]
 
       # data rows
-      responses.each do |response|
+      responses.order(id: :desc, updated_at: :desc).each do |response|
         csv << [
           response.id,
           response.user_id,
@@ -41,16 +43,25 @@ class Response < ActiveRecord::Base
           response.round_number,
           response.user.time_to_complete,
           response.controller,
-          response.created_at
+          response.created_at,
+          response.pretty_actions
         ]
       end
     end
   end
 
+  def pretty_actions
+    self.actions ? self.actions.map{|action| JSON.parse(action).symbolize_keys} : []
+  end
+
   private
 
+  def correct?
+    correct_answer == corrected
+  end
+
   def update_actions
-    actions = self.actions ? self.actions.map{|action| JSON.parse(action).symbolize_keys} : []
+    actions = pretty_actions
     last_response = Response.where(round_number: round_number, user: user).order(updated_at: :desc).pluck(:id, :updated_at).first
     last_response_id = last_response.present? ? last_response[0] : nil
     last_action_time = last_response.present? ? last_response[1] : Round.where(user: user, round_number: round_number).first.try(:created_at) || Time.current
@@ -59,9 +70,5 @@ class Response < ActiveRecord::Base
 
     current_action = {last_response: last_response_id, time_since_last_action: time_since_last_action, correct?: correct?, time_of_action: time_of_action}
     self.actions = (actions << current_action).map(&:to_json)
-  end
-
-  def correct?
-    correct_answer == corrected
   end
 end
