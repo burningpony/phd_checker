@@ -11,25 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222232801) do
+ActiveRecord::Schema.define(version: 20160315003701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "error",          limit: 255
-    t.string   "essay",          limit: 255
+    t.string   "error",              limit: 255
+    t.string   "essay",              limit: 255
     t.boolean  "correct"
-    t.string   "corrected",      limit: 255
-    t.string   "uncorrected",    limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "corrected",          limit: 255
+    t.string   "uncorrected",        limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.boolean  "quota"
-    t.string   "correct_answer", limit: 255
+    t.string   "correct_answer",     limit: 255
     t.integer  "round_number"
-    t.string   "controller",     limit: 255
+    t.string   "controller",         limit: 255
     t.json     "actions"
+    t.float    "total_time_to_edit"
   end
 
   create_table "rounds", force: :cascade do |t|

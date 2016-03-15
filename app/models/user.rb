@@ -49,7 +49,19 @@ class User < ActiveRecord::Base
       finish_round_1_early: rounds.where(round_number: 1).pluck(:completed_in_time).first.to_i,
       finish_round_2_early: rounds.where(round_number: 2).pluck(:completed_in_time).first.to_i,
       finish_round_3_early: rounds.where(round_number: 3).pluck(:completed_in_time).first.to_i,
-      finish_round_4_early: rounds.where(round_number: 4).pluck(:completed_in_time).first.to_i
+      finish_round_4_early: rounds.where(round_number: 4).pluck(:completed_in_time).first.to_i,
+      average_time_to_edit_correct_1: responses.where(round_number: 1, correct: true).average(:total_time_to_edit),
+      average_time_to_edit_correct_2: responses.where(round_number: 2, correct: true).average(:total_time_to_edit),
+      average_time_to_edit_correct_3: responses.where(round_number: 3, correct: true).average(:total_time_to_edit),
+      average_time_to_edit_correct_4: responses.where(round_number: 4, correct: true).average(:total_time_to_edit),
+      average_time_to_edit_incorrect_1: responses.where(round_number: 1, correct: false).average(:total_time_to_edit),
+      average_time_to_edit_incorrect_2: responses.where(round_number: 2, correct: false).average(:total_time_to_edit),
+      average_time_to_edit_incorrect_3: responses.where(round_number: 3, correct: false).average(:total_time_to_edit),
+      average_time_to_edit_incorrect_4: responses.where(round_number: 4, correct: false).average(:total_time_to_edit),
+      average_time_to_edit_1: responses.where(round_number: 1).average(:total_time_to_edit),
+      average_time_to_edit_2: responses.where(round_number: 2).average(:total_time_to_edit),
+      average_time_to_edit_3: responses.where(round_number: 3).average(:total_time_to_edit),
+      average_time_to_edit_4: responses.where(round_number: 4).average(:total_time_to_edit),
     }
   end
 

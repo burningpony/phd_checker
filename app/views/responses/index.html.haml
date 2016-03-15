@@ -19,7 +19,8 @@
       %th Treatment
       %th= t("web-app-theme.created_at", :default => "Updated at")
       %th= t("web-app-theme.created_at", :default => "Created at")
-      %th Actions
+      %th Total Time To Edit
+      %th # Actions
       %th.last  
   - @responses.each do |response|
     %tr
@@ -35,6 +36,7 @@
       %td= response.controller
       %td= response.updated_at
       %td= response.created_at
+      %td= response.total_time_to_edit
       %td= response.pretty_actions.count
       %td
         = link_to fa_icon('user') + " User", user_path(response.user.id), class: "btn btn-default btn-xs"
