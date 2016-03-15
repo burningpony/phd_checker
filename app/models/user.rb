@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
       average_time_to_edit_2: responses.where(round_number: 2).average(:total_time_to_edit),
       average_time_to_edit_3: responses.where(round_number: 3).average(:total_time_to_edit),
       average_time_to_edit_4: responses.where(round_number: 4).average(:total_time_to_edit),
+      average_time_to_edit_incorrect: responses.where(correct: false).average(:total_time_to_edit),
+      average_time_to_edit_correct: responses.where(correct: true).average(:total_time_to_edit),
+      average_time_to_edit: responses.average(:total_time_to_edit),
+      total_actions: responses.pluck("sum(json_array_length(actions)) as total_actions")[0],
     }
   end
 

@@ -28,6 +28,7 @@ class Response < ActiveRecord::Base
         'Treatment',
         'Time Corrected',
         'Total Time to Edit',
+        '#Actions',
         'Actions'
       ]
 
@@ -46,6 +47,7 @@ class Response < ActiveRecord::Base
           response.controller,
           response.created_at,
           response.total_time_to_edit,
+          response.actions.try(:length),
           response.pretty_actions
         ]
       end
