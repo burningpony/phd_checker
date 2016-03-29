@@ -1,6 +1,9 @@
 box: wercker/rvm
 services:
-  - wercker/postgresql9.2
+   - id: postgres
+     env:
+       POSTGRES_PASSWORD: ourlittlesecret
+       POSTGRES_USER: myuser  # optional
 build:
     steps:
         - script:
@@ -28,14 +31,6 @@ build:
         - script:
             name: rspec
             code: bundle exec rspec
-
-    after-steps:
-        - wantedly/pretty-slack-notify:
-            team: burningpony
-            channel: dev
-            username: wercker
-            icon_url: https://avatars3.githubusercontent.com/u/1695193?s=140
-            webhook_url: $SLACK_WEBHOOK_URL
 deploy:
     steps:
         - heroku-deploy:
