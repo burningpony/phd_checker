@@ -5,8 +5,8 @@ development:
   database: phd_dev
   pool: 5
   timeout: 5000
-  host: 0 
-  username: 
+  host: 0
+  username:
   password:
 
 # Warning: The database defined as "test" will be erased and
@@ -17,15 +17,15 @@ test:
   database: phd_test
   pool: 5
   timeout: 5000
-  host: 0 
-  username: 
-  password:
+  host: 0
+  username: myuser
+  password: ourlittlesecret
 
 production:
   adapter: postgresql
   database: phd_production
   pool: 5
   timeout: 5000
-  host: 0 
-  username: 
+  host: 0
+  username:
   password:

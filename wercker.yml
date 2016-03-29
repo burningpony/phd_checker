@@ -1,41 +1,23 @@
-box: wercker/rvm
+box: phusion/passenger-ruby22
 services:
-   - id: postgres
-     env:
-       POSTGRES_PASSWORD: ourlittlesecret
-       POSTGRES_USER: myuser  # optional
+  - id: postgres
+    env:
+      POSTGRES_PASSWORD: ourlittlesecret
+      POSTGRES_USER: myuser  # optional
 build:
-    steps:
-        - script:
-            code: rvm install 2.2.2
-        - rvm-use:
-            version: 2.2.2
-        - bundle-install
-
-        - rails-database-yml:
-            service: postgresql
-
-        # A custom script step, name value is used in the UI
-        # and the code value contains the command that get executed
-        - script:
-            name: echo ruby information
-            code: |
-                echo "ruby version $(ruby --version) running"
-                echo "from location $(which ruby)"
-                echo -p "gem list: $(gem list)"
-
-        - script:
-            name: Set up db
-            code: bundle exec rake db:drop db:create db:schema:load RAILS_ENV=test
-
-        - script:
-            name: rspec
-            code: bundle exec rspec
+  steps:
+    - bundle-install
+    - script:
+        name: Set up db
+        code: bundle exec rake db:drop db:create db:schema:load RAILS_ENV=test
+    - script:
+        name: rspec
+        code: bundle exec rspec RAILS_ENV=test
 deploy:
-    steps:
-        - heroku-deploy:
-            key-name: HEROKU_DEPLOY_KEY
-            run: rake db:migrate
-    after-steps:
-        - wantedly/pretty-slack-notify:
-            webhook_url: $SLACK_WEBHOOK_URL
+  steps:
+    - heroku-deploy:
+        key-name: HEROKU_DEPLOY_KEY
+        run: rake db:migrate
+  after-steps:
+    - wantedly/pretty-slack-notify:
+        webhook_url: $SLACK_WEBHOOK_URL
