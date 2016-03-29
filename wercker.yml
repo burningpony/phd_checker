@@ -1,6 +1,6 @@
 box: wercker/rvm
 services:
-  - wercker/postgresql
+  - wercker/postgresql92
 build:
     steps:
         - script:
