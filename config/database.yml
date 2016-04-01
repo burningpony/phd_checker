@@ -18,8 +18,8 @@ test:
   pool: 5
   timeout: 5000
   host: 0
-  username: myuser
-  password: ourlittlesecret
+  username:
+  password:
 
 production:
   adapter: postgresql

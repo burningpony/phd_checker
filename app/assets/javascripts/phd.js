@@ -186,6 +186,7 @@ jQuery(function() {
         $(".finished").modal({
           close: false,
           overlayClose: false,
+          minHeight: 620,
           overlayId: 'quit-overlay',
           containerId: 'quit-container',
           onShow: function() {

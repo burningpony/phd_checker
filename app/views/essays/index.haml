@@ -68,7 +68,7 @@
 -# shown after we are completely finished
 .finished
     -# note when this loads, turn off the unload handler
-    .h4.text-center
+    %h4.text-center
         Thank you for Participating
     .msg
 
@@ -76,7 +76,12 @@
     .body
 
     .continue
-        =link_to "Prepare this computer for the next trial", root_path, class: ""
+        %hr
+        Now that you have finished your task, we would like you to complete a brief survey before your final payment. To complete the survey, please click on the following link. When you have completed the survey, please bring all of your paper materials with you for final payment.
+        %br
+        %h3.text-center=link_to "Survey Link", url_for("https://asu.co1.qualtrics.com/SE/?SID=SV_6PbXAOSph7cEyz3"), :target => "_blank"
+        %br
+        .text-center=link_to "Prepare this computer for the next trial", root_path, class: ""
 
 .other_participants
     -# injected

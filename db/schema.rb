@@ -18,17 +18,17 @@ ActiveRecord::Schema.define(version: 20160315003701) do
 
   create_table "responses", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "error",              limit: 255
-    t.string   "essay",              limit: 255
+    t.string   "error"
+    t.string   "essay"
     t.boolean  "correct"
-    t.string   "corrected",          limit: 255
-    t.string   "uncorrected",        limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "corrected"
+    t.string   "uncorrected"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "quota"
-    t.string   "correct_answer",     limit: 255
+    t.string   "correct_answer"
     t.integer  "round_number"
-    t.string   "controller",         limit: 255
+    t.string   "controller"
     t.json     "actions"
     t.float    "total_time_to_edit"
   end
@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 20160315003701) do
   create_table "rounds", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "time_to_complete_in_seconds"
-    t.string   "name",                        limit: 255
-    t.string   "treatment",                   limit: 255
+    t.string   "name"
+    t.string   "treatment"
     t.integer  "round_number"
     t.float    "running_total_payment"
     t.float    "round_payment"
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.boolean  "completed_in_time",                       default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "completed_in_time",           default: false
     t.datetime "end_time"
     t.boolean  "early_exit"
     t.float    "time_elapsed_in_seconds"
@@ -53,12 +53,12 @@ ActiveRecord::Schema.define(version: 20160315003701) do
   add_index "rounds", ["user_id"], name: "index_rounds_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.string   "group",            limit: 255
-    t.string   "time_to_complete", limit: 255
-    t.string   "participant_id",   limit: 255
-    t.float    "total_payment",                default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "group"
+    t.string   "time_to_complete"
+    t.string   "participant_id"
+    t.float    "total_payment",    default: 0.0
   end
 
 end

@@ -4,8 +4,8 @@
   %li= link_to fa_icon('file-excel-o') + " User Analysis", users_export_aggregate_analysis_path
   %li= link_to fa_icon('file-excel-o') + " Old Export", responses_export_raw_path
   %li.divider
-  %li= link_to fa_icon('database') + " Responses", 'https://dataclips-next.heroku.com/tvyhlsuksquhgnheheogscsxylry-PHD-Checker-data', target: 'blank'
-  %li= link_to fa_icon('database') + " Rounds", 'https://dataclips.heroku.com/ypoalkmxfozcejthrabnsrdidmtv-Round-Data', target: 'blank'
-  %li= link_to fa_icon('database') + " Users", 'https://dataclips.heroku.com/cavkplfxddzuhyczbtrlozawmllz-User-Data', target: 'blank'
+  %li= link_to fa_icon('database') + " Responses", 'https://dataclips.heroku.com/cjtigbrcsthmvacidshubsehhllo-responses', target: 'blank'
+  %li= link_to fa_icon('database') + " Rounds", 'https://dataclips.heroku.com/byqhxkhcfogzunzgdgrojvlvmrci-Rounds', target: 'blank'
+  %li= link_to fa_icon('database') + " Users", 'https://dataclips.heroku.com/yihxdvwyafjdjcgsngebftkuupeu-Users', target: 'blank'
   %li.divider
   %li= link_to fa_icon('trash-o') + " Clear Database", responses_empty_path, confirm: "#{t("web-app-theme.confirm", default: "Are you sure?")}", method: :post
