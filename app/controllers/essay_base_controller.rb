@@ -45,6 +45,7 @@ class EssayBaseController < ApplicationController
     @round_number = (params[:round_number] || 1).to_i
     @responses_from_round = @user.responses.where(round_number: @round_number)
     @time = params[:round_time]
+    @option = params[:option]
     @completed_in_time = params[:completed_in_time]
   end
 

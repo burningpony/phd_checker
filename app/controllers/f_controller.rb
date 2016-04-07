@@ -1,8 +1,9 @@
 class FController < EssayBaseController
   def score_card
-    @round_payment = 0
+    payment = Payment.new(@option).f
+    @round_payment = payment.round_payment
     @round_payment_override = '-'
-    @total_payment = 25
+    @total_payment = payment.total_payment
     @name = '3'
     render file: 'essays/score_card', formats: [:html], layout: false
   end

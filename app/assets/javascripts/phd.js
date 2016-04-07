@@ -196,7 +196,8 @@ jQuery(function() {
               round_number: window.round_number,
               round_time: window.elapsed_time_in_seconds,
               completed_in_time: window.completed_in_time,
-              round_id: window.round.id
+              round_id: window.round.id,
+              option: window.option
             }, function(data) {
               $('.finished .body').html(data);
               time = window.elapsed_time_in_seconds
@@ -232,7 +233,8 @@ jQuery(function() {
               round_number: window.round_number,
               round_time: window.elapsed_time_in_seconds,
               completed_in_time: window.completed_in_time,
-              round_id: window.round.id
+              round_id: window.round.id,
+              option: window.option
             }, function(data) {
               $('.score_card .body').html(data);
             });

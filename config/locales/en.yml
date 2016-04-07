@@ -34,13 +34,13 @@ en:
     math_quizzes:
       title: Math Quizzes
       payment_method:
-        a: $0.625 per quiz
-        c: $0.20 per question
-        f: $25.00 Total
+        a: $1.54 per quiz
+        c: $0.56 per question
+        f: $24.64 Total
     combination:
       title: Combination
       payment_method:
-        a: $0.625 per assignment
-        c: $0.20 per change
-        f: $25.00 Total
+        a: $1.64 per assignment
+        c: $0.56 per correction
+        f: $24.64 Total
 
