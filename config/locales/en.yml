@@ -40,7 +40,7 @@ en:
     combination:
       title: Combination
       payment_method:
-        a: $1.64 per assignment
-        c: $0.56 per correction
+        a: $1.64 per quiz
+        c: $0.56 per question
         f: $24.64 Total
 
