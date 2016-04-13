@@ -75,7 +75,7 @@ class Response < ActiveRecord::Base
     last_action_time = last_response.present? ? last_response[1] : Round.where(user: user, round_number: round_number).first.try(:created_at) || Time.current
 
     time_of_action = Time.current
-    time_since_last_action = (time_of_action - last_action_time)
+    time_since_last_action = (time_of_action - last_action_time).round(6)
 
     current_action = {last_response: last_response_id, time_since_last_action: time_since_last_action, correct?: correct?, time_of_action: time_of_action}
     hashed_actions = (hashed_actions << current_action)

@@ -120,8 +120,6 @@ RSpec.feature 'FGames', type: :feature, js: true do
     within_window open_new_window do
       page.driver.resize(2000, 900)
       visit user_path(id: User.last.id)
-      # verify_responses
-      screenshot_and_open_image
       time_elapsed = (@end_time - @start_time).ceil
       expect(
         find('td.total_time_taken'
