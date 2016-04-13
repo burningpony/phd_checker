@@ -6,6 +6,27 @@ services:
       POSTGRES_USER: myuser  # optional
 build:
   steps:
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: Install PhantomJS
+        code: |
+            PHANTOM_VERSION="phantomjs-1.9.8"
+            ARCH=$(uname -m)
+            if ! [ $ARCH = "x86_64" ]; then
+                $ARCH="i686"
+            fi
+            if test -d "$WERCKER_CACHE_DIR/$PHANTOM_JS"; then
+                PHANTOM_JS="$PHANTOM_VERSION-linux-$ARCH"
+                apt-get update
+                apt-get install build-essential chrpath libssl-dev libxft-dev -y
+                apt-get install libfreetype6 libfreetype6-dev -y
+                apt-get install libfontconfig1 libfontconfig1-dev -y
+                cd $WERCKER_CACHE_DIR
+                curl -L -O https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+                tar xvjf $PHANTOM_JS.tar.bz2
+            fi
+            ln -sf $WERCKER_CACHE_DIR/$PHANTOM_JS/bin/phantomjs /usr/local/bin
     - bundle-install
     - rails-database-yml
     - script:
