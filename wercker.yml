@@ -10,10 +10,10 @@ build:
     - rails-database-yml
     - script:
         name: Set up db
-        code: bundle exec rake db:drop db:create db:schema:load RAILS_ENV=test
+        code: RAILS_ENV=test bundle exec rake db:drop db:create db:schema:load
     - script:
         name: rspec
-        code: bundle exec rspec RAILS_ENV=test
+        code: RAILS_ENV=test bundle exec rspec
 deploy:
   steps:
     - heroku-deploy:
