@@ -23,7 +23,7 @@ build:
                 apt-get install libfreetype6 libfreetype6-dev -y
                 apt-get install libfontconfig1 libfontconfig1-dev -y
                 curl -L -O https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
--               tar xvjf $PHANTOM_JS.tar.bz2
+                tar xvjf $PHANTOM_JS.tar.bz2
             fi
             ln -sf $WERCKER_CACHE_DIR/$PHANTOM_JS/bin/phantomjs /usr/local/bin
     - bundle-install
