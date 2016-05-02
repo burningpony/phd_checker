@@ -4,7 +4,7 @@ require 'open3'
 # sizes > 100MB
 desc 'Captures backup from heroku'
 task :capture_backup, [:generate, :app] do |_t, args|
-  args.with_defaults(generate: false, app: 'rcg-staging')
+  args.with_defaults(generate: false, app: 'stark-sands-8796')
   puts "-"*80, 'Capturing database from production...', " v "*27
   begin
     dump_dir = (Rails.root + "db/dumps/").to_s
