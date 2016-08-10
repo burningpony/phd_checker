@@ -3,13 +3,13 @@
     =t "final_instruction"
 .experiments
   %h4#selected_option
-  -@experiments.each_with_index do |experiment, index|
+  -@experiments_options.each do |experiment|
     .experiment{id: "experiment-#{experiment.to_s}"}
       .col-md-4
         .panel.panel-default
           .panel-body
             %h4.experiment_title
-              =t "payment", index: index + 1
+              =t "payment", index: experiment[:id]
             %p.lead=t "options.#{@selected_option_name}.payment_method.#{experiment}"
-            %button.begin.btn.btn-success{value: "#{experiment.to_s}"}
+            %button.begin.btn.btn-success{value: "#{experiment[:name]}"}
               Begin

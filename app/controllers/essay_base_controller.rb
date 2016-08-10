@@ -10,10 +10,6 @@ class EssayBaseController < ApplicationController
       if view.match(/(\d\d*)/)
         essay = view[/.*(?=\..+$)/][/.*(?=\..+$)/]
         essay_data = essay.split('_')
-        type = "Essay"
-        if params[:option] == "2"
-          type = "Quiz"
-        end
         @essays << { essay: essay_data[1].to_i, round: essay_data[0].to_i, type: type }
       end
     end
@@ -37,6 +33,16 @@ class EssayBaseController < ApplicationController
   end
 
   private
+
+  def type
+    type = "Essay"
+    if params[:option] == "2"
+      type = "Quiz"
+    end
+    if params[:option] == "3"
+      type = "Combination"
+    end
+  end
 
   def instance_variable_setup
     @user = User.find(params[:user_id])

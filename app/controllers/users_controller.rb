@@ -21,13 +21,18 @@ class UsersController < AdminBaseController
 
   # index view for experiments
   def options
-    @options = ['essays', 'math_quizzes', 'combination']
+    @options = Option.all
     render 'experiments/options', layout: 'cover'
+  end
+
+  def payment_options
+    @options = PaymentOption.all
+    render 'experiments/payment_options', layout: 'cover'
   end
 
   def payment
     @selected_option_name = params[:option_name]
-    @experiments = ['a', 'c', 'f']
+    @experiments_options = PaymentOption.find_all(params[:payment_options]) || PaymentOption.all
     render 'experiments/payment', layout: 'body'
   end
 
@@ -36,6 +41,7 @@ class UsersController < AdminBaseController
 
     render layout: false
   end
+
   # GET /users/1
   # GET /users/1.xml
   def show

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315003701) do
+ActiveRecord::Schema.define(version: 20160725222015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 20160315003701) do
     t.string   "group"
     t.string   "time_to_complete"
     t.string   "participant_id"
-    t.float    "total_payment",    default: 0.0
+    t.float    "total_payment",     default: 0.0
+    t.string   "available_options"
   end
 
 end

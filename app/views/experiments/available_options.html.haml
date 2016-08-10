@@ -1,0 +1,8 @@
+-content_for :page_title do
+  #instruction
+    =t "available_options"
+.row
+  .options
+    =form_for @options do |f|
+      -@options.each do |payment|
+        -f.check_box payment[:name], value: true
