@@ -77,7 +77,7 @@ class Response < ActiveRecord::Base
     time_of_action = Time.current
     time_since_last_action = (time_of_action - last_action_time).round(6)
 
-    current_action = {last_response: last_response_id, time_since_last_action: time_since_last_action, correct?: correct?, time_of_action: time_of_action}
+    current_action = {last_response: last_response_id, time_since_last_action: time_since_last_action.round(6), correct?: correct?, time_of_action: time_of_action}
     hashed_actions = (hashed_actions << current_action)
 
     set_time_to_edit(hashed_actions)
