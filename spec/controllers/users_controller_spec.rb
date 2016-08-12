@@ -11,7 +11,7 @@ describe UsersController do
   end
   describe 'mark completed' do
     params = { participant_id: 5,  group: 3 }
-    u = User.new(participant_id: params[:participant_id], group: params[:group])
+    u = User.new(participant_id: params[:participant_id], group: params[:group], available_payments: params[:available_payments])
     it 'sets participant_id' do
       u.save
       expect(u.id).to_not eq nil
@@ -54,8 +54,8 @@ describe UsersController do
   describe 'POST create' do
     describe 'with valid params' do
       it 'assigns a newly created user as @user' do
-        allow(User).to receive(:new).with(participant_id: nil, group: nil) { mock_user(save: true) }
-        post :create, user: { participant_id: nil, group: nil }
+        allow(User).to receive(:new).with(participant_id: nil, group: nil, available_payments: nil) { mock_user(save: true) }
+        post :create, user: { participant_id: nil, group: nil, available_payments: nil }
         expect(assigns(:user)).to be(mock_user)
       end
 
@@ -68,8 +68,8 @@ describe UsersController do
 
     describe 'with invalid params' do
       it 'assigns a newly created but unsaved user as @user' do
-        allow(User).to receive(:new).with(participant_id: nil, group: nil) { mock_user(save: false) }
-        post :create, user: { participant_id: nil, group: nil }
+        allow(User).to receive(:new).with(participant_id: nil, group: nil, available_payments: nil) { mock_user(save: false) }
+        post :create, user: { participant_id: nil, group: nil, available_payments: nil }
         expect(assigns(:user)).to be(mock_user)
       end
 

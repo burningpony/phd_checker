@@ -1,6 +1,6 @@
-def correct_essay(round: 1,  number: 1, option: 1, get_it_right: true)
+def correct_essay(round: 1,  number: 1, option: 1, get_it_right: true, type: "Essay")
   uncorrected_answers = {}
-  click_link "Essay #{number}"
+  click_link type + " #{number}"
   wait_for_ajax
   within "#o#{option}_e#{round}_#{number}" do
     # loop through and count things

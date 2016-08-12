@@ -49,6 +49,9 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     within '#option-3' do
       click_button 'Select'
     end
+    within '#available_payments' do
+      click_button 'Select available payments'
+    end
     within '#experiment-a' do
       click_button 'Begin'
     end
@@ -57,7 +60,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     click_button 'start'
     click_link 'Start'
     wait_for_ajax
-    correct_essay(round: 1, number: 2, option: 3)
+    correct_essay(round: 1, number: 2, option: 3, type: "Essay")
     complete_round
 
     complete_round
@@ -128,6 +131,11 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     within '#option-3' do
       click_button 'Select'
     end
+
+    within '#available_payments' do
+      click_button 'Select available payments'
+    end
+
     within '#experiment-a' do
       click_button 'Begin'
     end

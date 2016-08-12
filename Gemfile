@@ -32,10 +32,10 @@ group :development, :test do
   gem 'rspec-activemodel-mocks'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'pry'
 end
 
 group :test do
-  gem 'pry'
   gem 'factory_girl_rails'
   gem 'timecop'
   gem 'simplecov', require: false

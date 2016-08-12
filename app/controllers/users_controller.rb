@@ -19,23 +19,11 @@ class UsersController < AdminBaseController
     render js: 'true'
   end
 
-  # index view for experiments
-  def options
-    @options = ['essays', 'math_quizzes', 'combination']
-    render 'experiments/options', layout: 'cover'
-  end
-
-  def payment
-    @selected_option_name = params[:option_name]
-    @experiments = ['a', 'c', 'f']
-    render 'experiments/payment', layout: 'body'
-  end
-
   def stats
     @users = User.find_all_by_group(params[:group])
-
     render layout: false
   end
+
   # GET /users/1
   # GET /users/1.xml
   def show
@@ -66,11 +54,10 @@ class UsersController < AdminBaseController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(participant_id: params[:participant_id], group: params[:group])
+    @user = User.new(participant_id: params[:participant_id], group: params[:group], available_payments: params[:available_payments])
 
     respond_to do |format|
       if @user.save
-
         format.json { render json: @user.to_json }
         format.html { redirect_to(@user, notice: 'User was successfully created.') }
         format.xml  { render xml: @user, status: :created, location: @user }

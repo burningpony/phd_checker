@@ -12,17 +12,13 @@
     = csrf_meta_tag
   %body
     .vignette
-    .site-wrapper
-      .site-wrapper-inner
-        .cover-container
-          / .masthead.clearfix
-          /   .inner
-          /     %h3.masthead-brand Cover
-
-          .inner.cover
-            %h1.cover-heading=yield :page_title
-            %hr
-            =yield
+      .site-wrapper
+        .site-wrapper-inner
+          .cover-container
+            .inner.cover
+              %h1.cover-heading=yield :page_title
+              %hr
+              =yield
 :javascript
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

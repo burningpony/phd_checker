@@ -59,7 +59,7 @@ window.send_correction = function( group_id, participant_id, essay_id, field_id,
     } );
 }
 
-window.create_user = function(participant_id, group_id) {
+window.create_user = function(participant_id, group_id, available_payments) {
     if ( window.console ) {
         console.log( "storing user")
     }
@@ -69,6 +69,7 @@ window.create_user = function(participant_id, group_id) {
       data: {
         "participant_id": participant_id,
         "group": group_id,
+        "available_payments": available_payments,
         controller: window.path_to_controller
       },
       success: function(data) {

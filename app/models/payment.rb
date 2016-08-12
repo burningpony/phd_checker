@@ -1,6 +1,15 @@
 class Payment
   attr_reader :total_payment, :round_payment
 
+  def self.all
+    ['a', 'c', 'f']
+  end
+
+  def self.find_all(ids)
+    return nil unless ids
+    all.find_all {|id| ids.include?(id)}
+  end
+
   def initialize(option)
     @option = option.to_i
   end

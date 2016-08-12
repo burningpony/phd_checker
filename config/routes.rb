@@ -21,13 +21,17 @@ PhdChecker::Application.routes.draw do
   get 'responses/export_raw' => 'responses#export_raw_csv'
   get 'users/export_aggregate_analysis' => 'users#export_aggregate_analysis'
   resources :responses
+
   post 'users/complete' => 'users#mark_completed'
   get 'users/stats' => 'users#stats'
-  get 'users/payment' => 'users#payment'
-  get 'users/options' => 'users#options'
+
   resources :users
-  root to: 'users#options'
   resources :rounds
+
+  get 'setup/payment' => 'setup#payment'
+  get 'setup/available_payments' => 'setup#available_payments'
+  get 'setup/experiment_options' => 'setup#experiment_options'
+  root to: 'setup#experiment_options'
 
   # Note: This route will make all actions in
   # every controller accessible via GET requests.

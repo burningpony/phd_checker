@@ -1,0 +1,15 @@
+-content_for :page_title do
+  #instruction
+    =t "available_payments"
+.row
+  .panel.panel-default
+    .panel-body
+      #available_payments
+        -@options.each do |payment|
+          %label
+            =t "options.#{@selected_option_name}.payment_method.#{payment}"
+            =check_box_tag payment, payment, true
+          %br
+        %button.begin.btn.btn-success.submit
+          Select available payments
+
