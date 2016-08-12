@@ -1,4 +1,4 @@
-box: phusion/passenger-ruby22
+box: wercker/box-rvm
 services:
   - id: postgres
     env:
@@ -31,10 +31,10 @@ build:
     - rails-database-yml
     - script:
         name: Set up db
-        code: RAILS_ENV=test bundle exec rake db:drop db:create db:schema:load
+        code: bundle exec rake db:schema:load RAILS_ENV=test
     - script:
         name: rspec
-        code: RAILS_ENV=test bundle exec rspec
+        code: bundle exec rspec
 deploy:
   steps:
     - heroku-deploy:
