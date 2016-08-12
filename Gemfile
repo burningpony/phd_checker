@@ -22,6 +22,7 @@ gem 'will_paginate-bootstrap'
 gem 'puma'
 gem 'rails-assets-airbrake-js', source: 'https://rails-assets.org'
 gem 'rails-assets-store.js', source: 'https://rails-assets.org'
+gem 'therubyracer'
 
 
 group :development, :test do
