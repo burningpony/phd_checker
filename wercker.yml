@@ -1,4 +1,4 @@
-box: wercker/ruby
+box: ruby
 services:
   - id: postgres
     env:
