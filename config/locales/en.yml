@@ -23,6 +23,7 @@ en:
   initial_instruction: Please select your assignment structure
   available_payments: Please select payment options available for this experiment
   final_instruction: Please select your payment method
+  job_selection: Please select your job and payment method
   payment: "Payment Method %{index}"
   option: "Option %{index}"
   jobs:
