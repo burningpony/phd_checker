@@ -59,7 +59,7 @@ jQuery(function() {
             modal.close();
 
             //create user
-            create_user(window.participant_id, window.group_id, window.available_payments).success(function() {
+            create_user(window.participant_id, window.group_id, window.available_payments, window.job).success(function() {
               window.show_instructions();
             })
 

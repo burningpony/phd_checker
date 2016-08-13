@@ -54,7 +54,7 @@ class UsersController < AdminBaseController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(participant_id: params[:participant_id], group: params[:group], available_payments: params[:available_payments])
+    @user = User.new(participant_id: params[:participant_id], group: params[:group], available_payments: params[:available_payments], job: params[:job])
 
     respond_to do |format|
       if @user.save
@@ -62,7 +62,7 @@ class UsersController < AdminBaseController
         format.html { redirect_to(@user, notice: 'User was successfully created.') }
         format.xml  { render xml: @user, status: :created, location: @user }
       else
-        format.js { render js: "#{ @user.errors}" }
+        format.js { render js: "#{@user.errors}" }
         format.html { render action: 'new' }
         format.xml  { render xml: @user.errors, status: :unprocessable_entity }
       end

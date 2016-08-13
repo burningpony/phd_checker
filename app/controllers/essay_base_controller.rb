@@ -5,6 +5,7 @@ class EssayBaseController < ApplicationController
   def index
     @option = params[:option] ||= 1
     @available_payments = params[:available_payments] || Payment.all
+    @job = params[:job]
     @essays = []
     view_directory = File.expand_path("../../views/options/#{@option}", __FILE__)
     Dir.foreach(view_directory).each do |view|

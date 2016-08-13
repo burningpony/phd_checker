@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
       average_time_to_edit: responses.average(:total_time_to_edit),
       total_actions: responses.pluck("sum(json_array_length(actions)) as total_actions")[0],
       available_payments: available_payments,
+      job: job,
     }
   end
 

@@ -1,0 +1,19 @@
+:javascript
+  window.available_payments = #{@experiments_options}
+
+-content_for :page_title do
+  #instruction
+    =t "final_instruction"
+.experiments
+  .row
+    -@jobs.each do |job|
+      .col-md-6
+        .panel.panel-default
+          .panel-body
+            %h4
+              =t "jobs.#{job}"
+            -@experiments_options.each_with_index do |experiment, index|
+              .experiment{id: "experiment-#{experiment.to_s}", class: "col-md-#{(12 / @jobs.length)}"}
+                %p.lead=t "options.#{@selected_option_name}.payment_method.#{experiment}"
+                %button.begin.btn.btn-success{value: "#{experiment}:#{job}"}
+                  Begin

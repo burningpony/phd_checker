@@ -12,6 +12,8 @@
       %th Treatment
       %th Responses(Correct)
       %th Responses(Incorrect)
+      %th Job
+      %th Available treatments
       %th= t("web-app-theme.created_at", :default => "Created at")
       %th= t("web-app-theme.updated_at", :default => "Updated at")
       %th.last &nbsp
@@ -24,6 +26,8 @@
         %small.text-muted= user.responses.pluck(:controller).compact.first
       %td= user.responses.correct.count
       %td= user.responses.incorrect.count
+      %td= user.job
+      %th= user.available_payments.to_s
       %td= user.created_at
       %td= user.updated_at
       %td

@@ -3,12 +3,13 @@ jQuery(function() {
   $( ".select" ).click(function() {
     setOptionsToVal(this)
     console.log("option", window.option);
-
     //:()
+    params = {option_name: window.option_name}
+
     if(window.option_name == "combination") {
-      goToAvailablePaymentSelection(window.option_name)
+      goToAvailablePaymentSelection(params)
     } else {
-      goToPaymentSelection({option_name: window.option_name})
+      goToPaymentSelection(params)
     }
   });
 
@@ -21,29 +22,53 @@ jQuery(function() {
     window.available_payments = $.map($('#available_payments').find("input:checked"), function(elem) {return elem.value})
   }
 
+/**********************/
   goToAvailablePaymentSelection = function() {
-    $.get('setup/available_payments', {option_name: window.option_name}, function(
-      data) {
+    $.get('setup/available_payments', {option_name: window.option_name}, function(data) {
       $("body").html(data);
       $( ".submit" ).click(function(event) {
         setAvailablePayments()
-        goToPaymentSelection({option_name: window.option_name,
-                              available_payments: window.available_payments})
+        goToJobSelection({option_name: window.option_name,
+                          available_payments: window.available_payments})
       });
     });
   }
 
+/**********************/
   goToPaymentSelection = function(params) {
-    $.get('setup/payment', params, function(
-      data) {
-        $("body").html(data);
-        $( ".begin" ).click(function() {
-          payment_method = $(this).val();
-          disableButtons();
-          params = $.param({option: window.option, available_payments: window.available_payments})
-          window.location.href = '/' + payment_method + "?" + params
-        });
+    $.get('setup/payment', params, function(data) {
+      $("body").html(data);
+      experiment_params = {option: window.option, available_payments: window.available_payments}
+
+      $( ".begin" ).click(function(){
+        payment_method = $(this).val();
+        beginExperiment(payment_method, experiment_params)
+      });
     });
+  }
+
+  goToJobSelection = function(params) {
+    $.get('setup/select_job', params, function(data) {
+      $("body").html(data);
+
+      $( ".begin" ).click(function(){
+        payment_method = $(this).val().split(":")[0];
+        job = $(this).val().split(":")[1];
+
+        experiment_params = {option: window.option,
+                          available_payments: window.available_payments,
+                          job: job}
+
+        beginExperiment(payment_method, experiment_params)
+      });
+    });
+  }
+
+/*******************/
+  beginExperiment = function(payment_method, params) {
+    disableButtons();
+    parametrized_params = $.param(params)
+    window.location.href = '/' + payment_method + "?" + parametrized_params
   }
 
   disableButtons = function(){

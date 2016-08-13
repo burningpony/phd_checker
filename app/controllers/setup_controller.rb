@@ -11,6 +11,14 @@ class SetupController < AdminBaseController
     render 'experiments/available_payments', layout: 'cover'
   end
 
+  def select_job
+    @selected_option_name = params[:option_name]
+    available_payments = params[:available_payments]
+    @experiments_options = Payment.find_all(available_payments) || Payment.all
+    @jobs = Job.all
+    render 'experiments/select_job', layout: 'cover'
+  end
+
   def payment
     @selected_option_name = params[:option_name]
     available_payments = params[:available_payments]

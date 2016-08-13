@@ -25,6 +25,9 @@ en:
   final_instruction: Please select your payment method
   payment: "Payment Method %{index}"
   option: "Option %{index}"
+  jobs:
+    a: Job A
+    b: Job B
   options:
     essays:
       title: Essays

@@ -5,7 +5,6 @@
   #instruction
     =t "final_instruction"
 .experiments
-  %h4#selected_option
   -@experiments_options.each_with_index do |experiment, index|
     .experiment{id: "experiment-#{experiment.to_s}"}
       .col-md-4
