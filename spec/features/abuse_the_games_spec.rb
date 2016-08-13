@@ -52,7 +52,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     within '#available_payments' do
       click_button 'Select available payments'
     end
-    within '#experiment-a' do
+    within '#experiment-a-job-b' do
       click_button 'Begin'
     end
     fill_in :participant_id, with: 100
@@ -136,7 +136,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
       click_button 'Select available payments'
     end
 
-    within '#experiment-a' do
+    within '#experiment-a-job-a' do
       click_button 'Begin'
     end
     fill_in :participant_id, with: 100

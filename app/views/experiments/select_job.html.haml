@@ -13,7 +13,7 @@
             %h4
               =t "jobs.#{job}"
             -@experiments_options.each_with_index do |experiment, index|
-              .experiment{id: "experiment-#{experiment.to_s}", class: "col-md-#{(12 / @jobs.length)}"}
+              .experiment{id: "experiment-#{experiment.to_s}-job-#{job.to_s}", class: "col-md-#{(12 / @jobs.length)}"}
                 %p.lead=t "options.#{@selected_option_name}.payment_method.#{experiment}"
                 %button.begin.btn.btn-success{value: "#{experiment}:#{job}"}
                   Begin
