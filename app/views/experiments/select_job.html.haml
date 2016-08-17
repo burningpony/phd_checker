@@ -1,5 +1,5 @@
 :javascript
-  window.available_payments = #{@experiments_options}
+  window.available_payments = #{@available_payments.to_json}
 
 -content_for :page_title do
   #instruction
@@ -12,8 +12,8 @@
           .panel-body
             %h4
               =t "jobs.#{job}"
-            -@experiments_options.each_with_index do |experiment, index|
-              .experiment{id: "experiment-#{experiment.to_s}-job-#{job.to_s}", class: "col-md-#{(12 / @jobs.length)}"}
+            -@experiments_options.call(job).each_with_index do |experiment, index|
+              .experiment.well.col-md-6{id: "experiment-#{experiment.to_s}-job-#{job.to_s}"}
                 %p.lead=t "options.#{@selected_option_name}.payment_method.#{experiment}"
                 %button.begin.btn.btn-success{value: "#{experiment}:#{job}"}
                   Begin

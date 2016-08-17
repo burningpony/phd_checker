@@ -66,9 +66,23 @@ class User < ActiveRecord::Base
       average_time_to_edit_correct: responses.where(correct: true).average(:total_time_to_edit),
       average_time_to_edit: responses.average(:total_time_to_edit),
       total_actions: responses.pluck("sum(json_array_length(actions)) as total_actions")[0],
-      available_payments: available_payments,
       job: job,
-    }
+    }.merge(analyzed_available_payments)
+  end
+
+  def analyzed_available_payments
+    @analyzed_available_payments ||= {}
+    Job.all.each do |job|
+      Payment.all.each do |payment|
+        if available_payments.present? && available_payments.is_a?(Hash) && available_payments[job]
+          available = available_payments[job].include?(payment) ? 1 : 0
+        else
+          available = nil
+        end
+        @analyzed_available_payments["job_#{job}_option_#{payment}".to_sym] = available
+      end
+    end
+    @analyzed_available_payments
   end
 
   def round_impact(round)

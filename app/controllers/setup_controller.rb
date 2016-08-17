@@ -13,17 +13,18 @@ class SetupController < AdminBaseController
 
   def select_job
     @selected_option_name = params[:option_name]
-    available_payments = params[:available_payments]
-    @experiments_options = Payment.find_all(available_payments) || Payment.all
+    @available_payments = params[:available_payments]
+
+    # ;)
+    @experiments_options = Proc.new {|job| Payment.find_all(@available_payments[job]) || Payment.all}
     @jobs = Job.all
     render 'experiments/select_job', layout: 'cover'
   end
 
   def payment
     @selected_option_name = params[:option_name]
-    available_payments = params[:available_payments]
 
-    @experiments_options = Payment.find_all(available_payments) || Payment.all
+    @experiments_options = Payment.all
     render 'experiments/payment', layout: 'cover'
   end
 end

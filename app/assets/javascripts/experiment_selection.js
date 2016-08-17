@@ -19,7 +19,9 @@ jQuery(function() {
   }
 
   setAvailablePayments = function() {
-    window.available_payments = $.map($('#available_payments').find("input:checked"), function(elem) {return elem.value})
+    jobAPayments = $.map($('#job_a_payments').find("input:checked"), function(elem) {return elem.value})
+    jobBPayments = $.map($('#job_b_payments').find("input:checked"), function(elem) {return elem.value})
+    window.available_payments = {a: jobAPayments, b: jobBPayments}
   }
 
 /**********************/

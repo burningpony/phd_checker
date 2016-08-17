@@ -4,7 +4,7 @@
 :javascript
     window.path_to_controller = "/#{params[:controller]}";
     window.option = "#{@option}";
-    window.available_payments = #{@available_payments};
+    window.available_payments = #{@available_payments.to_json};
     window.job = "#{@job}";
 
 -if controller.show_quota_items

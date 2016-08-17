@@ -5,11 +5,15 @@
   .panel.panel-default
     .panel-body
       #available_payments
-        -@options.each do |payment|
-          %label
-            =t "options.#{@selected_option_name}.payment_method.#{payment}"
-            =check_box_tag payment, payment, true
-          %br
+        -Job.all.each do |job|
+          .col-md-6
+            %h4=t "jobs.#{job}"
+            %div{id: "job_#{job}_payments"}
+              -@options.each do |payment|
+                %label
+                  =t "options.#{@selected_option_name}.payment_method.#{payment}"
+                  =check_box_tag payment, payment, true
+                %br
         %button.begin.btn.btn-success.submit
           Select available payments
 
