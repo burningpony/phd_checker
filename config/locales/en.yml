@@ -32,18 +32,21 @@ en:
   options:
     essays:
       title: Essays
+      type: Essay
       payment_method:
         a: $0.625 per essay
         c: $0.20 per edit
         f: $25.00 Total
     math_quizzes:
       title: Math Quizzes
+      type: Quiz
       payment_method:
         a: $1.54 per quiz
         c: $0.56 per question
         f: $24.64 Total
     combination:
       title: Combination
+      type: Quiz
       payment_method:
         a: $1.64 per quiz
         c: $0.56 per question

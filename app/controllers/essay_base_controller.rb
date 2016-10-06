@@ -37,11 +37,8 @@ class EssayBaseController < ApplicationController
   private
 
   def type
-    type = "Essay"
-    if params[:option] == "2"
-      type = "Quiz"
-    end
-    type
+    option = ExperimentOption.find(params[:option].to_i)
+    I18n.t "type", scope: [:options, option[:name]]
   end
 
   def instance_variable_setup

@@ -60,7 +60,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
     click_button 'start'
     click_link 'Start'
     wait_for_ajax
-    correct_essay(round: 1, number: 2, option: 3, type: "Essay")
+    correct_essay(round: 1, number: 2, option: 3, type: "Quiz")
     complete_round
 
     complete_round
@@ -81,7 +81,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
 
     expect(subject).to have_content('Total earnings so far:')
     expect(User.last.analyze[:finish_round_4_early]).to have_content(1)
-    expect(User.last.responses.count).to eq(6)
+    expect(User.last.responses.count).to eq(2)
     click_link 'Prepare this computer for the next trial'
 
     snapshot_user_page
