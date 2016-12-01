@@ -21,7 +21,7 @@ class Payment
     when 2
       1.54
     when 3
-      1.64
+      1.54
     else
       raise InvalidOption
     end
