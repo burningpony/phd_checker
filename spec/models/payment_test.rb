@@ -50,8 +50,8 @@ describe Payment do
     let(:option) {3}
     it "properly calculates a" do
       subject.a(round_completed_essay: 4, total_completed_essay: 2)
-      expect(subject.total_payment).to eq (2 * 1.64)
-      expect(subject.round_payment).to eq (4 * 1.64)
+      expect(subject.total_payment).to eq (2 * 1.54)
+      expect(subject.round_payment).to eq (4 * 1.54)
     end
 
     it "properly calculates c" do

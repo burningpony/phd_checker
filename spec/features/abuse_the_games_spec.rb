@@ -69,7 +69,7 @@ RSpec.feature 'AbuseGames', type: :feature, js: true do
       expect(subject).to have_content('Total earnings so far:')
 
       within '.earnings' do
-        expect(subject).to have_content('$1.64')
+        expect(subject).to have_content('$1.54')
       end
 
       within '.round_earnings' do
