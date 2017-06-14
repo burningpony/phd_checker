@@ -1,0 +1,32 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - tmp/**/*
+    - solr/**/*
+    - cookbooks/**/*
+    - db/schema.rb
+  Include:
+    - '**/*.rabl'
+    - '**/*.rake'
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+DoubleNegation:
+  Enabled: false
+LineLength:
+  Max: 140
+Rails/DynamicFindBy:
+  Enabled: true
+  Exclude: 
+    - "config/initializers/wicked_pdf.rb"
+Metrics/ModuleLength:
+  Exclude:
+    - '**/*_spec.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"
