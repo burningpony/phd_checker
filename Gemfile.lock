@@ -1,11 +1,10 @@
 GIT
-  remote: git://github.com/teampoltergeist/poltergeist.git
-  revision: e3fc25919afb07960698785985f1051b9ea7f7ec
+  remote: https://github.com/teampoltergeist/poltergeist.git
+  revision: eb83083e35d55bb8a15617645e8d6261eacbde67
   specs:
-    poltergeist (1.6.0)
+    poltergeist (1.15.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
-      multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
 
 GEM
@@ -140,9 +139,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (2.11.2)
-      rack (>= 1.1, < 2.0)
-    rack (1.6.0)
+    puma (3.9.1)
+    rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -244,7 +242,7 @@ GEM
       json (>= 1.8.0)
     web-app-theme (0.7.0)
     websocket (1.2.2)
-    websocket-driver (0.5.4)
+    websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     will_paginate (3.0.7)
@@ -297,4 +295,4 @@ RUBY VERSION
    ruby 2.3.3
 
 BUNDLED WITH
-   1.14.4
+   1.15.1
