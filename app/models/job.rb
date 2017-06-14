@@ -1,4 +1,4 @@
-class Job
+module Job
   def self.all
     ["a", "b"]
   end
