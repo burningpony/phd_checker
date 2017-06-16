@@ -13,7 +13,7 @@ class SetupController < AdminBaseController
 
   def select_job
     @selected_option_name = params[:option_name]
-    @available_payments = params[:available_payments]
+    @available_payments = params[:available_payments] || {}
 
     # ;)
     @experiments_options = Proc.new {|job| Payment.find_all(@available_payments[job]) || Payment.all}
