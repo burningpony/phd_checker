@@ -6,7 +6,7 @@ RSpec.feature 'EGames', type: :feature, js: true do
     setup_test_counts
   end
   scenario 'plays ?' do
-    visit e_index_path
+    visit phase_two_e_index_path
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'
