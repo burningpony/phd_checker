@@ -1,5 +1,9 @@
 //this is :(
 jQuery(function() {
+    // get phase from window.location.href so
+    // beginExperiment() routes appropriately
+    var phase = window.location.href.match(/phase_[a-z]+/) ? window.location.href.match(/phase_[a-z]+/)[0] : '';
+
     $(".select").click(function() {
         setOptionsToVal(this);
         console.log("option", window.option);
@@ -91,7 +95,7 @@ jQuery(function() {
     beginExperiment = function(payment_method, params) {
         disableButtons();
         parametrized_params = $.param(params);
-        window.location.href = "/" + payment_method + "?" + parametrized_params;
+        window.location.href = phase + '/' + payment_method + "?" + parametrized_params;
     };
 
     disableButtons = function() {
