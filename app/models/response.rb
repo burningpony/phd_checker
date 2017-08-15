@@ -5,6 +5,7 @@ class Response < ActiveRecord::Base
   before_save :set_correct
   validates :user_id, presence: true
   validates :corrected, length: { maximum: 100 }
+  validates :phase, inclusion: { in: ['phase_one', 'phase_two'] }, allow_nil: true
   scope :incorrect, -> { where(correct: false) }
   scope :correct, -> { where(correct: true) }
 
