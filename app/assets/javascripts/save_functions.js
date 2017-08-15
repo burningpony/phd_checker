@@ -29,8 +29,8 @@ window.send_correction = function(
             essay: essay_id,
             error: field_id,
             uncorrected: original_value,
-            corrected: current_value,
-            correct_answer: correct_answer,
+            corrected: current_value.toLowerCase(),
+            correct_answer: correct_answer.toLowerCase(),
             quota: quota,
             round_number: round_number,
             controller: window.path_to_controller
