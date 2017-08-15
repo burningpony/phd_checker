@@ -7,7 +7,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
   end
 
   it 'plays salary' do
-    visit phase_two_f_index_path
+    visit f_index_path
     fill_in :participant_id, with: random_number
     fill_in :group_id, with: random_number
     click_button 'start'
@@ -71,7 +71,7 @@ RSpec.feature 'FGames', type: :feature, js: true do
   end
 
   it 'plays salary very poorly ' do
-    visit phase_two_f_index_path
+    visit f_index_path
     fill_in :participant_id, with: 100
     fill_in :group_id, with: 400
     click_button 'start'

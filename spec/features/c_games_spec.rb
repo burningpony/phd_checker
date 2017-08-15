@@ -6,7 +6,7 @@ RSpec.feature 'CGames', type: :feature, js: true do
     setup_test_counts
   end
   scenario 'plays 0.20 per error' do
-    visit phase_two_c_index_path
+    visit c_index_path
     fill_in :participant_id, with: random_number
     fill_in :group_id, with: random_number
     click_button 'start'
