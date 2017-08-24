@@ -1,8 +1,8 @@
 PhdChecker::Application.routes.draw do
   root to: redirect('/phase_two')
 
-  get 'phase_two' => 'setup#experiment_options'
-  get 'phase_one' => 'setup#experiment_options'
+  get 'phase_two' => 'setup#experiment_options', defaults: {phase: 'phase_two'}
+  get 'phase_one' => 'setup#experiment_options', defaults: {phase: 'phase_one'}
 
   post 'responses/empty'      => 'responses#empty'
   get  'responses/export_raw' => 'responses#export_raw_csv'
