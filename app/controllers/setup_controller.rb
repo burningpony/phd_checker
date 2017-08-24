@@ -1,7 +1,7 @@
 class SetupController < AdminBaseController
  # index view for experiments
   def experiment_options
-    @options = ExperimentOption.all
+    @options = ExperimentOption.find_by_phase(params[:phase])
     render 'experiments/options', layout: 'cover'
   end
 
