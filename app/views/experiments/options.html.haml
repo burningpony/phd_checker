@@ -3,13 +3,13 @@
     =t "initial_instruction"
 .row
   .options
-    -@options.each do |option|
+    -@options.each_with_index do |option, index|
       .option{id: "option-#{option[:id]}"}
-        .col-md-4
+        %div{class: "col-md-#{12/@options.size}"}
           .panel.panel-default
             .panel-body
               %h4.option_title
-                =t "option", index: option[:id]
+                =t "option", index: index + 1
               %p.lead=t "options.#{option[:name]}.title"
               %button.select.btn.btn-success{value: "#{option[:id]}:#{option[:name]}"}
                 Select
