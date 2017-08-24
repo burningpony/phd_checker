@@ -59,12 +59,6 @@ class EssayBaseController < ApplicationController
   end
 
   def get_phase
-    @phase = 
-    case params[:phase]
-    when 'phase_one', 'phase_two'
-      params[:phase]
-    else
-      ''
-    end
+    @phase = params[:phase] == 'phase_one' ? 'phase_one' : 'phase_two'
   end
 end
