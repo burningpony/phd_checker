@@ -19,7 +19,8 @@ window.send_correction = function(
     current_value,
     correct_answer,
     quota,
-    round_number
+    round_number,
+    phase
 ) {
     var params = {
         user_id: window.user.id,
@@ -33,7 +34,8 @@ window.send_correction = function(
             correct_answer: correct_answer.toLowerCase(),
             quota: quota,
             round_number: round_number,
-            controller: window.path_to_controller
+            controller: window.path_to_controller,
+            phase: phase
         }
     };
 
