@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815020615) do
+ActiveRecord::Schema.define(version: 20170825201302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170815020615) do
     t.string   "controller"
     t.json     "actions"
     t.float    "total_time_to_edit"
-    t.string   "phase"
+    t.integer  "phase"
   end
 
   create_table "rounds", force: :cascade do |t|
