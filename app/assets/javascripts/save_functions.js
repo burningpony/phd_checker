@@ -22,8 +22,6 @@ window.send_correction = function(
     round_number,
     phase
 ) {
-    phase_int = phase === 'phase_one' ? 1 : 2
-
     var params = {
         user_id: window.user.id,
         participant_id: participant_id,
@@ -37,7 +35,7 @@ window.send_correction = function(
             quota: quota,
             round_number: round_number,
             controller: window.path_to_controller,
-            phase: phase_int
+            phase: phase
         }
     };
 
