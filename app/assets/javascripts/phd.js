@@ -1,7 +1,7 @@
 var TIME_LIMIT_IN_MINUTES = 7;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15 * 1000;
-window.phase = window.location.href.match(/phase_[a-z]+/) ? window.location.href.match(/phase_[a-z]+/)[0] : '';
+var phase = App.determinePhase();
 window.elapsed_time_in_seconds = 0;
 window.participant_id = undefined;
 window.group_id = undefined;
@@ -9,7 +9,7 @@ window.round_number = 1;
 window.total_errors_shown = 0;
 window.total_corrections_avaliable = 0;
 window.completed_in_time = true;
-var NUMBER_OF_ROUNDS = window.phase == 'phase_one' ? 1 : 4;
+var NUMBER_OF_ROUNDS = phase == 'phase_one' ? 1 : 4;
 jQuery(function() {
     if ($(".participant").length > 0) {
         // Setup the back button warning:
@@ -343,7 +343,7 @@ jQuery(function() {
                     $.ajax({
                         type: "GET",
                         url: "/essay_base/show/" + essay_round_id,
-                        data: { option: window.option, phase: window.phase }
+                        data: { option: window.option, phase: phase }
                     }).success(function(data) {
                         $(".content").append(data);
                         cached_essays[essay_id] = true;
@@ -463,7 +463,7 @@ jQuery(function() {
                     correct_answer,
                     is_quota,
                     round_number,
-                    window.phase
+                    phase
                 );
             });
             span.appendChild(input);
