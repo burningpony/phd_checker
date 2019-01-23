@@ -1,5 +1,6 @@
 class EssayBaseController < ApplicationController
   before_filter :instance_variable_setup, only: [:score_card]
+  before_filter :get_phase, only: [:index, :show]
   after_filter :record_data, only: [:score_card]
 
   def index
@@ -7,7 +8,7 @@ class EssayBaseController < ApplicationController
     @available_payments = params[:available_payments] || Payment.all
     @job = params[:job]
     @essays = []
-    view_directory = File.expand_path("../../views/options/#{@option}", __FILE__)
+    view_directory = File.expand_path("../../views/#{@phase}/options/#{@option}", __FILE__)
     Dir.foreach(view_directory).each do |view|
       if view.match(/(\d\d*)/)
         essay = view[/.*(?=\..+$)/][/.*(?=\..+$)/]
@@ -23,7 +24,7 @@ class EssayBaseController < ApplicationController
     @option = params[:option]
     @essay_id = params[:id].match(/\d_\d+/)[0]
     @essay_title = "Essay #{@essay_id}"
-    render file: "options/#{params[:option]}/" + @essay_id, layout: 'essay'
+    render file: "#{@phase}/options/#{params[:option]}/" + @essay_id, layout: 'essay'
   end
 
   def show_quota_items
@@ -55,5 +56,9 @@ class EssayBaseController < ApplicationController
   def record_data
     @user.update_attributes(total_payment: @total_payment)
     @round.update_attributes(user_id: @user.id, round_number: @round_number, running_total_payment: @total_payment, round_payment: @round_payment, name: @name, time_to_complete_in_seconds: @time, completed_in_time: @completed_in_time, early_exit: false, end_time: DateTime.now)
+  end
+
+  def get_phase
+    @phase = params[:phase] == 'phase_one' ? 'phase_one' : 'phase_two'
   end
 end

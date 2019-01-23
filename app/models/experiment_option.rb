@@ -13,4 +13,10 @@ class ExperimentOption
     return nil unless ids
     all.find_all {|option| ids.include?(option[:id])}
   end
+
+  def self.find_by_phase(phase)
+    options = all
+
+    options.tap { options.delete({name: 'essays', id: 1}) if phase == 'phase_one' }
+  end
 end

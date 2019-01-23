@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require simple_modal
 //= require diff
+//= require determine_phase
 //= require save_functions
 //= require phd
 //= require disallowed

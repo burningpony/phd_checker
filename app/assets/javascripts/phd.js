@@ -1,7 +1,17 @@
+const PHASE_ONE_ID = 1;
+const PHASE_TWO_ID = 2;
 var TIME_LIMIT_IN_MINUTES = 7;
 var INTERVAL_IN_SECONDS_OF_HOW_OFTEN_TO_SHOW_OTHER_STUDENT_ACTIONS = 60; // one minute
 var TIMEOUT_FOR_OTHER_PARTICIPANTS = 15 * 1000;
-var NUMBER_OF_ROUNDS = 4;
+var PHASE_ONE_ROUNDS = 1;
+var PHASE_TWO_ROUNDS = 4;
+var NUMBER_OF_ROUNDS = PHASE_TWO_ROUNDS;
+var PHASE_ID = PHASE_TWO_ID;
+var PHASE = App.determinePhase();
+if (PHASE === 'phase_one') {
+    NUMBER_OF_ROUNDS = PHASE_ONE_ROUNDS;
+    PHASE_ID         = PHASE_ONE_ID;
+}
 window.elapsed_time_in_seconds = 0;
 window.participant_id = undefined;
 window.group_id = undefined;
@@ -342,7 +352,7 @@ jQuery(function() {
                     $.ajax({
                         type: "GET",
                         url: "/essay_base/show/" + essay_round_id,
-                        data: { option: window.option }
+                        data: { option: window.option, phase: PHASE }
                     }).success(function(data) {
                         $(".content").append(data);
                         cached_essays[essay_id] = true;
@@ -372,7 +382,7 @@ jQuery(function() {
             var input = document.createElement("input");
             input.type = "text";
             input.value = original_text;
-            input.size = input.value.length * 1.2;
+            input.size = (input.value.length || 1) * 1.2;
             var correct_answer = span.getAttribute("rel");
             input.state = function() {
                 /*
@@ -461,7 +471,8 @@ jQuery(function() {
                     current_value,
                     correct_answer,
                     is_quota,
-                    round_number
+                    round_number,
+                    PHASE_ID
                 );
             });
             span.appendChild(input);

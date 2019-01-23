@@ -1,5 +1,7 @@
 //this is :(
 jQuery(function() {
+    var phase = App.determinePhase();
+
     $(".select").click(function() {
         setOptionsToVal(this);
         console.log("option", window.option);
@@ -91,7 +93,7 @@ jQuery(function() {
     beginExperiment = function(payment_method, params) {
         disableButtons();
         parametrized_params = $.param(params);
-        window.location.href = "/" + payment_method + "?" + parametrized_params;
+        window.location.href = phase + '/' + payment_method + "?" + parametrized_params;
     };
 
     disableButtons = function() {
